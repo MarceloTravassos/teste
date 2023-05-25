@@ -6,6 +6,7 @@ export function Menu() {
     <main>
       <Header/>
       <Navbar/>
+      
     </main>
   )
 }
