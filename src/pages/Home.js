@@ -1,4 +1,3 @@
-import { Navbar } from "../components/Navbar";
 import tradeSvg from "../assets/trade.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";

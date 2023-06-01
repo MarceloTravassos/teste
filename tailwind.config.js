@@ -9,6 +9,7 @@ module.exports = {
         'primary': '#5865F2',
         'success': '#27AE60',
         'secondary': '#1C228C',
+        'menu-gray': '#646464',
       },
       fontFamily: {
         sans: 'Inter, sans-serif'
