@@ -7,7 +7,7 @@ import { RegisterONG } from "./pages/RegisterONG";
 import { Menu } from "./pages/Menu";
 
 function App() {
-  return <Menu />;
+  return <Login />;
 }
 
 export default App;

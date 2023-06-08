@@ -1,5 +1,14 @@
+import { useState } from "react";
+
 export function FormInput(props) {
   const { name, type } = props;
+
+  const [value, setValue] = useState('');
+
+  function handleChange(e) {
+    setValue(e.target.value)
+    console.log(value)
+  }
 
   return (
     <input
@@ -8,6 +17,8 @@ export function FormInput(props) {
       id={name}
       name={name}
       required
+      onChange={handleChange}
+      value={value}
     />
   );
 }
