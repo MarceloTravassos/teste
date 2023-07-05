@@ -5,9 +5,10 @@ import { RegisterPessoa } from "./pages/RegisterPessoa";
 import { Welcome } from "./pages/Welcome";
 import { RegisterONG } from "./pages/RegisterONG";
 import { Menu } from "./pages/Menu";
+import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 
 function App() {
-  return <Login />;
+  return <RegisterPessoa />;
 }
 
 export default App;

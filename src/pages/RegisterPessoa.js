@@ -22,12 +22,20 @@ export function RegisterPessoa() {
         <FormLabel name="endereco">Endereço:</FormLabel>
         <FormInput name="endereco" type="text" />
 
-        <div className="flex">
-          <FormLabel name="cpf">Número:</FormLabel>
-          <FormInput name="cpf" type="text" />
+        <div className="flex gap-2">
+          <div>
+            <FormLabel name="numero">
+              Número:
+            </FormLabel>
+            <FormInput className="w-20" name="numero" type="text" />
+          </div>
 
-          <FormLabel name="complemento">Complemento:</FormLabel>
-          <FormInput name="complemento" type="text" />
+          <div>
+            <FormLabel name="complemento">
+              Complemento:
+            </FormLabel>
+            <FormInput className="w-32" name="complemento" type="text" />
+          </div>
         </div>
 
         <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
