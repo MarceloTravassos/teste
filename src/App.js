@@ -8,7 +8,7 @@ import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 
 function App() {
-  return <RegisterPessoa />;
+  return <Menu />;
 }
 
 export default App;

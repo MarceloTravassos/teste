@@ -63,7 +63,7 @@ export function Register() {
         <FormLabel name="confirmar-senha">Confirmar senha:</FormLabel>
         <FormInput name="confirmar-senha" type="text" value={confirmSenha} onChange={handleConfirmSenhaChange} />
 
-        <SubmitButton>Continuar</SubmitButton>
+        <SubmitButton type="submit">Continuar</SubmitButton>
       </RegisterForm>
     </main>
   );
