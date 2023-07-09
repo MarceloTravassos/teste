@@ -6,9 +6,10 @@ import { Welcome } from "./pages/Welcome";
 import { RegisterONG } from "./pages/RegisterONG";
 import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
+import { Pedidos } from "./pages/Pedidos";
 
 function App() {
-  return <Menu />;
+  return <Pedidos />;
 }
 
 export default App;
