@@ -10,6 +10,7 @@ module.exports = {
         'success': '#27AE60',
         'secondary': '#1C228C',
         'menu-gray': '#646464',
+        'div-gray': '#EAEAEA',
       },
       fontFamily: {
         sans: 'Inter, sans-serif'

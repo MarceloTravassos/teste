@@ -7,9 +7,11 @@ import { RegisterONG } from "./pages/RegisterONG";
 import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 import { Pedidos } from "./pages/Pedidos";
+import { Doacoes } from "./pages/Doacoes";
+import { NovaDoacao } from "./pages/NovaDoacao";
 
 function App() {
-  return <Pedidos />;
+  return <NovaDoacao />;
 }
 
 export default App;
