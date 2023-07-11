@@ -4,7 +4,7 @@ export function FormInput(props) {
   return (
     <input
       placeholder={placeholder}
-      className={`bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-30 ${className}`}
+      className={`bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 ${className}`}
       type={type}
       id={name}
       name={name}

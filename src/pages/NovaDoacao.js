@@ -27,22 +27,49 @@ export function NovaDoacao() {
           id="nomeProduto"
         />
 
-        <div className="flex"></div>
+        <div className="flex gap-2">
+          <div className="w-3/5">
+            <FormLabel name="categoria">Categoria</FormLabel>
+            <select name="categoria" className="bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 w-full">
+              <option defaultValue="" selected disabled>
+                Selecione...
+              </option>
+              <option value="categoria1">Categoria 1...</option>
+              <option value="categoria2">Categoria 2...</option>
+            </select>
+          </div>
+
+          <div className="w-2/5">
+            <FormLabel name="quantidade">Quantidade</FormLabel>
+            <FormInput
+            className="w-full"
+              placeholder="Digite aqui..."
+              name="quantidade"
+              type="number"
+              id="quantidade"
+            />
+          </div>
+        </div>
 
         <FormLabel>Descrição</FormLabel>
-        <textarea placeholder="Digite aqui a descrição do produto..." className="bg-primary bg-opacity-30 p-2 mb-2 rounded-md"></textarea>
+        <textarea
+        rows="3"
+        cols="40"
+          placeholder="Digite aqui a descrição do produto..."
+          className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md"
+        ></textarea>
 
         <label>Adicionar item</label>
         <div className="flex gap-x-4">
           <button>
             <FontAwesomeIcon
               icon={faPlus}
-              className="w-8 h-8 bg-primary bg-opacity-30 rounded-md px-4 py-2 text-menu-gray"
+              className="w-8 h-8 bg-primary bg-opacity-20 rounded-md px-4 py-2 text-menu-gray"
             />
           </button>
           <p className="text-xs text-menu-gray">
             Caso queira que seu anúncio tenha mais de um item, clique aqui para
-            adiciona-los
+            adicioná-los
           </p>
         </div>
 
