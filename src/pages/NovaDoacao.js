@@ -30,7 +30,10 @@ export function NovaDoacao() {
         <div className="flex gap-2">
           <div className="w-3/5">
             <FormLabel name="categoria">Categoria</FormLabel>
-            <select name="categoria" className="bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 w-full">
+            <select
+              name="categoria"
+              className="bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 w-full"
+            >
               <option defaultValue="" selected disabled>
                 Selecione...
               </option>
@@ -42,7 +45,7 @@ export function NovaDoacao() {
           <div className="w-2/5">
             <FormLabel name="quantidade">Quantidade</FormLabel>
             <FormInput
-            className="w-full"
+              className="w-full"
               placeholder="Digite aqui..."
               name="quantidade"
               type="number"
@@ -53,14 +56,14 @@ export function NovaDoacao() {
 
         <FormLabel>Descrição</FormLabel>
         <textarea
-        rows="3"
-        cols="40"
+          rows="3"
+          cols="40"
           placeholder="Digite aqui a descrição do produto..."
           className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md"
         ></textarea>
 
-        <label>Adicionar item</label>
-        <div className="flex gap-x-4">
+        <label className="text-menu-gray font-medium">Adicionar item</label>
+        <div className="flex gap-x-4 mb-2">
           <button>
             <FontAwesomeIcon
               icon={faPlus}
@@ -72,6 +75,48 @@ export function NovaDoacao() {
             adicioná-los
           </p>
         </div>
+
+        <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
+        <p className="text-xs text-menu-gray text-opacity-80 mb-2">
+          Adicione o período em dias e horasque você terá disponibilidade para
+          entregar os produtos do seu anúncio
+        </p>
+
+        <h1 className="text-menu-gray font-medium mb-1">Dias Disponíveis</h1>
+        <FormInput
+          placeholder="00/00/0000"
+          name="dataInicio"
+          type="text"
+          id="dataInicio"
+        />
+        <FormInput
+          placeholder="00/00/0000"
+          name="dataFim"
+          type="text"
+          id="dataFim"
+        />
+
+        <h1 className="text-menu-gray font-medium my-1">
+          Horários disponíveis
+        </h1>
+        <div className="flex justify-between">
+          <FormInput
+            className="w-28 text-center"
+            placeholder="00:00"
+            name="dataFim"
+            type="text"
+            id="dataFim"
+          />
+          <FormInput
+            className="w-28 text-center"
+            placeholder="00:00"
+            name="dataFim"
+            type="text"
+            id="dataFim"
+          />
+        </div>
+
+        <hr className=""/>
 
         <SubmitButton>Continuar</SubmitButton>
       </form>
