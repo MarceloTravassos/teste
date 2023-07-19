@@ -3,10 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faHandHoldingDollar,
   faRectangleList,
-  faNotes,
-  faUser,
   faHandHoldingHeart,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";

@@ -9,9 +9,10 @@ import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 import { Pedidos } from "./pages/Pedidos";
 import { Doacoes } from "./pages/Doacoes";
 import { NovaDoacao } from "./pages/NovaDoacao";
+import { Doacao } from "./pages/Doacao";
 
 function App() {
-  return <NovaDoacao />;
+  return <Doacao />;
 }
 
 export default App;
