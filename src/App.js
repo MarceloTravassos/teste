@@ -12,7 +12,7 @@ import { NovaDoacao } from "./pages/NovaDoacao";
 import { Doacao } from "./pages/Doacao";
 
 function App() {
-  return <Doacoes />;
+  return <Pedidos />;
 }
 
 export default App;
