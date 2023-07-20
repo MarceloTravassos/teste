@@ -2,14 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { faFilter, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Filtro } from "../components/Filtro";
 
-export function Doacoes() {
+export function Pedidos() {
   return (
     <>
       <Header title="Doações" />
       <div className="flex flex-col items-center justify-between bg-primary text-white py-2 px-4 gap-y-7 mb-8 rounded-b-lg">
         <div className="flex items-center">
           <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faFilter} />
+
+          <Filtro />
 
           <select
             name="filtro"

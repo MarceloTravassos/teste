@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { faFilter, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Filtro } from "../components/Filtro";
 
 export function Doacoes() {
   return (
@@ -11,7 +12,9 @@ export function Doacoes() {
         <div className="flex items-center">
           <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faFilter} />
 
-          <select
+          <Filtro />
+
+          {/* <select
             name="filtro"
             className="text-sm font-bold text-menu-gray py-2 px-1 rounded-full"
           >
@@ -20,7 +23,7 @@ export function Doacoes() {
             </option>
             <option value="filtro1">Filtro 1</option>
             <option value="filtro2">Filtro 2</option>
-          </select>
+          </select> */}
         </div>
         <div className="flex w-full h-4 justify-end relative top-2 mb-4">
           <FontAwesomeIcon
