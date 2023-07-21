@@ -30,7 +30,7 @@ export function Filtro(props) {
           <p className="font-medium">Selecione filtros aqui</p>
           <FontAwesomeIcon
             className="w-5 h-5"
-            icon={isActive ? faChevronDown : faChevronUp}
+            icon={isActive ? faChevronUp : faChevronDown}
           />
         </div>
       </div>
@@ -51,17 +51,46 @@ export function Filtro(props) {
 
           <hr className="bg-black h-0.5" />
 
-          <div className="flex justify-between items-center px-8 py-2">
+          <div
+            className="flex justify-between items-center px-8 py-2"
+            onClick={onClickTipo}
+          >
             {tipo}
-            <FontAwesomeIcon className="" icon={faChevronDown} />
+            <FontAwesomeIcon
+              icon={isActiveTipo ? faChevronUp : faChevronDown}
+            />
           </div>
+
+          {isActiveTipo && (
+            <div className="px-8">
+              <ul className="list-disc">
+                <li className="py-1 text-primary text-opacity-70">Pessoa</li>
+                <li className="py-1 text-primary text-opacity-70">ONG</li>
+              </ul>
+            </div>
+          )}
 
           <hr className="bg-black h-0.5" />
 
-          <div className="flex justify-between items-center px-8 py-2">
+          <div
+            className="flex justify-between items-center px-8 py-2"
+            onClick={onClickCategoria}
+          >
             Categoria
-            <FontAwesomeIcon className="" icon={faChevronDown} />
+            <FontAwesomeIcon
+              icon={isActiveCategoria ? faChevronUp : faChevronDown}
+            />
           </div>
+
+          {isActiveCategoria && (
+            <div className="px-8">
+              <ul className="list-disc">
+                <li className="py-2 text-primary text-opacity-70">Alimentos</li>
+                <li className="py-2 text-primary text-opacity-70">Roupas</li>
+                <li className="py-2 text-primary text-opacity-70">Móveis</li>
+              </ul>
+            </div>
+          )}
         </nav>
       )}
     </div>

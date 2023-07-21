@@ -10,9 +10,10 @@ import { Pedidos } from "./pages/Pedidos";
 import { Doacoes } from "./pages/Doacoes";
 import { NovaDoacao } from "./pages/NovaDoacao";
 import { Doacao } from "./pages/Doacao";
+import { Pedido } from "./pages/Pedido";
 
 function App() {
-  return <Pedidos />;
+  return <Pedido />;
 }
 
 export default App;

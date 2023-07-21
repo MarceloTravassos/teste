@@ -2,28 +2,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import {
+  faBox,
   faCalendar,
-  faHandHoldingHeart,
   faLocationDot,
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { SubmitButton } from "../components/SubmitButton";
 
-export function Doacao() {
+export function Pedido() {
   return (
     <>
-      <Header title="Doação" />
+      <Header title="Pedido" />
       <main className="px-10 py-3 mb-16">
         <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
           <h1 className="font-semibold text-menu-gray leading-tight">
-            Doação de arroz da marca Camil
+            Pedido de arroz da marca Camil
           </h1>
 
           <div className="flex gap-x-4">
             <FontAwesomeIcon
               className="w-7 h-7 text-menu-gray"
-              icon={faHandHoldingHeart}
+              icon={faBox}
             />
             <div className="text-xs text-menu-gray">
               <h2 className="font-medium text-sm mb-1">Produto(s)</h2>
@@ -40,11 +40,6 @@ export function Doacao() {
                 <strong>Descrição:</strong> Pacotes de arrroz da marca Camil de
                 1kg com validade de 8 meses.
               </p>
-              <input
-                className="border rounded-md text-center border-black w-10 p-1 mt-1"
-                type="number"
-                placeholder="0"
-              />
             </div>
           </div>
 
