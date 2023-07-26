@@ -3,9 +3,9 @@ import { Navbar } from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faRectangleList,
   faHandHoldingHeart,
   faBars,
+  faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function Menu() {
@@ -35,10 +35,7 @@ export function Menu() {
           className="bg-secondary rounded-lg font-bold text-lg grid place-items-center h-40 shadow-black shadow-md"
         >
           <div className="flex flex-col items-center justify-center text-white text-center w-fit">
-            <FontAwesomeIcon
-              className="w-10 h-10 mb-4"
-              icon={faRectangleList}
-            />
+            <FontAwesomeIcon className="w-10 h-10 mb-4" icon={faBagShopping} />
             Pedidos
           </div>
         </a>

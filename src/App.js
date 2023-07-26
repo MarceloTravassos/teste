@@ -11,9 +11,10 @@ import { Doacoes } from "./pages/Doacoes";
 import { NovaDoacao } from "./pages/NovaDoacao";
 import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
+import { MinhasAtividades } from "./pages/MinhasAtividades";
 
 function App() {
-  return <Pedido />;
+  return <MinhasAtividades />;
 }
 
 export default App;
