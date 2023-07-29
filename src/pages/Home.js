@@ -4,7 +4,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export function Home() {
   return (
-    <main className="bg-primary">
+    <main className="h-screen">
+      <div className="bg-primary absolute origin-top-left h-[450px] w-full -z-10 -skew-y-[26deg] px-4"></div>
       <div className="px-4">
         <nav className="h-16 py-3 px-2 flex justify-between items-center">
           <h1 className="font-bold text-lg ml-2 text-white">Doe+</h1>
@@ -31,7 +32,7 @@ export function Home() {
         >
           Cadastre-se
         </a>
-        <img src={tradeSvg} alt="Troca" className="mt-8" />
+        <img src={tradeSvg} alt="Troca" className="mx-auto mt-8" />
       </div>
     </main>
   );

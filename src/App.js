@@ -14,7 +14,7 @@ import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
 
 function App() {
-  return <MinhasAtividades />;
+  return <Home />;
 }
 
 export default App;
