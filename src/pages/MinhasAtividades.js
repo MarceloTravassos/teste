@@ -7,80 +7,52 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { Agendados } from "./Agendados";
+import { MeusAnuncios } from "./MeusAnuncios";
+import { Historico } from "./Historico";
 
 export function MinhasAtividades() {
-  const [isActive, setIsActive] = useState(false);
+  const [isActiveAgendados, setIsActiveAgendados] = useState(false);
+  const [isActiveHistorico, setIsActiveHistorico] = useState(false);
+  const [isActiveAnuncios, setIsActiveAnuncios] = useState(false);
+
+  const handleClickAgendados = () => {
+    setIsActiveAgendados(true);
+  };
+
+  const handleClickHistorico = () => {
+    setIsActiveHistorico(true);
+  };
+  
+  const handleClickAnuncios = () => {
+    setIsActiveAnuncios(true);
+  };
 
   return (
     <>
       <Header title="Minhas Atividades" />
 
       <main className="flex flex-col gap-y-7">
-        <header className="flex text-menu-gray font-medium">
-          <div className="w-full text-center py-2 rounded-md bg-[#E6E4E4] active:bg-white">
+        <header className="flex text-menu-gray text-xs rounded-b-md bg-[#E6E4E4] font-semibold">
+          <div
+            className="w-full text-center py-2 rounded-t-md active:bg-white"
+            onClick={handleClickAgendados}
+          >
             Agendados
           </div>
-          <div className="w-full text-center py-2 rounded-md bg-[#E6E4E4] active:bg-white">
+
+          <div className="w-full text-center py-2 rounded-t-md active:bg-white" onClick={handleClickHistorico}>
             Histórico
+          </div>
+
+          <div className="w-full text-center py-2 rounded-t-md active:bg-white" onClick={handleClickAnuncios}>
+            Meus anúncios
           </div>
         </header>
 
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-6 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon
-              icon={faHandHoldingHeart}
-              className="w-6 h-6 mr-3"
-            />
-
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-3">
-                Doação de arroz da marca Camil
-              </h2>
-              <div className="flex items-center mb-4">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="w-3 h-3 rounded-full p-1 bg-menu-gray text-white mr-2"
-                />
-                <p className="text-xs font-medium">Marcelo Sarinho</p>
-              </div>
-              <p className="text-xs font-medium">
-                Encontro agendado para o dia 14/05/2023 às 19:30 no CEP
-                11520-030 R. Dom Pedro I, 256, Ap 24
-              </p>
-            </div>
-          </div>
-
-          <p className="text-center text-xs text-success font-semibold mt-5">
-            Agendado
-          </p>
-        </div>
-
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-6 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon icon={faBagShopping} className="w-6 h-6 mr-3" />
-
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-3">
-                Pedido de arroz e feijão
-              </h2>
-              <div className="flex items-center mb-4">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="w-3 h-3 rounded-full p-1 bg-menu-gray text-white mr-2"
-                />
-                <p className="text-xs font-medium">Vivian Rayzer</p>
-              </div>
-              <p className="text-xs font-medium">
-                Encontro agendado para o dia 16/05/2023 às 21:00 no CEP
-                11520-030 R. Dom Pedro I, 256, Ap 24
-              </p>
-            </div>
-          </div>
-
-          <p className="text-center text-xs text-success font-semibold mt-5">
-            Agendado
-          </p>
-        </div>
+        <Agendados />
+        {/* <MeusAnuncios />
+        <Historico /> */}
       </main>
       <Navbar />
     </>

@@ -12,9 +12,11 @@ import { NovaDoacao } from "./pages/NovaDoacao";
 import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
+import { Historico } from "./pages/Historico";
+import { Agendados } from "./pages/Agendados";
 
 function App() {
-  return <Home />;
+  return <MinhasAtividades />;
 }
 
 export default App;
