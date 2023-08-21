@@ -12,8 +12,7 @@ export function InstrucoesSenha() {
         </h1>
 
         <p className="text-justify leading-tight font-medium text-stone-500 mb-16">
-          Uma mensagem foi enviada para o endereço de email indicado com as
-          instruções e o link para alteração de senha.
+          Um e-mail de confirmação foi enviado para seu endereço de e-mail para garantirmos sua autenticidade e segurança.
         </p>
 
         <p className="text-justify leading-tight font-medium text-stone-500 mb-14">

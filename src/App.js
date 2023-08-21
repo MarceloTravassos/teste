@@ -14,9 +14,12 @@ import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
 import { Historico } from "./pages/Historico";
 import { Agendados } from "./pages/Agendados";
+import { EsqueceuSenha } from "./pages/EsqueceuSenha";
+import { InstrucoesSenha } from "./pages/InstrucoesSenha";
+import { AlterarSenha } from "./pages/AlterarSenha";
 
 function App() {
-  return <MinhasAtividades />;
+  return <AlterarSenha />;
 }
 
 export default App;
