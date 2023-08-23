@@ -28,13 +28,13 @@ export function AlterarSenha() {
     <main className="bg-primary flex flex-col px-12 items-center min-h-screen">
       {showPopup && (
         <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="flex flex-col bg-white px-14 py-11 rounded-lg shadow-md items-center justify-center">
-            <p className="text-menu-gray font-medium leading-tight">
+          <div className="flex flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md items-center justify-center">
+            <p className="text-menu-gray font-medium leading-tight mb-9 text-justify">
               Sua operação foi realizada com sucesso, agora já pode acessar o
               seu perfil com a nova senha cadastrada no site!
             </p>
             <button
-              className="mt-2 px-4 py-2 bg-primary text-white rounded-md"
+              className="mt-2 w-full py-3 font-bold text-xl bg-primary text-white rounded-md"
               onClick={() => setShowPopup(false)}
             >
               Fechar

@@ -18,14 +18,20 @@ export function MinhasAtividades() {
 
   const handleClickAgendados = () => {
     setIsActiveAgendados(true);
+    setIsActiveAnuncios(false);
+    setIsActiveHistorico(false);
   };
 
   const handleClickHistorico = () => {
     setIsActiveHistorico(true);
+    setIsActiveAnuncios(false);
+    setIsActiveAgendados(false);
   };
-  
+
   const handleClickAnuncios = () => {
     setIsActiveAnuncios(true);
+    setIsActiveAgendados(false);
+    setIsActiveHistorico(false);
   };
 
   return (
@@ -33,26 +39,38 @@ export function MinhasAtividades() {
       <Header title="Minhas Atividades" />
 
       <main className="flex flex-col gap-y-7">
-        <header className="flex text-menu-gray text-xs rounded-b-md bg-[#E6E4E4] font-semibold">
+        <header className="flex text-menu-gray pt-[3px] px-1 text-xs rounded-b-md bg-[#E6E4E4] font-semibold">
           <div
-            className="w-full text-center py-2 rounded-t-md active:bg-white"
+            className={`w-full text-center py-2 rounded-t-md ${
+              isActiveAgendados ? "bg-white" : ""
+            }`}
             onClick={handleClickAgendados}
           >
             Agendados
           </div>
 
-          <div className="w-full text-center py-2 rounded-t-md active:bg-white" onClick={handleClickHistorico}>
+          <div
+            className={`w-full text-center py-2 rounded-t-md ${
+              isActiveHistorico ? "bg-white" : ""
+            }`}
+            onClick={handleClickHistorico}
+          >
             Histórico
           </div>
 
-          <div className="w-full text-center py-2 rounded-t-md active:bg-white" onClick={handleClickAnuncios}>
+          <div
+            className={`w-full text-center py-2 rounded-t-md ${
+              isActiveAnuncios ? "bg-white" : ""
+            }`}
+            onClick={handleClickAnuncios}
+          >
             Meus anúncios
           </div>
         </header>
 
-        <Agendados />
-        {/* <MeusAnuncios />
-        <Historico /> */}
+        {/* <Agendados /> */}
+        {/* <Historico /> */}
+        <MeusAnuncios />
       </main>
       <Navbar />
     </>

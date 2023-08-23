@@ -9,8 +9,6 @@ import {
 import { useState } from "react";
 
 export function Agendados() {
-  const [isActive, setIsActive] = useState(false);
-
   return (
     <>
       <main className="flex flex-col gap-y-7">

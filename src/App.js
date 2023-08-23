@@ -17,9 +17,10 @@ import { Agendados } from "./pages/Agendados";
 import { EsqueceuSenha } from "./pages/EsqueceuSenha";
 import { InstrucoesSenha } from "./pages/InstrucoesSenha";
 import { AlterarSenha } from "./pages/AlterarSenha";
+import { MeusAnuncios } from "./pages/MeusAnuncios";
 
 function App() {
-  return <AlterarSenha />;
+  return <MinhasAtividades />;
 }
 
 export default App;
