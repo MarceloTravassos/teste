@@ -6,7 +6,7 @@ import { MeusAnuncios } from "./MeusAnuncios";
 import { Historico } from "./Historico";
 
 export function MinhasAtividades() {
-  const [isActiveAgendados, setIsActiveAgendados] = useState(false);
+  const [isActiveAgendados, setIsActiveAgendados] = useState(true);
   const [isActiveHistorico, setIsActiveHistorico] = useState(false);
   const [isActiveAnuncios, setIsActiveAnuncios] = useState(false);
 
@@ -32,7 +32,7 @@ export function MinhasAtividades() {
     <>
       <Header title="Minhas Atividades" />
 
-      <main className="flex flex-col gap-y-7">
+      <main className="flex flex-col gap-y-7 h-screen">
         <header className="flex text-menu-gray pt-[3px] px-1 text-xs rounded-b-md bg-[#E6E4E4] font-semibold">
           <div
             className={`w-full text-center py-2 rounded-t-md ${
@@ -62,9 +62,9 @@ export function MinhasAtividades() {
           </div>
         </header>
 
-        {/* <Agendados /> */}
-        {/* <Historico /> */}
-        <MeusAnuncios />
+        {isActiveAgendados && <Agendados />}
+        {isActiveHistorico && <Historico />}
+        {isActiveAnuncios && <MeusAnuncios />}
       </main>
       <Navbar />
     </>

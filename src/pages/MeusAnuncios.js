@@ -22,7 +22,7 @@ export function MeusAnuncios() {
                 Doação de arroz da marca Camil
               </h2>
               <div className="flex items-center">
-                <p className="text-xs font-medium">23/04 - Marcelo Sarinho</p>
+                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
               </div>
             </div>
 
@@ -44,7 +44,7 @@ export function MeusAnuncios() {
                 e feijãoPedido de arroz e feijãoPedido de arroz e feijão
               </h2>
               <div className="flex items-center">
-                <p className="text-xs font-medium">23/04 - Marcelo Sarinho</p>
+                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ export function MeusAnuncios() {
                 Doação de arroz da marca Camil
               </h2>
               <div className="flex items-center">
-                <p className="text-xs font-medium">23/04 - Marcelo Sarinho</p>
+                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export function MeusAnuncios() {
                 e feijãoPedido de arroz e feijãoPedido de arroz e feijão
               </h2>
               <div className="flex items-center">
-                <p className="text-xs font-medium">23/04 - Marcelo Sarinho</p>
+                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
               </div>
             </div>
 
@@ -108,11 +108,10 @@ export function MeusAnuncios() {
 
             <div className="w-3/5">
               <h2 className="font-bold text-sm text-menu-gray truncate">
-                Pedido de arroz e feijãoPedido de arroz e feijãoPedido de arroz
-                e feijãoPedido de arroz e feijãoPedido de arroz e feijão
+                Pedido de arroz e feijão
               </h2>
               <div className="flex items-center">
-                <p className="text-xs font-medium">23/04 - Marcelo Sarinho</p>
+                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
               </div>
             </div>
 
