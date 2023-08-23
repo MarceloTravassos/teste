@@ -1,11 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import {
-  faBagShopping,
-  faHandHoldingHeart,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Agendados } from "./Agendados";
 import { MeusAnuncios } from "./MeusAnuncios";

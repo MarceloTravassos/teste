@@ -1,13 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import {
   faBagShopping,
   faHandHoldingHeart,
   faMagnifyingGlass,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 export function MeusAnuncios() {
   return (
