@@ -20,7 +20,7 @@ import { AlterarSenha } from "./pages/AlterarSenha";
 import { MeusAnuncios } from "./pages/MeusAnuncios";
 
 function App() {
-  return <MinhasAtividades />;
+  return <Menu />;
 }
 
 export default App;
