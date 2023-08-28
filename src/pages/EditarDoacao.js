@@ -37,8 +37,10 @@ export function EditarDoacao() {
           </div>
         </div>
 
-        <FormLabel>Descrição</FormLabel>
+        <FormLabel name="descricao">Descrição</FormLabel>
         <textarea
+          id="descricao"
+          name="descricao"
           rows="3"
           cols="40"
           placeholder="Digite aqui a descrição do produto..."
@@ -70,8 +72,11 @@ export function EditarDoacao() {
               </div>
 
               <input
-                className="text-red-300 px-5 w-5 h-9 border mb-2 border-menu-gray rounded-md"
+                className="text-red-600 px-5 w-5 h-9 border mb-2 border-menu-gray rounded-md"
                 type="number"
+                value="quantidade"
+                name="quantidade"
+                id="quantidade"
               ></input>
             </div>
 
@@ -111,16 +116,16 @@ export function EditarDoacao() {
           <FormInput
             className="w-28 text-center"
             placeholder="00:00"
-            name="dataFim"
+            name="horarioInicio"
             type="text"
-            id="dataFim"
+            id="horarioInicio"
           />
           <FormInput
             className="w-28 text-center"
             placeholder="00:00"
-            name="dataFim"
+            name="horarioFim"
             type="text"
-            id="dataFim"
+            id="horarioFim"
           />
         </div>
 
@@ -167,9 +172,7 @@ export function EditarDoacao() {
           type="text"
           id="pontoReferencia"
         />
-        <SubmitButton className="px-20 my-24">
-          Finalizar
-        </SubmitButton>
+        <SubmitButton className="px-20 my-24">Finalizar</SubmitButton>
       </form>
       <Navbar />
     </>
