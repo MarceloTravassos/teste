@@ -20,7 +20,7 @@ export function EsqueceuSenha() {
       <div className="mb-9 bg-white w-40 h-36 text-center">Logo</div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col rounded-xl p-5 bg-white text-primary text-base font-medium"
+        className="flex flex-col rounded-xl p-5 bg-white text-primary text-base font-medium md:w-80 lg:w-96"
       >
         <h1 className="font-bold text-2xl text-center mb-5">Esqueceu sua senha?</h1>
         <FormLabel name="email">Insira o email cadastrado:</FormLabel>
@@ -32,7 +32,7 @@ export function EsqueceuSenha() {
           required
         />
 
-        <SubmitButton type="submit">Continuar</SubmitButton>
+        <SubmitButton className="hover:bg-primary-hover transition" type="submit">Continuar</SubmitButton>
       </form>
     </main>
   );

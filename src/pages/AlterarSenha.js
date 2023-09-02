@@ -69,7 +69,7 @@ export function AlterarSenha() {
           required
         />
 
-        <SubmitButton className="mb-4" type="submit">
+        <SubmitButton className="hover:bg-primary-hover transition" type="submit">
           Salvar
         </SubmitButton>
       </form>
