@@ -34,7 +34,7 @@ export function AlterarSenha() {
               seu perfil com a nova senha cadastrada no site!
             </p>
             <button
-              className="mt-2 w-full py-3 font-bold text-xl bg-primary text-white rounded-md"
+              className="mt-2 w-full md:w-64 py-3 font-bold text-xl bg-primary text-white rounded-md"
               onClick={() => setShowPopup(false)}
             >
               Fechar
@@ -46,7 +46,7 @@ export function AlterarSenha() {
       <div className="mb-9 bg-white w-40 h-36 text-center">Logo</div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col rounded-xl p-5 w-full bg-white text-primary text-base font-medium"
+        className="flex flex-col rounded-xl p-5 bg-white text-primary text-base font-medium md:w-80 lg:w-96"
       >
         <h1 className="font-bold text-2xl text-center mb-5">
           Altere sua senha

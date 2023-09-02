@@ -1,8 +1,8 @@
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
+import { Home } from "./pages/Home"; // feito
+import { Login } from "./pages/Login"; // feito
 import { Register } from "./pages/Register";
 import { RegisterPessoa } from "./pages/RegisterPessoa";
-import { Welcome } from "./pages/Welcome";
+import { Welcome } from "./pages/Welcome"; // feito
 import { RegisterONG } from "./pages/RegisterONG";
 import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
@@ -21,7 +21,7 @@ import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { EditarDoacao } from "./pages/EditarDoacao";
 
 function App() {
-  return <EditarDoacao />;
+  return <AlterarSenha />;
 }
 
 export default App;

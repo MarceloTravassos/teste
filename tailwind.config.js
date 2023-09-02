@@ -11,6 +11,9 @@ module.exports = {
         'secondary': '#1C228C',
         'menu-gray': '#646464',
         'div-gray': '#EAEAEA',
+        'success-hover': '#2ABD68',
+        'primary-hover': '#505CDE',
+        'secondary-hover': '#2028AB',
       },
       fontFamily: {
         sans: 'Inter, sans-serif'

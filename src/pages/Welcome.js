@@ -10,9 +10,9 @@ export function Welcome() {
         Escolha a opção corresponde ao seu caso
       </p>
       <div className="flex space-x-4 font-bold text-lg text-white">
-        <SecondaryButton icon={faUser} body="Pessoa Física" />
+        <SecondaryButton className="hover:bg-secondary-hover transition" icon={faUser} body="Pessoa Física" />
 
-        <SecondaryButton icon={faUser} body="ONG" />
+        <SecondaryButton className="hover:bg-secondary-hover transition" icon={faUser} body="ONG" />
       </div>
     </main>
   );
