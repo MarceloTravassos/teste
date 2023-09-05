@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { SubmitButton } from "../components/SubmitButton";
@@ -12,13 +12,18 @@ export function EditarDoacao() {
       <Header title="Doações" />
       <main>
         <form action="" className="flex flex-col mx-9 my-3">
-          <h1 className="text-xl font-semibold text-menu-gray mb-6">
+          <h1 className="text-xl font-semibold text-menu-gray mb-3">
             Doação de arroz da marca Camil
           </h1>
 
+          <div className="flex mb-5 text-menu-gray">
+            <FontAwesomeIcon className="w-6 h-6 mr-3" icon={faUser} />
+            Marcelo Sarinho
+          </div>
+
           <div className="flex gap-4">
             <div className="w-2/4">
-              <FormLabel name="nomeproduto">Nome do Produto</FormLabel>
+              <FormLabel name="nomeproduto">Produto</FormLabel>
               <FormInput
                 className="w-full"
                 name="nomeproduto"
@@ -79,47 +84,28 @@ export function EditarDoacao() {
             <p>18:30 - 22:00</p>
           </p>
 
-          <h1 className="text-menu-gray font-medium mb-1">Dias Disponíveis</h1>
-          <FormInput
-            placeholder="00/00/0000"
-            name="dataInicio"
-            type="text"
-            id="dataInicio"
-          />
-          <FormInput
-            placeholder="00/00/0000"
-            name="dataFim"
-            type="text"
-            id="dataFim"
-          />
-
-          <h1 className="text-menu-gray font-medium my-1">
-            Horários disponíveis
-          </h1>
           <div className="flex justify-between">
-            <FormInput
-              className="w-28 text-center"
-              placeholder="00:00"
-              name="horarioInicio"
-              type="text"
-              id="horarioInicio"
-            />
-            <FormInput
-              className="w-28 text-center"
-              placeholder="00:00"
-              name="horarioFim"
-              type="text"
-              id="horarioFim"
-            />
+            <div>
+              <h1 className="text-menu-gray font-medium mb-1">Dia:</h1>
+              <FormInput
+                className="w-fit"
+                name="dataInicio"
+                type="date"
+                id="dataInicio"
+              />
+            </div>
+
+            <div>
+              <h1 className="text-menu-gray font-medium mb-1">Horário:</h1>
+              <FormInput name="horarioInicio" type="time" id="horarioInicio" />
+            </div>
           </div>
 
           <hr className="my-4" />
 
-          <h1 className="text-menu-gray font-medium mb-1">Local de entrega</h1>
-          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
-            Adicione aqui o local que você gostaria de se encontrar com os
-            interessados para a transação dos itens do anúncio
-          </p>
+          <h1 className="text-lg text-menu-gray font-medium mb-1">
+            Local de encontro
+          </h1>
 
           <FormLabel name="cep">CEP</FormLabel>
           <FormInput placeholder="00000-00" name="cep" type="text" id="cep" />
@@ -134,6 +120,14 @@ export function EditarDoacao() {
             type="text"
             id="pontoReferencia"
           />
+
+          <hr className="my-4" />
+
+          <h1 className="text-lg text-menu-gray font-medium mb-1">Contato</h1>
+
+          <FormLabel name="cellphone">Telefone</FormLabel>
+          <FormInput placeholder="(99) 9 9999 9999" name="cellphone" type="text" id="cellphone" />
+
           <SubmitButton className="mx-auto my-24">Finalizar</SubmitButton>
         </form>
       </main>
