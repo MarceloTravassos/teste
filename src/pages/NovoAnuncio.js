@@ -6,7 +6,7 @@ import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { SubmitButton } from "../components/SubmitButton";
 
-export function NovaDoacao() {
+export function NovoAnuncio() {
   return (
     <>
       <Header title="Doações" />

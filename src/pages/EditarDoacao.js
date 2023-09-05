@@ -61,48 +61,22 @@ export function EditarDoacao() {
 
             <div className="w-3/5">
               <FormLabel name="quantidade">Quantidade</FormLabel>
-              <div className="flex items-center gap-x-2">
-                <div className="flex bg-primary py-5 items-center rounded-md h-8 mb-2 bg-opacity-20">
-                  <button className="px-4">
-                    <FontAwesomeIcon
-                      className="text-menu-gray"
-                      icon={faMinus}
-                    />
-                  </button>
-                  <div className="h-8 w-[2px] bg-menu-gray bg-opacity-20"></div>
-                  <button className="px-4">
-                    <FontAwesomeIcon className="text-menu-gray" icon={faPlus} />
-                  </button>
-                </div>
-
-                {/* <FormInput
-                className="w-32 px-5 border border-menu-gray"
-                type="number"
-                id="quantidade"
-                name="quantidade"
-              /> */}
-
-                <input
-                  className="px-1 w-10 h-9 border mb-2 border-menu-gray rounded-md"
-                  type="number"
-                  name="quantidade"
-                  id="quantidade"
-                ></input>
+              <div className="w-fit flex border border-menu-gray border-opacity-70 rounded-md">
+                <button className="py-2 px-3 border-r border-menu-gray border-opacity-70">
+                  <FontAwesomeIcon icon={faMinus} />
+                </button>
+                <input className="w-10 text-center" />
+                <button className="py-2 px-3 border-l border-menu-gray border-opacity-70">
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
               </div>
-
-              {/* <FormInput
-              className="w-full"
-              name="quantidade"
-              type="text"
-              id="quantidade"
-            /> */}
             </div>
           </div>
 
           <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
-          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
-            Adicione o período em dias e horas que você terá disponibilidade
-            para entregar os produtos do seu anúncio
+          <p className="text-menu-gray text-opacity-80 mb-2">
+            <p>12/06/2023 - 16/05/2023</p>
+            <p>18:30 - 22:00</p>
           </p>
 
           <h1 className="text-menu-gray font-medium mb-1">Dias Disponíveis</h1>
@@ -152,28 +126,6 @@ export function EditarDoacao() {
 
           <FormLabel name="endereco">Endereço</FormLabel>
           <FormInput name="endereco" type="text" id="endereco" />
-
-          <div className="flex gap-4">
-            <div className="w-2/4">
-              <FormLabel name="numero">Número</FormLabel>
-              <FormInput
-                className="w-full"
-                name="numero"
-                type="text"
-                id="numero"
-              />
-            </div>
-
-            <div className="w-2/4">
-              <FormLabel name="complemento">Complemento</FormLabel>
-              <FormInput
-                className="w-full"
-                name="complemento"
-                type="text"
-                id="complemento"
-              />
-            </div>
-          </div>
 
           <FormLabel name="pontoReferencia">Ponto de Referência</FormLabel>
           <FormInput

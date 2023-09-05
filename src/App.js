@@ -8,7 +8,7 @@ import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 import { Pedidos } from "./pages/Pedidos";
 import { Doacoes } from "./pages/Doacoes";
-import { NovaDoacao } from "./pages/NovaDoacao";
+import { NovoAnuncio } from "./pages/NovoAnuncio";
 import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
@@ -21,7 +21,7 @@ import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { EditarDoacao } from "./pages/EditarDoacao";
 
 function App() {
-  return <EsqueceuSenha />;
+  return <EditarDoacao />;
 }
 
 export default App;
