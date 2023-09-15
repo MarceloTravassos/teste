@@ -10,6 +10,7 @@ module.exports = {
         'success': '#27AE60',
         'secondary': '#1C228C',
         'menu-gray': '#646464',
+        'light-gray': '#D9D9D9',
         'div-gray': '#EAEAEA',
         'success-hover': '#2ABD68',
         'primary-hover': '#505CDE',

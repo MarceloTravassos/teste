@@ -19,9 +19,11 @@ import { InstrucoesSenha } from "./pages/InstrucoesSenha"; // feito
 import { AlterarSenha } from "./pages/AlterarSenha"; // feito
 import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { EditarDoacao } from "./pages/EditarDoacao";
+import { Anuncio } from "./pages/Anuncio";
+import { JustificativaAnuncio } from "./pages/JustificativaAnuncio";
 
 function App() {
-  return <EditarDoacao />;
+  return <MeusAnuncios />;
 }
 
 export default App;

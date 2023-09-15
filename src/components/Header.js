@@ -13,7 +13,7 @@ export function Header(props) {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex items-center justify-between bg-primary text-white py-2 px-4">
+      <div className="flex items-center justify-between rounded-b-lg bg-primary text-white pt-2 pb-4 px-4">
         <div className="w-16 h-12 bg-white"></div>
         <h1 className="font-bold text-xl">{title}</h1>
         <div className="relative">
@@ -22,14 +22,12 @@ export function Header(props) {
             <>
               <div className="absolute text-2xl -mt-2 ml-1.5">&#9650;</div>
               <div className="absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
-                <ul className="text-xs font-medium text-menu-gray text-opacity-70">
-                  <li className="px-3 py-2">Opção 1</li>
+                <ul className="text-xs font-medium text-menu-gray">
+                  <li className="px-3 py-2">Dados cadastrais</li>
                   <hr className="mx-3" />
-                  <li className="px-3 py-2">Opção 1</li>
+                  <li className="px-3 py-2">Alteração de senha</li>
                   <hr className="mx-3" />
-                  <li className="px-3 py-2">Opção 1</li>
-                  <hr className="mx-3" />
-                  <li className="px-3 py-2">Opção 1</li>
+                  <li className="px-3 py-2">Endereço cadastrado</li>
                 </ul>
               </div>
             </>

@@ -2,126 +2,96 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
   faBagShopping,
+  faEllipsisV,
   faHandHoldingHeart,
   faMagnifyingGlass,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { Header } from "../components/Header";
+import { FormLabel } from "../components/FormLabel";
+import { FormInput } from "../components/FormInput";
+import { SubmitButton } from "../components/SubmitButton";
 
 export function MeusAnuncios() {
   return (
     <>
+      <Header title="Minhas Atividades" />
+
       <main className="flex flex-col gap-y-5">
-        <div className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]">
-          <div className="flex items-center">
+        <form action="" className="flex flex-col mx-9 my-3">
+          <FormLabel name="titulo">Título do anúncio</FormLabel>
+          <FormInput
+            placeholder="Doação de arroz da marca
+            Camil e Prato fino"
+            name="titulo"
+            type="text"
+            id="titulo"
+          />
+
+          <div className="flex items-center text-menu-gray my-4">
             <FontAwesomeIcon
+              className="w-7 h-7 mr-3"
               icon={faHandHoldingHeart}
-              className="w-6 h-6 mr-3"
             />
+            <h2 className="font-medium">Produto(s)</h2>
+          </div>
 
-            <div className="w-3/5">
-              <h2 className="font-bold text-sm text-menu-gray truncate">
-                Doação de arroz da marca Camil
-              </h2>
-              <div className="flex items-center">
-                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
+          <div className="flex flex-col gap-y-3 text-menu-gray mb-5">
+            <div className="flex items-center justify-between border border-menu-gray py-3 px-4 rounded-2xl">
+              <div>
+                <p>
+                  <span className="font-medium leading-tight">Nome:</span> Arroz
+                  Camil
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Categoria:</span>{" "}
+                  Alimento
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Quantidade:</span>{" "}
+                  3 unidades
+                </p>
               </div>
+
+              <FontAwesomeIcon className="w-7 h-7" icon={faEllipsisV} />
             </div>
 
-            <div className="w-1/5 h-full absolute top-0 right-0">
-              <button className="w-full h-full bg-primary text-white">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
+            <div className="flex items-center justify-between border border-menu-gray py-3 px-4 rounded-2xl">
+              <div>
+                <p>
+                  <span className="font-medium leading-tight">Nome:</span> Arroz
+                  Camil
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Categoria:</span>{" "}
+                  Alimento
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Quantidade:</span>{" "}
+                  3 unidades
+                </p>
+              </div>
+
+              <FontAwesomeIcon className="w-7 h-7" icon={faEllipsisV} />
             </div>
           </div>
-        </div>
 
-        <div className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]">
-          <div className="flex items-center">
-            <FontAwesomeIcon icon={faBagShopping} className="w-6 h-6 mr-3" />
-
-            <div className="w-3/5">
-              <h2 className="font-bold text-sm text-menu-gray truncate">
-                Pedido de arroz e feijãoPedido de arroz e feijãoPedido de arroz
-                e feijãoPedido de arroz e feijãoPedido de arroz e feijão
-              </h2>
-              <div className="flex items-center">
-                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
-              </div>
-            </div>
-
-            <div className="w-1/5 h-16 absolute top-0 right-0">
-              <button className="w-full h-full bg-primary text-white">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
+          <label className="text-menu-gray font-medium mb-1">Adicionar item</label>
+          <div className="flex gap-x-4 mb-4">
+            <button>
+              <FontAwesomeIcon
+                icon={faPlus}
+                className="w-8 h-8 bg-primary bg-opacity-20 rounded-md px-4 py-2 text-menu-gray"
+              />
+            </button>
+            <p className="text-xs text-menu-gray">
+              Caso queira que seu anúncio tenha mais de um item, clique aqui
+              para adicioná-los
+            </p>
           </div>
-        </div>
 
-        <div className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]">
-          <div className="flex items-center">
-            <FontAwesomeIcon
-              icon={faHandHoldingHeart}
-              className="w-6 h-6 mr-3"
-            />
-
-            <div className="w-3/5">
-              <h2 className="font-bold text-sm text-menu-gray truncate">
-                Doação de arroz da marca Camil
-              </h2>
-              <div className="flex items-center">
-                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
-              </div>
-            </div>
-
-            <div className="w-1/5 h-full absolute top-0 right-0">
-              <button className="w-full h-full bg-primary text-white">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]">
-          <div className="flex items-center">
-            <FontAwesomeIcon icon={faBagShopping} className="w-6 h-6 mr-3" />
-
-            <div className="w-3/5">
-              <h2 className="font-bold text-sm text-menu-gray truncate">
-                Pedido de arroz e feijãoPedido de arroz e feijãoPedido de arroz
-                e feijãoPedido de arroz e feijãoPedido de arroz e feijão
-              </h2>
-              <div className="flex items-center">
-                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
-              </div>
-            </div>
-
-            <div className="w-1/5 h-16 absolute top-0 right-0">
-              <button className="w-full h-full bg-primary text-white">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]">
-          <div className="flex items-center">
-            <FontAwesomeIcon icon={faBagShopping} className="w-6 h-6 mr-3" />
-
-            <div className="w-3/5">
-              <h2 className="font-bold text-sm text-menu-gray truncate">
-                Pedido de arroz e feijão
-              </h2>
-              <div className="flex items-center">
-                <p className="text-xs font-medium truncate">23/04 - Marcelo Sarinho</p>
-              </div>
-            </div>
-
-            <div className="w-1/5 h-16 absolute top-0 right-0">
-              <button className="w-full h-full bg-primary text-white">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </div>
-        </div>
+          <button className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit">Continuar</button>
+        </form>
       </main>
       <Navbar />
     </>
