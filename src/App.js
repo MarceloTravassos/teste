@@ -21,9 +21,12 @@ import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { EditarDoacao } from "./pages/EditarDoacao";
 import { Anuncio } from "./pages/Anuncio";
 import { JustificativaAnuncio } from "./pages/JustificativaAnuncio";
+import { EditarAnuncio1 } from "./pages/EditarAnuncio1";
+import { EditarAnuncio2 } from "./pages/EditarAnuncio2";
+import { VisualizarEncontro } from "./pages/VisualizarEncontro";
 
 function App() {
-  return <MeusAnuncios />;
+  return <VisualizarEncontro />;
 }
 
 export default App;

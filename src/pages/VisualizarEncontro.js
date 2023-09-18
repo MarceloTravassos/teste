@@ -11,7 +11,7 @@ import {
 import { Header } from "../components/Header";
 import { useState } from "react";
 
-export function Anuncio() {
+export function VisualizarEncontro() {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -96,10 +96,7 @@ export function Anuncio() {
                 </div>
 
                 <div className="flex px-6">
-                  <FontAwesomeIcon
-                    icon={faLocationDot}
-                    className="w-6 h-6 mr-3"
-                  />
+                  <FontAwesomeIcon icon={faLocationDot} className="w-6 h-6 mr-3" />
                   <div className="text-sm">
                     <h1 className="text-base font-medium">Local de encontro</h1>
                     <p className="leading-tight">11520-030</p>
@@ -110,12 +107,7 @@ export function Anuncio() {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowPopup(true)}
-            className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
-          >
-            Cancelar compromisso
-          </button>
+          <h2 className="text-center font-semibold text-success">Concluído</h2>
         </div>
       </main>
 
