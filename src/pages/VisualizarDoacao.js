@@ -1,20 +1,62 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { faMinus, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisV,
+  faExclamationTriangle,
+  faMinus,
+  faPlus,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { SubmitButton } from "../components/SubmitButton";
+import { useState } from "react";
 
-export function EditarDoacao() {
+export function VisualizarDoacao() {
+  const [isActive, setIsActive] = useState(false);
+
+  const show = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <>
       <Header title="Doações" />
       <main>
         <form action="" className="flex flex-col mx-9 my-3">
-          <h1 className="text-xl font-semibold text-menu-gray mb-3">
-            Doação de arroz da marca Camil
-          </h1>
+          <div className="relative flex items-center justify-between mb-3">
+            {isActive && (
+              <>
+                <div className="absolute border border-light-gray px-3 py-2 rounded-lg w-28 -right-3 top-14 bg-white">
+                  <div className="absolute text-light-gray text-2xl -mt-[15px] -top-[9px] right-4">
+                    &#9650;
+                  </div>
+                  <div className="flex mb-2">
+                    <h5 className="text-xs mr-3">Denúnciar</h5>
+
+                    <FontAwesomeIcon className="text-yellow-500" icon={faExclamationTriangle} />
+                  </div>
+
+                  <ul className="text-xs font-medium text-menu-gray">
+                    <li className="py-2 px-1">Anúncio</li>
+                    <hr />
+                    <li className="py-2 px-1">Usuário</li>
+                  </ul>
+                </div>
+              </>
+            )}
+
+            <h1 className="text-xl font-semibold text-menu-gray">
+              Doação de arroz da marca Camil
+            </h1>
+
+            <FontAwesomeIcon
+              onClick={show}
+              className="w-7 h-7 text-menu-gray"
+              icon={faEllipsisV}
+            />
+          </div>
 
           <div className="flex mb-5 text-menu-gray">
             <FontAwesomeIcon className="w-6 h-6 mr-3" icon={faUser} />
@@ -79,10 +121,10 @@ export function EditarDoacao() {
           </div>
 
           <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
-          <p className="text-menu-gray text-opacity-80 mb-2">
+          <div className="text-menu-gray text-opacity-80 mb-2">
             <p>12/06/2023 - 16/05/2023</p>
             <p>18:30 - 22:00</p>
-          </p>
+          </div>
 
           <div className="flex justify-between">
             <div>
@@ -126,7 +168,12 @@ export function EditarDoacao() {
           <h1 className="text-lg text-menu-gray font-medium mb-1">Contato</h1>
 
           <FormLabel name="cellphone">Telefone</FormLabel>
-          <FormInput placeholder="(99) 9 9999 9999" name="cellphone" type="text" id="cellphone" />
+          <FormInput
+            placeholder="(99) 9 9999 9999"
+            name="cellphone"
+            type="text"
+            id="cellphone"
+          />
 
           <SubmitButton className="mx-auto my-24">Finalizar</SubmitButton>
         </form>

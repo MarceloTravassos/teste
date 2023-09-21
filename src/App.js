@@ -18,15 +18,17 @@ import { EsqueceuSenha } from "./pages/EsqueceuSenha";
 import { InstrucoesSenha } from "./pages/InstrucoesSenha"; // feito
 import { AlterarSenha } from "./pages/AlterarSenha"; // feito
 import { MeusAnuncios } from "./pages/MeusAnuncios";
-import { EditarDoacao } from "./pages/EditarDoacao";
+import { VisualizarDoacao } from "./pages/VisualizarDoacao";
 import { Anuncio } from "./pages/Anuncio";
 import { JustificativaAnuncio } from "./pages/JustificativaAnuncio";
 import { EditarAnuncio1 } from "./pages/EditarAnuncio1";
 import { EditarAnuncio2 } from "./pages/EditarAnuncio2";
 import { VisualizarEncontro } from "./pages/VisualizarEncontro";
+import { DenunciarAnuncio } from "./pages/DenunciarAnuncio";
+import { DenunciarUsuario } from "./pages/DenunciarUsuario";
 
 function App() {
-  return <VisualizarEncontro />;
+  return <DenunciarUsuario />;
 }
 
 export default App;

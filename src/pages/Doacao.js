@@ -88,7 +88,12 @@ export function Doacao() {
             </div>
           </div>
 
-          <SubmitButton>Marcar compromisso</SubmitButton>
+          <button
+            type="submit"
+            className="mt-2 bg-primary px-4 mx-auto py-2 rounded-lg font-bold text-center text-white text-lg w-fit"
+          >
+            Marcar compromisso
+          </button>
         </div>
       </main>
       <Navbar />
