@@ -25,37 +25,42 @@ export function VisualizarDoacao() {
       <Header title="Doações" />
       <main>
         <form action="" className="flex flex-col mx-9 my-3">
-          <div className="relative flex items-center justify-between mb-3">
-            {isActive && (
-              <>
-                <div className="absolute border border-light-gray px-3 py-2 rounded-lg w-28 -right-3 top-14 bg-white">
-                  <div className="absolute text-light-gray text-2xl -mt-[15px] -top-[9px] right-4">
-                    &#9650;
-                  </div>
-                  <div className="flex mb-2">
-                    <h5 className="text-xs mr-3">Denúnciar</h5>
-
-                    <FontAwesomeIcon className="text-yellow-500" icon={faExclamationTriangle} />
-                  </div>
-
-                  <ul className="text-xs font-medium text-menu-gray">
-                    <li className="py-2 px-1">Anúncio</li>
-                    <hr />
-                    <li className="py-2 px-1">Usuário</li>
-                  </ul>
-                </div>
-              </>
-            )}
-
+          <div className="flex items-center justify-between mb-3">
             <h1 className="text-xl font-semibold text-menu-gray">
               Doação de arroz da marca Camil
             </h1>
 
-            <FontAwesomeIcon
-              onClick={show}
-              className="w-7 h-7 text-menu-gray"
-              icon={faEllipsisV}
-            />
+            <div className="relative">
+              <FontAwesomeIcon
+                onClick={show}
+                className="relative w-7 h-7 text-menu-gray"
+                icon={faEllipsisV}
+              />
+
+              {isActive && (
+                <>
+                  <div className="absolute text-light-gray text-2xl -mt-[15px] top-10 right-[5px]">
+                    &#9650;
+                  </div>
+                  <div className="bg-white absolute top-11 -right-1 flex flex-col mb-2 border-[1.5px] rounded-lg px-3 py-2">
+                    <div className="flex">
+                      <h5 className="text-xs mr-3">Denúnciar</h5>
+
+                      <FontAwesomeIcon
+                        className="text-yellow-500"
+                        icon={faExclamationTriangle}
+                      />
+                    </div>
+
+                    <ul className="text-xs font-medium text-menu-gray">
+                      <li className="py-2 px-1">Anúncio</li>
+                      <hr />
+                      <li className="py-2 px-1">Usuário</li>
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="flex mb-5 text-menu-gray">

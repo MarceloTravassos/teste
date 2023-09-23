@@ -5,7 +5,7 @@ import { RegisterForm } from "../components/RegisterForm";
 import { RegisterLogo } from "../components/RegisterLogo";
 import { useState } from "react";
 
-export function Register() {
+export default function Register() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");

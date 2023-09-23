@@ -8,7 +8,8 @@ import { Menu } from "./pages/Menu";
 import { ConfirmarEmail } from "./pages/ConfirmarEmail";
 import { Pedidos } from "./pages/Pedidos";
 import { Doacoes } from "./pages/Doacoes";
-import { NovoAnuncio } from "./pages/NovoAnuncio";
+import { NovoAnuncio1 } from "./pages/NovoAnuncio1";
+import { NovoAnuncio2 } from "./pages/NovoAnuncio2";
 import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
@@ -26,9 +27,12 @@ import { EditarAnuncio2 } from "./pages/EditarAnuncio2";
 import { VisualizarEncontro } from "./pages/VisualizarEncontro";
 import { DenunciarAnuncio } from "./pages/DenunciarAnuncio";
 import { DenunciarUsuario } from "./pages/DenunciarUsuario";
+// import AppRoutes from "./routes"
 
 function App() {
-  return <DenunciarUsuario />;
+  return (
+    <VisualizarDoacao />
+  );
 }
 
 export default App;

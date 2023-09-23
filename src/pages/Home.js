@@ -22,7 +22,9 @@ export function Home() {
             Realizar doações nunca foi tão simples!
           </h1>
           <div className="text-white text-xs font-semibold mb-4 overflow-hidden">
-            <p className="mb-4 lg:text-base xl:text-xl">Tenha acesso às nossas funcionalidades:</p>
+            <p className="mb-4 lg:text-base xl:text-xl">
+              Tenha acesso às nossas funcionalidades:
+            </p>
             <ul className="list-disc no-underline ml-4 lg:text-base lg:mb-4 xl:text-xl xl:mb-6">
               <li>Crie anúncios de doação</li>
               <li>Peça uma doação</li>
@@ -37,8 +39,12 @@ export function Home() {
             Cadastre-se
           </a>
         </div>
-        <img src={tradeSvg} alt="Troca" className="mx-auto mt-8 lg:mt-0 lg:ml-8 lg:mr-0 lg:h-80 xl:h-96" />
+        <img
+          src={tradeSvg}
+          alt="Troca"
+          className="mx-auto mt-8 lg:mt-0 lg:ml-8 lg:mr-0 lg:h-80 xl:h-96"
+        />
       </div>
     </main>
   );
-}
+};

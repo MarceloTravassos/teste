@@ -5,7 +5,7 @@ import { SubmitButton } from "../components/SubmitButton";
 import { Loading } from "../components/Loading";
 import axios from "axios";
 
-export function Login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);

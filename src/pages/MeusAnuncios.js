@@ -1,19 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
-  faBagShopping,
   faChevronCircleLeft,
   faEdit,
   faEllipsisV,
   faHandHoldingHeart,
-  faMagnifyingGlass,
   faPlus,
-  faTimes,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
-import { FormLabel } from "../components/FormLabel";
-import { FormInput } from "../components/FormInput";
 import { useState } from "react";
 
 export function MeusAnuncios() {
@@ -80,13 +75,34 @@ export function MeusAnuncios() {
 
           <div className="flex flex-col gap-y-3 text-menu-gray mb-5">
             <div className="flex items-center justify-between border border-menu-gray py-3 px-4 rounded-2xl">
+              <div>
+                <p>
+                  <span className="font-medium leading-tight">Nome:</span> Arroz
+                  Camil
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Categoria:</span>{" "}
+                  Alimento
+                </p>
+                <p>
+                  <span className="font-medium leading-tight">Quantidade:</span>{" "}
+                  3 unidades
+                </p>
+              </div>
+
               <div className="relative">
+                <FontAwesomeIcon
+                  onClick={show}
+                  className="relative w-7 h-7"
+                  icon={faEllipsisV}
+                />
+
                 {isActive && (
                   <>
-                    <div className="absolute text-light-gray text-2xl -mt-[15px] right-20">
+                    <div className="absolute text-light-gray text-2xl -mt-[15px] right-1 top-9">
                       &#9650;
                     </div>
-                    <div className="border border-light-gray mt-2 rounded-lg w-28 right-0 top-[34px] bg-white">
+                    <div className="absolute border border-light-gray mt-2 rounded-lg w-28 -right-8 top-[34px] bg-white">
                       <ul className="text-xs font-medium text-menu-gray">
                         <div className="flex items-center justify-between px-3 py-1">
                           <li>Editar</li>
@@ -104,25 +120,7 @@ export function MeusAnuncios() {
                     </div>
                   </>
                 )}
-                <p>
-                  <span className="font-medium leading-tight">Nome:</span> Arroz
-                  Camil
-                </p>
-                <p>
-                  <span className="font-medium leading-tight">Categoria:</span>{" "}
-                  Alimento
-                </p>
-                <p>
-                  <span className="font-medium leading-tight">Quantidade:</span>{" "}
-                  3 unidades
-                </p>
               </div>
-
-              <FontAwesomeIcon
-                onClick={show}
-                className="w-7 h-7"
-                icon={faEllipsisV}
-              />
             </div>
 
             <div className="flex items-center justify-between border border-menu-gray py-3 px-4 rounded-2xl">
