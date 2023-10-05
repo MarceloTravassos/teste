@@ -1,8 +1,7 @@
-import { SubmitButton } from "../components/SubmitButton";
 import { RegisterForm } from "../components/RegisterForm";
 import { RegisterLogo } from "../components/RegisterLogo";
 
-export function InstrucoesSenha() {
+export function EsqueceuSenha2() {
   return (
     <main className="flex flex-col items-center bg-primary min-h-screen">
       <RegisterLogo />
@@ -20,7 +19,6 @@ export function InstrucoesSenha() {
           Por favor, cheque sua caixa de mensagens no e-mail...
         </p>
 
-        <SubmitButton>Continuar</SubmitButton>
       </RegisterForm>
     </main>
   );

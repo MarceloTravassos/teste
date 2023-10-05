@@ -3,7 +3,7 @@ import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
 
-export function EsqueceuSenha() {
+export function EsqueceuSenha1() {
   const [email, setEmail] = useState("");
 
   function handleEmailChange(e) {

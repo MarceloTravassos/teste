@@ -1,11 +1,11 @@
-import { Home } from "./pages/Home"; // feito
+import { TelaInicial } from "./pages/TelaInicial"; // feito
 import { Login } from "./pages/Login"; // feito
-import { Register } from "./pages/Register";
-import { RegisterPessoa } from "./pages/RegisterPessoa";
-import { Welcome } from "./pages/Welcome"; // feito
-import { RegisterONG } from "./pages/RegisterONG";
-import { Menu } from "./pages/Menu";
-import { ConfirmarEmail } from "./pages/ConfirmarEmail";
+import { CadastroCliente } from "./pages/CadastroCliente";
+import { CadastroPessoa } from "./pages/CadastroPessoa";
+import { BemVindo } from "./pages/BemVindo"; // feito
+import { CadastroONG } from "./pages/CadastroONG";
+import { Home } from "./pages/Home";
+import { EsqueceuSenha2 } from "./pages/EsqueceuSenha2";
 import { Pedidos } from "./pages/Pedidos";
 import { Doacoes } from "./pages/Doacoes";
 import { NovoAnuncio1 } from "./pages/NovoAnuncio1";
@@ -15,9 +15,9 @@ import { Pedido } from "./pages/Pedido";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
 import { Historico } from "./pages/Historico";
 import { Agendados } from "./pages/Agendados";
-import { EsqueceuSenha } from "./pages/EsqueceuSenha";
-import { InstrucoesSenha } from "./pages/InstrucoesSenha"; // feito
-import { AlterarSenha } from "./pages/AlterarSenha"; // feito
+import { EsqueceuSenha1 } from "./pages/EsqueceuSenha1";
+import { CadastroClienteInfo } from "./pages/CadastroClienteInfo"; // feito
+import { RedefinirSenha } from "./pages/RedefinirSenha"; // feito
 import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { VisualizarDoacao } from "./pages/VisualizarDoacao";
 import { Anuncio } from "./pages/Anuncio";
@@ -27,12 +27,12 @@ import { EditarAnuncio2 } from "./pages/EditarAnuncio2";
 import { VisualizarEncontro } from "./pages/VisualizarEncontro";
 import { DenunciarAnuncio } from "./pages/DenunciarAnuncio";
 import { DenunciarUsuario } from "./pages/DenunciarUsuario";
+import { DoacoesRapidas } from "./pages/DoacoesRapidas";
+import { AlterarSenha } from "./pages/AlterarSenha";
 // import AppRoutes from "./routes"
 
 function App() {
-  return (
-    <VisualizarDoacao />
-  );
+  return <AlterarSenha />;
 }
 
 export default App;
