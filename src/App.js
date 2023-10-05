@@ -29,10 +29,13 @@ import { DenunciarAnuncio } from "./pages/DenunciarAnuncio";
 import { DenunciarUsuario } from "./pages/DenunciarUsuario";
 import { DoacoesRapidas } from "./pages/DoacoesRapidas";
 import { AlterarSenha } from "./pages/AlterarSenha";
+import { AlterarEndereco } from "./pages/AlterarEndereco";
+import { AlterarDadosCadastrais } from "./pages/AlterarDadosCadastrais";
+import { Reportar } from "./pages/Reportar";
 // import AppRoutes from "./routes"
 
 function App() {
-  return <AlterarSenha />;
+  return <Reportar />;
 }
 
 export default App;
