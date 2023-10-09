@@ -36,7 +36,7 @@ export function Filtro(props) {
       </div>
 
       {isActive && (
-        <nav className="top-28 absolute bg-white text-menu-gray text-opacity-70 font-medium rounded-t-2xl rounded-b-2xl z-50">
+        <nav className="top-[120px] absolute bg-white text-menu-gray text-opacity-70 font-medium rounded-t-2xl rounded-b-2xl z-50">
           <div className="flex justify-between items-center px-8 py-2">
             <input type="text" placeholder="Palavra chave" />
             <FontAwesomeIcon icon={faMagnifyingGlass} />

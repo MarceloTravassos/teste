@@ -4,15 +4,25 @@ import { useState } from "react";
 import { Agendados } from "./Agendados";
 import { MeusAnuncios } from "./MeusAnuncios";
 import { Historico } from "./Historico";
+import { Pendentes } from "./Pendentes";
 
 export function MinhasAtividades() {
   const [isActiveAgendados, setIsActiveAgendados] = useState(true);
+  const [isActivePendentes, setIsActivePendentes] = useState(false);
   const [isActiveHistorico, setIsActiveHistorico] = useState(false);
   const [isActiveAnuncios, setIsActiveAnuncios] = useState(false);
 
   const handleClickAgendados = () => {
     setIsActiveAgendados(true);
+    setIsActivePendentes(false);
     setIsActiveAnuncios(false);
+    setIsActiveHistorico(false);
+  };
+
+  const handleClickPendentes = () => {
+    setIsActivePendentes(true);
+    setIsActiveAnuncios(false);
+    setIsActiveAgendados(false);
     setIsActiveHistorico(false);
   };
 
@@ -20,12 +30,14 @@ export function MinhasAtividades() {
     setIsActiveHistorico(true);
     setIsActiveAnuncios(false);
     setIsActiveAgendados(false);
+    setIsActivePendentes(false);
   };
 
   const handleClickAnuncios = () => {
     setIsActiveAnuncios(true);
     setIsActiveAgendados(false);
     setIsActiveHistorico(false);
+    setIsActivePendentes(false);
   };
 
   return (
@@ -41,6 +53,15 @@ export function MinhasAtividades() {
             onClick={handleClickAgendados}
           >
             Agendados
+          </div>
+
+          <div
+            className={`w-full text-center py-2 rounded-t-md ${
+              isActivePendentes ? "bg-white" : ""
+            }`}
+            onClick={handleClickPendentes}
+          >
+            Pendentes
           </div>
 
           <div
@@ -63,6 +84,7 @@ export function MinhasAtividades() {
         </header>
 
         {isActiveAgendados && <Agendados />}
+        {isActivePendentes && <Pendentes />}
         {isActiveHistorico && <Historico />}
         {isActiveAnuncios && <MeusAnuncios />}
       </main>

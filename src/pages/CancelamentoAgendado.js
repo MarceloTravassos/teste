@@ -10,7 +10,7 @@ import {
 import { Header } from "../components/Header";
 import { useState } from "react";
 
-export function JustificativaAnuncio() {
+export function CancelamentoAgendado() {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupCancelled, setPopupCancelled] = useState(true);
 

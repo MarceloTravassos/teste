@@ -20,8 +20,8 @@ import { CadastroClienteInfo } from "./pages/CadastroClienteInfo"; // feito
 import { RedefinirSenha } from "./pages/RedefinirSenha"; // feito
 import { MeusAnuncios } from "./pages/MeusAnuncios";
 import { VisualizarDoacao } from "./pages/VisualizarDoacao";
-import { Anuncio } from "./pages/Anuncio";
-import { JustificativaAnuncio } from "./pages/JustificativaAnuncio";
+import { VisualizarAgendado } from "./pages/VisualizarAgendado";
+import { CancelamentoAgendado } from "./pages/CancelamentoAgendado";
 import { EditarAnuncio1 } from "./pages/EditarAnuncio1";
 import { EditarAnuncio2 } from "./pages/EditarAnuncio2";
 import { VisualizarEncontro } from "./pages/VisualizarEncontro";
@@ -32,10 +32,11 @@ import { AlterarSenha } from "./pages/AlterarSenha";
 import { AlterarEndereco } from "./pages/AlterarEndereco";
 import { AlterarDadosCadastrais } from "./pages/AlterarDadosCadastrais";
 import { Reportar } from "./pages/Reportar";
+import { VisualizarPendente } from "./pages/VisualizarPendente";
 // import AppRoutes from "./routes"
 
 function App() {
-  return <Reportar />;
+  return <VisualizarPendente />;
 }
 
 export default App;

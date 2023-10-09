@@ -2,37 +2,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
   faCalendar,
+  faCircleChevronLeft,
   faHandHoldingHeart,
   faLocationDot,
   faPhone,
-  faTimes,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
 import { useState } from "react";
 
-export function Anuncio() {
+export function VisualizarPendente() {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
-      <Header title="Dados da doação" />
+      <Header title="Pendente" />
 
-      <main className="flex flex-col gap-y-5 mt-4">
+      <main className="h-screen flex flex-col gap-y-5 mt-4">
         {showPopup && (
-          <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md justify-center">
+          <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
+            <div
+              className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-6 rounded-lg
+            border-2 border-light-gray justify-center"
+            >
               <button className="mb-4" onClick={() => setShowPopup(false)}>
                 <FontAwesomeIcon
-                  className="w-6 h-6 text-menu-gray"
-                  icon={faTimes}
+                  className="w-6 h-6 text-primary"
+                  icon={faCircleChevronLeft}
                 />
               </button>
 
               <p className="text-menu-gray font-medium leading-tight mb-6 text-justify">
-                O cancelamento de um compromisso pode acabar por resultar na
-                aplicação de algum tipo de penalidade ao usuário, Deseja mesmo
-                prosseguir?
+                Tem certeza que deseja confirmar este compromisso?
               </p>
               <button
                 className="mt-2 w-full md:w-64 py-2 font-bold text-xl bg-primary text-white rounded-lg"
@@ -53,6 +54,14 @@ export function Anuncio() {
               <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
                 <div className="flex px-6">
                   <FontAwesomeIcon
+                    icon={faUser}
+                    className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                  />
+                  <p className="font-medium">Marcelo Sarinho</p>
+                </div>
+
+                <div className="flex px-6">
+                  <FontAwesomeIcon
                     className="w-6 h-6 text-menu-gray mr-3"
                     icon={faHandHoldingHeart}
                   />
@@ -69,14 +78,6 @@ export function Anuncio() {
                       unidades
                     </p>
                   </div>
-                </div>
-
-                <div className="flex px-6">
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
-                  />
-                  <p className="font-medium">Marcelo Sarinho</p>
                 </div>
 
                 <div className="flex px-6">
@@ -110,12 +111,16 @@ export function Anuncio() {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowPopup(true)}
-            className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
-          >
-            Cancelar compromisso
-          </button>
+          <div className="mt-2 w-fit mx-auto rounded-xl border-2 border-light-gray font-medium">
+            <button
+              onClick={() => setShowPopup(true)}
+              className="text-green-500 w-[100px] py-1"
+            >
+              Confirmar
+            </button>
+            <span className="text-light-gray">|</span>
+            <button className="text-red-500 w-[100px] py-1">Recusar</button>
+          </div>
         </div>
       </main>
 
