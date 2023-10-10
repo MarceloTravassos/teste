@@ -18,7 +18,7 @@ export function VisualizarAgendado() {
     <>
       <Header title="Dados da doação" />
 
-      <main className="flex flex-col gap-y-5 mt-4">
+      <main className="flex flex-col gap-y-5 mt-4 h-screen">
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md justify-center">
@@ -49,6 +49,7 @@ export function VisualizarAgendado() {
             <div>
               <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">
                 Doação de arroz da marca Camil{" "}
+                <span className="text-success text-xs ml-1">Agendado</span>
               </h2>
               <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
                 <div className="flex px-6">

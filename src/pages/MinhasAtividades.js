@@ -66,27 +66,27 @@ export function MinhasAtividades() {
 
           <div
             className={`w-full text-center py-2 rounded-t-md ${
-              isActiveHistorico ? "bg-white" : ""
-            }`}
-            onClick={handleClickHistorico}
-          >
-            Histórico
-          </div>
-
-          <div
-            className={`w-full text-center py-2 rounded-t-md ${
               isActiveAnuncios ? "bg-white" : ""
             }`}
             onClick={handleClickAnuncios}
           >
             Meus anúncios
           </div>
+
+          <div
+            className={`w-full text-center py-2 rounded-t-md ${
+              isActiveHistorico ? "bg-white" : ""
+            }`}
+            onClick={handleClickHistorico}
+          >
+            Histórico
+          </div>
         </header>
 
         {isActiveAgendados && <Agendados />}
         {isActivePendentes && <Pendentes />}
-        {isActiveHistorico && <Historico />}
         {isActiveAnuncios && <MeusAnuncios />}
+        {isActiveHistorico && <Historico />}
       </main>
       <Navbar />
     </>

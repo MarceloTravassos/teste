@@ -1,12 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { SubmitButton } from "../components/SubmitButton";
 
-export function NovoAnuncio2() {
+export function CriarAnuncio2() {
   return (
     <>
       <Header title="Doações" />
@@ -94,9 +92,13 @@ export function NovoAnuncio2() {
           type="text"
           id="pontoReferencia"
         />
-        <SubmitButton className="w-fit px-20 mx-auto my-20">
+
+        <button
+          type="submit"
+          className="mt-4 mb-20 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl w-fit mx-auto"
+        >
           Finalizar
-        </SubmitButton>
+        </button>
       </form>
       <Navbar />
     </>

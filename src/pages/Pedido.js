@@ -21,10 +21,7 @@ export function Pedido() {
           </h1>
 
           <div className="flex gap-x-4">
-            <FontAwesomeIcon
-              className="w-7 h-7 text-menu-gray"
-              icon={faBox}
-            />
+            <FontAwesomeIcon className="w-7 h-7 text-menu-gray" icon={faBox} />
             <div className="text-xs text-menu-gray">
               <h2 className="font-medium text-sm mb-1">Produto(s)</h2>
               <p>
@@ -83,7 +80,12 @@ export function Pedido() {
             </div>
           </div>
 
-          <SubmitButton>Marcar compromisso</SubmitButton>
+          <button
+            type="submit"
+            className="mt-2 bg-primary px-4 mx-auto py-2 rounded-lg font-bold text-center text-white text-lg w-fit"
+          >
+            Marcar compromisso
+          </button>
         </div>
       </main>
       <Navbar />

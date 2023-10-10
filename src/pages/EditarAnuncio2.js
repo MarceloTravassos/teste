@@ -4,23 +4,25 @@ import { FormLabel } from "../components/FormLabel";
 import { Header } from "../components/Header";
 
 export function EditarAnuncio2() {
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [showConfirmEdit, setShowConfirmEdit] = useState(false);
 
   return (
-    <>
+    <main>
       <Header title="Meus anúncios" />
 
-      <form action="" className="flex flex-col mx-9 my-3 h-screen">
-        {showConfirmDelete && (
+      <form action="" className="flex flex-col mx-9 my-3 h-fit">
+        {showConfirmEdit && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
             <div
               className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px] border-light-gray
           px-6 py-5 rounded-lg shadow-md justify-center"
             >
-              <h1 className="mb-4 text-lg text-center">Anúncio modificado com sucesso!</h1>
+              <h1 className="mb-4 text-lg text-center">
+                Anúncio modificado com sucesso!
+              </h1>
               <button
                 className="mt-4 mx-auto w-fit md:w-64 px-16 py-2 font-bold text-sm bg-primary text-white rounded-md"
-                onClick={() => setShowConfirmDelete(false)}
+                onClick={() => setShowConfirmEdit(false)}
               >
                 Fechar
               </button>
@@ -113,12 +115,12 @@ export function EditarAnuncio2() {
         />
 
         <button
-          onClick={() => setShowConfirmDelete(true)}
-          className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit"
+          onClick={() => setShowConfirmEdit(true)}
+          className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit my-4"
         >
-          Continuar
+          Finalizar
         </button>
       </form>
-    </>
+    </main>
   );
 }

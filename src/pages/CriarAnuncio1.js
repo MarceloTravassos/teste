@@ -4,9 +4,8 @@ import { Navbar } from "../components/Navbar";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { SubmitButton } from "../components/SubmitButton";
 
-export function NovoAnuncio1() {
+export function CriarAnuncio1() {
   return (
     <>
       <Header title="Doações" />
@@ -75,9 +74,10 @@ export function NovoAnuncio1() {
             adicioná-los
           </p>
         </div>
-        <SubmitButton className="w-fit px-20 mx-auto my-20">
+
+        <button className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl w-fit mx-auto">
           Continuar
-        </SubmitButton>
+        </button>
       </form>
       <Navbar />
     </>

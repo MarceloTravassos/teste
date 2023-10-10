@@ -8,7 +8,7 @@ export function DenunciarAnuncio() {
 
   return (
     <>
-      <Header title="Dados da doação" />
+      <Header title="Denunciar anúncio" />
 
       <main className="flex flex-col gap-y-5 mt-4">
         {showPopup && (
@@ -60,6 +60,10 @@ export function DenunciarAnuncio() {
             <ul className="font-medium px-2">
               <li className="border-b-2 py-5">Apresenta itens ofensivos</li>
               <li className="border-b-2 py-5">Contém produtos ilícitos</li>
+              <li className="border-b-2 py-5">
+                Usuário não compareceu ao encontro
+              </li>
+              <li className="border-b-2 py-5">Usuário rude ou imoral</li>
               <li
                 className="border-b-2 py-5"
                 onClick={() => setShowPopup(true)}

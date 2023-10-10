@@ -8,7 +8,6 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { SubmitButton } from "../components/SubmitButton";
 
 export function Doacao() {
   return (
@@ -36,15 +35,6 @@ export function Doacao() {
               <p>
                 <strong>Quantidade:</strong> 5 unidades
               </p>
-              <p>
-                <strong>Descrição:</strong> Pacotes de arrroz da marca Camil de
-                1kg com validade de 8 meses.
-              </p>
-              <input
-                className="border rounded-md text-center border-black w-10 p-1 mt-1"
-                type="number"
-                placeholder="0"
-              />
             </div>
           </div>
 
@@ -70,9 +60,8 @@ export function Doacao() {
               icon={faCalendar}
             />
             <div className="text-xs text-menu-gray">
-              <h2 className="font-medium text-sm">Disponibilidade</h2>
-              <p>12/06/2023 - 16/05/2023</p>
-              <p>18:30 - 22:00</p>
+              <h2 className="font-medium text-sm">Data e Horário</h2>
+              <p>12/06/2023 - 18:30</p>
             </div>
           </div>
 
