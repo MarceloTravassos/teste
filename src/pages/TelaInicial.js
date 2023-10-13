@@ -1,6 +1,7 @@
 import tradeSvg from "../assets/trade.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export function TelaInicial() {
   return (
@@ -12,7 +13,7 @@ export function TelaInicial() {
       <nav className="h-16 py-3 px-2 flex justify-between items-center border-b-2 border-white mb-5 lg:mb-10">
         <h1 className="font-bold text-lg ml-2 text-white">Doe+</h1>
         <div className="flex items-center space-x-2 hover:bg-primary-hover transition cursor-pointer p-2 rounded-sm">
-          <p className="mr-1 font-semibold text-sm text-white">Login</p>
+          <Link to="/login" className="mr-1 font-semibold text-sm text-white">Login</Link>
           <FontAwesomeIcon className="w-5 h-5 text-white" icon={faUser} />
         </div>
       </nav>
@@ -31,13 +32,13 @@ export function TelaInicial() {
               <li>Tenha acesso ao recurso de doação rápida</li>
             </ul>
           </div>
-          <a
-            href="/cadastro"
+          <Link
+            to="/cadastro"
             className="font-bold text-xs lg:text-lg text-white rounded-md px-4 py-2 lg:px-5 lg:py-3 xl:px-6 xl:py-4
             xl:text-xl bg-success hover:bg-success-hover transition drop-shadow-lg"
           >
             Cadastre-se
-          </a>
+          </Link>
         </div>
         <img
           src={tradeSvg}

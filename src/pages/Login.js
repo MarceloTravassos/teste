@@ -4,6 +4,7 @@ import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
 import { Loading } from "../components/Loading";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const data = axios
+    axios
       .post("http://localhost:8080/auth/autenticar", {
         email: email,
         senha: senha,
@@ -58,12 +59,12 @@ export function Login() {
           required
         />
 
-        <a
-          href="/esquecer-senha"
+        <Link
+          to="/esquecer-senha"
           className="mt-2 mb-2 text-sm font-normal ml-[2px] hover:underline"
         >
           Esqueceu a senha?
-        </a>
+        </Link>
 
         <SubmitButton
           className="hover:bg-primary-hover transition"

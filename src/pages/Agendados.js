@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Header } from "../components/Header";
-import { Navbar } from "../components/Navbar";
 import {
   faBagShopping,
   faHandHoldingHeart,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { FiltroMinhasAtividades } from "../components/FiltroMinhasAtividades";
 
 export function Agendados() {
   return (
     <>
-      <main className="flex flex-col gap-y-7">
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-6 mx-9 border border-[#807777]">
+      <main className="flex flex-col gap-y-7 h-screen">
+        <FiltroMinhasAtividades />
+
+        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md
+        px-4 py-6 mx-9 border border-[#807777]">
           <div className="flex">
             <FontAwesomeIcon
               icon={faHandHoldingHeart}

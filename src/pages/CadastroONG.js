@@ -1,3 +1,4 @@
+import { ComprovanteInput } from "../components/ComprovanteInput";
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { RegisterLogo } from "../components/RegisterLogo";
@@ -9,7 +10,7 @@ export function CadastroONG() {
   const [endereco, setEndereco] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
-  const [pontoReferencia, setPontoReferencia] = useState("");
+  const [comprovante, setComprovante] = useState("");
 
   function handleCNPJChange(e) {
     setCNPj(e.target.value);
@@ -31,8 +32,8 @@ export function CadastroONG() {
     setComplemento(e.target.value);
   }
 
-  function handlePontoReferenciaChange(e) {
-    setPontoReferencia(e.target.value);
+  function handleComprovanteChange(e) {
+    setComprovante(e.target.value);
   }
 
   function handleSubmit(e) {
@@ -42,7 +43,7 @@ export function CadastroONG() {
     console.log("endereco: ", endereco);
     console.log("numero: ", numero);
     console.log("complemento: ", complemento);
-    console.log("ponto referencia: ", pontoReferencia);
+    console.log("comprovante: ", comprovante);
   }
 
   return (
@@ -103,12 +104,10 @@ export function CadastroONG() {
             </div>
           </div>
 
-          <FormLabel name="ponto-referencia">Ponto de referência:</FormLabel>
-          <FormInput
-            name="ponto-referencia"
-            type="text"
-            value={pontoReferencia}
-            onChange={handlePontoReferenciaChange}
+          <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
+          <ComprovanteInput
+            value={comprovante}
+            onChange={handleComprovanteChange}
           />
 
           <button

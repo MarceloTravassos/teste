@@ -1,6 +1,7 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Header(props) {
   const { title } = props;
@@ -23,11 +24,17 @@ export function Header(props) {
               <div className="absolute text-2xl -mt-2 ml-1.5">&#9650;</div>
               <div className="absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
                 <ul className="text-xs font-medium text-menu-gray">
-                  <li className="px-3 py-2">Dados cadastrais</li>
+                  <li className="px-3 py-2">
+                    <Link to="/alterar-dados">Alterar dados</Link>
+                  </li>
                   <hr className="mx-3" />
-                  <li className="px-3 py-2">Alteração de senha</li>
+                  <li className="px-3 py-2">
+                    <Link to="/alterar-senha">Alterar senha</Link>
+                  </li>
                   <hr className="mx-3" />
-                  <li className="px-3 py-2">Endereço cadastrado</li>
+                  <li className="px-3 py-2">
+                    <Link to="/alterar-endereco">Alterar endereço</Link>
+                  </li>
                 </ul>
               </div>
             </>

@@ -4,25 +4,117 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from "./routes/Home";
-import Contact from "./routes/Contact";
+import { Error } from "./routes/Error";
+import { TelaInicial } from "./pages/TelaInicial";
+import { Login } from "./pages/Login";
+import { EsqueceuSenha1 } from "./pages/EsqueceuSenha1";
+import { EsqueceuSenha2 } from "./pages/EsqueceuSenha2";
+import { BemVindo } from "./pages/BemVindo";
+import { CadastroPessoa } from "./pages/CadastroPessoa";
+import { CadastroONG } from "./pages/CadastroONG";
+import { CadastroCliente } from "./pages/CadastroCliente";
+import { CadastroClienteInfo } from "./pages/CadastroClienteInfo";
+import { AlterarSenha } from "./pages/AlterarSenha";
+import { RedefinirSenha } from "./pages/RedefinirSenha";
+import { Home } from "./pages/Home";
+import { Reportar } from "./pages/Reportar";
+import { AlterarDadosCadastrais } from "./pages/AlterarDadosCadastrais";
+import { AlterarEndereco } from "./pages/AlterarEndereco";
+import { Doacoes } from "./pages/Doacoes";
+import { Pedidos } from "./pages/Pedidos";
+import { DoacoesRapidas } from "./pages/DoacoesRapidas";
+import { MinhasAtividades } from "./pages/MinhasAtividades";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Home />,
-//   },
-//   {
-//     path: "/contact",
-//     element: <Contact />,
-//   },
-// ]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <TelaInicial />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/cadastro",
+        element: <BemVindo />,
+      },
+      {
+        path: "/cadastro-cliente",
+        element: <CadastroCliente />,
+      },
+      {
+        path: "/cadastro-cliente-info",
+        element: <CadastroClienteInfo />,
+      },
+      {
+        path: "/cadastro-pessoa",
+        element: <CadastroPessoa />,
+      },
+      {
+        path: "/cadastro-ong",
+        element: <CadastroONG />,
+      },
+      {
+        path: "/esquecer-senha",
+        element: <EsqueceuSenha1 />,
+      },
+      {
+        path: "/esquecer-senha-info",
+        element: <EsqueceuSenha2 />,
+      },
+      {
+        path: "/redefinir-senha",
+        element: <RedefinirSenha />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/reportar",
+        element: <Reportar />,
+      },
+      {
+        path: "/alterar-dados",
+        element: <AlterarDadosCadastrais />,
+      },
+      {
+        path: "/alterar-senha",
+        element: <AlterarSenha />,
+      },
+      {
+        path: "/alterar-endereco",
+        element: <AlterarEndereco />,
+      },
+      {
+        path: "/doacoes",
+        element: <Doacoes />,
+      },
+      {
+        path: "/pedidos",
+        element: <Pedidos />,
+      },
+      {
+        path: "/doacoes-rapidas",
+        element: <DoacoesRapidas />,
+      },
+      {
+        path: "/minhas-atividades",
+        element: <MinhasAtividades />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <RouterProvider router={router} /> */}
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
