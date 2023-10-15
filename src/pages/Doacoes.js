@@ -3,11 +3,26 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "../components/Filtro";
+import { getDoacoes } from "../api";
+import { useEffect } from "react";
 
 export function Doacoes() {
+  async function fetchDoacoes() {
+    try {
+      await getDoacoes();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchDoacoes();
+  }, []);
+
   return (
     <>
       <Header title="Doações" />
+
       <div className="flex flex-col items-center justify-between bg-primary text-white py-2 px-4 gap-y-7 mb-8 rounded-b-lg">
         <div className="flex items-center">
           <Filtro tipo="Doador" />
@@ -37,9 +52,7 @@ export function Doacoes() {
             icon={faUser}
             className="bg-primary rounded-full w-6 h-6 p-2 text-white"
           />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome doador
-          </h2>
+          <h2 className="font-bold text-sm text-menu-gray mb-3">Nome doador</h2>
           <p className="text-sm text-[#807777] font-medium">
             Doação de roupas, alimentos, livros, guarda roupa semi novo...
           </p>
@@ -50,9 +63,7 @@ export function Doacoes() {
             icon={faUser}
             className="bg-primary rounded-full w-6 h-6 p-2 text-white"
           />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome doador
-          </h2>
+          <h2 className="font-bold text-sm text-menu-gray mb-3">Nome doador</h2>
           <p className="text-sm text-[#807777] font-medium">
             Doação de roupas, alimentos, livros, guarda roupa semi novo...
           </p>

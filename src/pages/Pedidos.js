@@ -5,9 +5,11 @@ import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "../components/Filtro";
 
 export function Pedidos() {
+
   return (
     <>
       <Header title="Pedidos" />
+
       <div className="flex flex-col items-center justify-between bg-primary text-white py-2 px-4 gap-y-7 mb-8 rounded-b-lg">
         <div className="flex items-center">
           <Filtro tipo="Pedidor" />

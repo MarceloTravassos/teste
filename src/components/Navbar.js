@@ -4,9 +4,17 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "../api";
 
-export function Navbar() {
+export function Navbar(props) {
+  const navigate = useNavigate();
+
+  async function handleSignOut() {
+    await signOut();
+    return navigate("/");
+  }
+
   return (
     <>
       <nav className="fixed w-full bottom-0 left-0 bg-primary text-white h-16 py-3 px-9 flex justify-between items-center">
@@ -26,7 +34,10 @@ export function Navbar() {
           Home
         </Link>
 
-        <Link to="/" className="flex flex-col items-center justify-center font-bold text-xs">
+        <Link
+          onClick={handleSignOut}
+          className="flex flex-col items-center justify-center font-bold text-xs"
+        >
           <FontAwesomeIcon className="w-5 h-5 mb-1" icon={faRightFromBracket} />
           Sair
         </Link>

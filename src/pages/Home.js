@@ -8,11 +8,44 @@ import {
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export function Home() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleOnSignOff = () => {
+    console.log("deslogando");
+    setShowPopup(false);
+  };
+
   return (
     <main>
       <Header title="Menu" />
+
+      {showPopup && (
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="flex flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md items-center justify-center">
+            <p className="text-menu-gray font-medium leading-tight mb-9 text-justify">
+              Você tem certeza de que deseja sair?
+            </p>
+            <div className="flex w-full justify-between">
+              <button
+                className="px-6 py-2 text-lg"
+                onClick={() => setShowPopup(false)}
+              >
+                Não
+              </button>
+
+              <button
+                className="px-6 py-2 text-lg bg-primary text-white rounded-md"
+                onClick={handleOnSignOff}
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <h1 className="font-bold text-xl text-menu-gray text-center mt-11 mb-12">
         O que você deseja fazer?

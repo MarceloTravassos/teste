@@ -3,13 +3,15 @@ import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
 import { Loading } from "../components/Loading";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../api";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -22,14 +24,9 @@ export function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    axios
-      .post("http://localhost:8080/auth/autenticar", {
-        email: email,
-        senha: senha,
-      })
-      .then((response) => localStorage.setItem("token", response.data.token))
-      .catch((error) => console.log(error));
+    await signIn(email, senha);
     setLoading(false);
+    return navigate("/home");
   }
 
   return (
