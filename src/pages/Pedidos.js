@@ -3,8 +3,26 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "../components/Filtro";
+import { getPedidos } from "../api";
+import { useEffect, useState } from "react";
 
 export function Pedidos() {
+  const [pedidos, setPedidos] = useState([]);
+
+  async function fetchPedidos() {
+    try {
+      const result = await getPedidos();
+      setPedidos(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPedidos();
+  }, []);
+
+  useEffect(() => {}, [pedidos]);
 
   return (
     <>
@@ -23,31 +41,30 @@ export function Pedidos() {
       </div>
 
       <main className="flex flex-col gap-y-7">
-        <div className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]">
-          <FontAwesomeIcon
-            icon={faUser}
-            className="bg-primary rounded-full w-6 h-6 p-2 text-white"
-          />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome pedidor
-          </h2>
-          <p className="text-sm text-[#807777] font-medium">
-            Pedido de roupas, alimentos, livros, guarda roupa semi novo...
-          </p>
-        </div>
-
-        <div className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]">
-          <FontAwesomeIcon
-            icon={faUser}
-            className="bg-primary rounded-full w-6 h-6 p-2 text-white"
-          />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome pedidor
-          </h2>
-          <p className="text-sm text-[#807777] font-medium">
-            Pedido de roupas, alimentos, livros, guarda roupa semi novo...
-          </p>
-        </div>
+        {pedidos.map((pedido, index) => (
+          <div
+            key={index}
+            className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]"
+          >
+            <FontAwesomeIcon
+              icon={faUser}
+              className="bg-primary rounded-full w-6 h-6 p-2 text-white"
+            />
+            <h2 className="font-bold text-sm text-menu-gray mb-3">
+              {pedido.nome}
+            </h2>
+            <p className="text-sm text-[#807777] font-medium">
+              {pedido.titulo}
+            </p>
+            <p className="text-sm text-[#807777] font-medium">
+              {pedido.dataInicioDisponibilidade} -{" "}
+              {pedido.dataFimDisponibilidade}
+            </p>
+            <p className="text-sm text-[#807777] font-medium">
+              {pedido.cidade}
+            </p>
+          </div>
+        ))}
       </main>
       <Navbar />
     </>

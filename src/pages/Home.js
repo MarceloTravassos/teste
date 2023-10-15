@@ -11,18 +11,11 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export function Home() {
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleOnSignOff = () => {
-    console.log("deslogando");
-    setShowPopup(false);
-  };
-
   return (
     <main>
       <Header title="Menu" />
 
-      {showPopup && (
+      {/* {showPopup && (
         <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
           <div className="flex flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md items-center justify-center">
             <p className="text-menu-gray font-medium leading-tight mb-9 text-justify">
@@ -45,7 +38,7 @@ export function Home() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <h1 className="font-bold text-xl text-menu-gray text-center mt-11 mb-12">
         O que você deseja fazer?

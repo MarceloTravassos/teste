@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../api";
 
-export function Navbar(props) {
+export function Navbar() {
   const navigate = useNavigate();
 
   async function handleSignOut() {
