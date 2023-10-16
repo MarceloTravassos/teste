@@ -3,49 +3,21 @@ import { FormLabel } from "../components/FormLabel";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
+import { editUser } from "../api";
 
 export function AlterarDadosCadastrais() {
-  const [cpf, setCPF] = useState("");
-  const [cep, setCEP] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [comprovante, setComprovante] = useState("");
-  const [showPopup, setShowPopup] = useState(true);
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
-
-  function handleCPFChange(e) {
-    setCPF(e.target.value);
-  }
-
-  function handleCEPChange(e) {
-    setCEP(e.target.value);
-  }
-
-  function handleEnderecoChange(e) {
-    setEndereco(e.target.value);
-  }
-
-  function handleNumeroChange(e) {
-    setNumero(e.target.value);
-  }
-
-  function handleComplementoChange(e) {
-    setComplemento(e.target.value);
-  }
-
-  function handleComprovanteChange(e) {
-    setComprovante(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("cpf: ", cpf);
-    console.log("cep: ", cep);
-    console.log("endereco: ", endereco);
-    console.log("numero: ", numero);
-    console.log("complemento: ", complemento);
-    console.log("comprovante residencia: ", comprovante);
+    try {
+      await editUser(nome, telefone);
+      setShowPopup(true);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -66,32 +38,35 @@ export function AlterarDadosCadastrais() {
         </div>
       )}
 
-      <Header title="Alteração de endereço" />
+      <Header title="Alterar dados" />
 
-      <h2 className="my-2 text-center font-bold text-xl text-menu-gray">
+      <h2 className="my-8 text-center font-bold text-xl text-menu-gray">
         Preencha os campos abaixo
       </h2>
 
-      <form action="" className="flex flex-col mx-9 my-3">
-        <FormLabel name="cep">Nome:</FormLabel>
+      <form onSubmit={handleSubmit} className="flex flex-col mx-9 my-3">
+        <FormLabel name="nome">Nome:</FormLabel>
         <FormInput
           placeholder="Marcelo Sarinho"
-          name="cep"
+          name="nome"
           type="text"
-          value={cep}
-          onChange={handleCEPChange}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
 
-        <FormLabel name="endereco">Telefone:</FormLabel>
+        <FormLabel name="telefone">Telefone:</FormLabel>
         <FormInput
           placeholder="(13) 9 9999 9999"
-          name="endereco"
+          name="telefone"
           type="text"
-          value={endereco}
-          onChange={handleEnderecoChange}
+          value={telefone}
+          onChange={(e) => setTelefone(e.target.value)}
         />
 
-        <button className="rounded-md mx-auto mt-10 xl:mt-56 bg-primary text-white text-xl font-bold px-14 py-2 w-fit">
+        <button
+          type="submit"
+          className="rounded-md mx-auto mt-10 xl:mt-56 bg-primary text-white text-xl font-bold px-14 py-2 w-fit"
+        >
           Confirmar
         </button>
       </form>

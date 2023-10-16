@@ -3,25 +3,41 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "../components/Filtro";
+import { useEffect, useState } from "react";
+import { getDoacoesRapidas } from "../api";
+import { format } from "date-fns";
 
 export function DoacoesRapidas() {
+  const [doacoesRapidas, setDoacoesRapidas] = useState([]);
+
+  const formatDate = (date) => {
+    const dateObject = new Date(date);
+    const dataFormatada = format(dateObject, "dd/MM/yyyy");
+    return dataFormatada;
+  };
+
+  async function fetchDoacoesRapidas() {
+    try {
+      const result = await getDoacoesRapidas();
+      setDoacoesRapidas(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchDoacoesRapidas();
+  }, []);
+
+  useEffect(() => {}, [doacoesRapidas]);
+
   return (
     <>
       <Header title="Doações Rápidas" />
+
       <div className="flex flex-col items-center justify-between bg-primary text-white py-2 px-4 gap-y-7 mb-8 rounded-b-lg">
         <div className="flex items-center">
           <Filtro tipo="Doador" />
-
-          {/* <select
-            name="filtro"
-            className="text-sm font-bold text-menu-gray py-2 px-1 rounded-full"
-          >
-            <option defaultValue="" selected disabled>
-              Selecione os filtros aqui
-            </option>
-            <option value="filtro1">Filtro 1</option>
-            <option value="filtro2">Filtro 2</option>
-          </select> */}
         </div>
         <div className="flex w-full h-4 justify-end relative top-2 mb-4">
           <FontAwesomeIcon
@@ -31,32 +47,31 @@ export function DoacoesRapidas() {
         </div>
       </div>
 
-      <main className="flex flex-col gap-y-7">
-        <div className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]">
-          <FontAwesomeIcon
-            icon={faUser}
-            className="bg-primary rounded-full w-6 h-6 p-2 text-white"
-          />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome doador
-          </h2>
-          <p className="text-sm text-[#807777] font-medium">
-            Doação de roupas, alimentos, livros, guarda roupa semi novo...
-          </p>
-        </div>
-
-        <div className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]">
-          <FontAwesomeIcon
-            icon={faUser}
-            className="bg-primary rounded-full w-6 h-6 p-2 text-white"
-          />
-          <h2 className="font-bold text-sm text-menu-gray mb-3">
-            Nome doador
-          </h2>
-          <p className="text-sm text-[#807777] font-medium">
-            Doação de roupas, alimentos, livros, guarda roupa semi novo...
-          </p>
-        </div>
+      <main className="flex flex-col gap-y-7 h-screen">
+        {doacoesRapidas.map((doacaoRapida, index) => (
+          <div
+            key={index}
+            className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]"
+          >
+            <FontAwesomeIcon
+              icon={faUser}
+              className="bg-primary rounded-full w-6 h-6 p-2 text-white"
+            />
+            <h2 className="font-bold text-sm text-menu-gray mb-3">
+              {doacaoRapida.nome}
+            </h2>
+            <p className="text-sm text-[#807777] font-medium">
+              {doacaoRapida.titulo}
+            </p>
+            <p className="text-sm text-[#807777] font-medium">
+              {formatDate(doacaoRapida.dataInicioDisponibilidade)} -{" "}
+              {formatDate(doacaoRapida.dataFimDisponibilidade)}
+            </p>
+            <p className="text-sm text-[#807777] font-medium">
+              {doacaoRapida.cidade}
+            </p>
+          </div>
+        ))}
       </main>
       <Navbar />
     </>

@@ -10,6 +10,12 @@ import { format } from "date-fns";
 export function Doacoes() {
   const [doacoes, setDoacoes] = useState([]);
 
+  const formatDate = (date) => {
+    const dateObject = new Date(date);
+    const dataFormatada = format(dateObject, "dd/MM/yyyy");
+    return dataFormatada;
+  };
+
   async function fetchDoacoes() {
     try {
       const result = await getDoacoes();
@@ -59,8 +65,8 @@ export function Doacoes() {
               {doacao.titulo}
             </p>
             <p className="text-sm text-[#807777] font-medium">
-              {doacao.dataInicioDisponibilidade} -{" "}
-              {doacao.dataFimDisponibilidade}
+              {formatDate(doacao.dataInicioDisponibilidade)} -{" "}
+              {formatDate(doacao.dataFimDisponibilidade)}
             </p>
             <p className="text-sm text-[#807777] font-medium">
               {doacao.cidade}
