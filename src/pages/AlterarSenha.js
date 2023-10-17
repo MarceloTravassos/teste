@@ -7,13 +7,14 @@ import { editPassword } from "../api";
 
 export function AlterarSenha() {
   const [showPopup, setShowPopup] = useState(false);
+  const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [confirmaSenha, setConfirmaSenha] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await editPassword(novaSenha, confirmarSenha);
+      await editPassword(senhaAtual, novaSenha, confirmaSenha);
       setShowPopup(true);
     } catch (error) {
       console.log(error);
@@ -46,6 +47,15 @@ export function AlterarSenha() {
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col mx-9 my-3">
+          <FormLabel name="senhaAtual">Digite sua senha atual:</FormLabel>
+          <FormInput
+            name="senhaAtual"
+            type="password"
+            id="senhaAtual"
+            value={senhaAtual}
+            onChange={(e) => setSenhaAtual(e.target.value)}
+          />
+
           <FormLabel name="novaSenha">Nova senha:</FormLabel>
           <FormInput
             name="novaSenha"
@@ -55,13 +65,13 @@ export function AlterarSenha() {
             onChange={(e) => setNovaSenha(e.target.value)}
           />
 
-          <FormLabel name="confirmarSenha">Confirmar senha:</FormLabel>
+          <FormLabel name="confirmaSenha">Confirmar senha:</FormLabel>
           <FormInput
-            name="confirmarSenha"
+            name="confirmaSenha"
             type="password"
-            id="confirmarSenha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
+            id="confirmaSenha"
+            value={confirmaSenha}
+            onChange={(e) => setConfirmaSenha(e.target.value)}
           />
 
           <button

@@ -57,13 +57,14 @@ export const signOut = async () => {
   }
 };
 
-export const editPassword = async (novaSenha, confirmarSenha) => {
+export const editPassword = async (senhaAtual, novaSenha, confirmaSenha) => {
   try {
     await axios.patch(
-      "http://localhost:8080/senha",
+      "http://localhost:8080/usuario/senha",
       {
+        senhaAtual: senhaAtual,
         novaSenha: novaSenha,
-        confirmarSenha: confirmarSenha,
+        confirmaSenha: confirmaSenha,
       },
       config
     );
