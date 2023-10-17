@@ -2,6 +2,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 
 export function Header(props) {
   const { title } = props;
@@ -14,8 +15,13 @@ export function Header(props) {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex items-center justify-between bg-primary text-white pt-2 pb-4 px-4">
-        <div className="w-16 h-12 bg-white"></div>
+      <div className="flex items-center justify-between bg-primary text-white py-4 px-4">
+        <img
+          src={logo}
+          alt="Logo Doar Mais"
+          className="w-[70px]"
+        />
+
         <h1 className="font-bold text-xl">{title}</h1>
         <div className="relative">
           <FontAwesomeIcon className="w-8 h-6" onClick={show} icon={faUser} />

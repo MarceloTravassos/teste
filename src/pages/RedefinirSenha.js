@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
+import logo from "../assets/logo.jpeg";
 
 export function RedefinirSenha() {
   const [novaSenha, setNovaSenha] = useState("");
@@ -42,7 +43,12 @@ export function RedefinirSenha() {
         </div>
       )}
 
-      <div className="mb-9 bg-white w-40 h-36 text-center">Logo</div>
+      <img
+        src={logo}
+        alt="Logo Doar Mais"
+        className="mb-14 mt-20 mx-auto w-44"
+      />
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col rounded-xl p-5 bg-white text-primary text-base font-medium md:w-80 lg:w-96"

@@ -1,10 +1,14 @@
 import { RegisterForm } from "../components/RegisterForm";
-import { RegisterLogo } from "../components/RegisterLogo";
+import logo from "../assets/logo.jpeg";
 
 export function EsqueceuSenha2() {
   return (
     <main className="flex flex-col items-center bg-primary min-h-screen">
-      <RegisterLogo />
+      <img
+        src={logo}
+        alt="Logo Doar Mais"
+        className="mb-7 mt-10 mx-auto w-32"
+      />
       <RegisterForm>
         <h1 className="font-bold text-2xl text-primary mb-2 text-center">
           Cadastro
@@ -18,7 +22,6 @@ export function EsqueceuSenha2() {
         <p className="text-justify leading-tight font-medium text-stone-500 mb-14">
           Por favor, cheque sua caixa de mensagens no e-mail...
         </p>
-
       </RegisterForm>
     </main>
   );

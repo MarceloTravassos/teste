@@ -5,6 +5,7 @@ import { SubmitButton } from "../components/SubmitButton";
 import { Loading } from "../components/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../api";
+import logo from "../assets/logo.jpeg";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -12,14 +13,6 @@ export function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleSenhaChange(e) {
-    setSenha(e.target.value);
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,7 +24,11 @@ export function Login() {
 
   return (
     <main className="bg-primary flex flex-col px-12 items-center min-h-screen">
-      <div className="mb-9 bg-white w-40 h-36 text-center">Logo</div>
+      <img
+        src={logo}
+        alt="Logo Doar Mais"
+        className="mb-9 mt-20 mx-auto w-44"
+      />
       <form
         onSubmit={handleSubmit}
         className="flex flex-col rounded-xl p-5 bg-white text-primary
@@ -43,7 +40,7 @@ export function Login() {
           name="email"
           type="email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 
@@ -52,7 +49,7 @@ export function Login() {
           name="senha"
           type="password"
           value={senha}
-          onChange={handleSenhaChange}
+          onChange={(e) => setSenha(e.target.value)}
           required
         />
 

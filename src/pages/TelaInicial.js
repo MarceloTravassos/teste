@@ -2,6 +2,7 @@ import tradeSvg from "../assets/trade.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 
 export function TelaInicial() {
   return (
@@ -11,9 +12,11 @@ export function TelaInicial() {
       -skew-y-[26deg] md:-skew-y-[18deg] lg:-skew-y-12"
       ></div>
       <nav className="h-16 py-3 px-2 flex justify-between items-center border-b-2 border-white mb-5 lg:mb-10">
-        <h1 className="font-bold text-lg ml-2 text-white">Doe+</h1>
+        <img src={logo} alt="Logo Doar Mais" className="w-20" />
         <div className="flex items-center space-x-2 hover:bg-primary-hover transition cursor-pointer p-2 rounded-sm">
-          <Link to="/login" className="mr-1 font-semibold text-sm text-white">Login</Link>
+          <Link to="/login" className="mr-1 font-semibold text-sm text-white">
+            Login
+          </Link>
           <FontAwesomeIcon className="w-5 h-5 text-white" icon={faUser} />
         </div>
       </nav>
@@ -48,4 +51,4 @@ export function TelaInicial() {
       </div>
     </main>
   );
-};
+}

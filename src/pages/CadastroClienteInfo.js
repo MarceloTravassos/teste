@@ -1,12 +1,13 @@
 import { SubmitButton } from "../components/SubmitButton";
-import { RegisterLogo } from "../components/RegisterLogo";
+import logo from "../assets/logo.jpeg";
 
 export function CadastroClienteInfo() {
   return (
     <main className="flex flex-col items-center px-12 bg-primary min-h-screen">
-      <RegisterLogo />
+      <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
+
       <div
-        className="mt-4 flex flex-col rounded-xl p-5 bg-white text-primary
+        className="flex flex-col rounded-xl p-5 bg-white text-primary
       text-base font-medium md:w-80 lg:w-96"
       >
         <h1 className="font-bold text-2xl text-primary mb-2 text-center">

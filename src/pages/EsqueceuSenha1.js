@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
+import logo from "../assets/logo.jpeg";
 
 export function EsqueceuSenha1() {
   const [email, setEmail] = useState("");
@@ -17,12 +18,19 @@ export function EsqueceuSenha1() {
 
   return (
     <main className="bg-primary flex flex-col px-12 items-center min-h-screen">
-      <div className="mb-9 bg-white w-40 h-36 text-center">Logo</div>
+      <img
+        src={logo}
+        alt="Logo Doar Mais"
+        className="mb-9 mt-20 mx-auto w-44"
+      />
+      
       <form
         onSubmit={handleSubmit}
         className="flex flex-col rounded-xl p-5 bg-white text-primary text-base font-medium md:w-80 lg:w-96"
       >
-        <h1 className="font-bold text-2xl text-center mb-5">Esqueceu sua senha?</h1>
+        <h1 className="font-bold text-2xl text-center mb-5">
+          Esqueceu sua senha?
+        </h1>
         <FormLabel name="email">Insira o email cadastrado:</FormLabel>
         <FormInput
           name="email"
@@ -32,7 +40,12 @@ export function EsqueceuSenha1() {
           required
         />
 
-        <SubmitButton className="hover:bg-primary-hover transition" type="submit">Continuar</SubmitButton>
+        <SubmitButton
+          className="hover:bg-primary-hover transition"
+          type="submit"
+        >
+          Continuar
+        </SubmitButton>
       </form>
     </main>
   );

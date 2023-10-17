@@ -1,9 +1,9 @@
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
-import { RegisterLogo } from "../components/RegisterLogo";
 import { useState } from "react";
 import { ComprovanteInput } from "../components/ComprovanteInput";
+import logo from "../assets/logo.jpeg";
 
 export function CadastroPessoa() {
   const [cpf, setCPF] = useState("");
@@ -49,9 +49,9 @@ export function CadastroPessoa() {
 
   return (
     <main className="flex flex-col items-center bg-primary min-h-screen">
-      <RegisterLogo />
+      <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
-      <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white mt-4">
+      <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white">
         <form className="flex flex-col">
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
