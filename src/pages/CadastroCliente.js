@@ -10,33 +10,13 @@ export function CadastroCliente() {
   const [senha, setSenha] = useState("");
   const [confirmSenha, setConfirmSenha] = useState("");
 
-  function handleNomeChange(e) {
-    setNome(e.target.value);
-  }
-
-  function handleTelefoneChange(e) {
-    setTelefone(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleSenhaChange(e) {
-    setSenha(e.target.value);
-  }
-
-  function handleConfirmSenhaChange(e) {
-    setConfirmSenha(e.target.value);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("senha: ", senha);
-    console.log("email: ", email);
     console.log("nome: ", nome);
     console.log("email: ", email);
-    console.log("email: ", email);
+    console.log("telefone: ", telefone);
+    console.log("senha: ", senha);
+    console.log("confirm senha: ", confirmSenha);
   }
 
   return (
@@ -44,7 +24,7 @@ export function CadastroCliente() {
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
       <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white">
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
           </h1>
@@ -53,15 +33,15 @@ export function CadastroCliente() {
             name="nome"
             type="text"
             value={nome}
-            onChange={handleNomeChange}
+            onChange={(e) => setNome(e.target.value)}
           />
 
           <FormLabel name="email">Email:</FormLabel>
           <FormInput
             name="email"
-            type="text"
+            type="email"
             value={email}
-            onChange={handleEmailChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <FormLabel name="telefone">Telefone:</FormLabel>
@@ -69,23 +49,23 @@ export function CadastroCliente() {
             name="telefone"
             type="text"
             value={telefone}
-            onChange={handleTelefoneChange}
+            onChange={(e) => setTelefone(e.target.value)}
           />
 
           <FormLabel name="senha">Senha:</FormLabel>
           <FormInput
             name="senha"
-            type="text"
+            type="password"
             value={senha}
-            onChange={handleSenhaChange}
+            onChange={(e) => setSenha(e.target.value)}
           />
 
           <FormLabel name="confirmar-senha">Confirmar senha:</FormLabel>
           <FormInput
             name="confirmar-senha"
-            type="text"
+            type="password"
             value={confirmSenha}
-            onChange={handleConfirmSenhaChange}
+            onChange={(e) => setConfirmSenha(e.target.value)}
           />
 
           <button

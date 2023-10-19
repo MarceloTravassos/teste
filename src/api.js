@@ -24,10 +24,34 @@ export const getDoacoes = async () => {
   }
 };
 
+export const getDoacao = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/doacao/${id}`,
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getDoacoesRapidas = async () => {
   try {
     const response = await axios.get(
       "http://localhost:8080/doacaorapida",
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDoacaoRapida = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/doacaorapida/${id}`,
       config
     );
     return await response.data;
@@ -83,6 +107,38 @@ export const editUser = async (nome, telefone) => {
       },
       config
     );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAgendados = async () => {
+  try {
+    await axios.get("http://localhost:8080/atividades/agendados", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPendentes = async () => {
+  try {
+    await axios.patch("http://localhost:8080/atividades/pendentes", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMeusAnuncios = async () => {
+  try {
+    await axios.patch("http://localhost:8080/atividades/anuncios", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getHistorico = async () => {
+  try {
+    await axios.patch("http://localhost:8080/atividades/historico", config);
   } catch (error) {
     console.log(error);
   }

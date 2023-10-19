@@ -16,11 +16,7 @@ export function Header(props) {
   return (
     <div className="flex flex-col justify-center">
       <div className="flex items-center justify-between bg-primary text-white py-4 px-4">
-        <img
-          src={logo}
-          alt="Logo Doar Mais"
-          className="w-[70px]"
-        />
+        <img src={logo} alt="Logo Doar Mais" className="w-[70px]" />
 
         <h1 className="font-bold text-xl">{title}</h1>
         <div className="relative">
@@ -30,6 +26,11 @@ export function Header(props) {
               <div className="absolute text-2xl -mt-2 ml-1.5">&#9650;</div>
               <div className="absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
                 <ul className="text-xs font-medium text-menu-gray">
+                  <li className="px-3 py-2">
+                    <Link to="/visualizar-perfil">Visualizar perfil</Link>
+                  </li>
+                  <hr className="mx-3" />
+
                   <li className="px-3 py-2">
                     <Link to="/alterar-dados">Alterar dados</Link>
                   </li>

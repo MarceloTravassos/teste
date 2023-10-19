@@ -11,6 +11,10 @@ export function MinhasAtividades() {
   const [isActivePendentes, setIsActivePendentes] = useState(false);
   const [isActiveHistorico, setIsActiveHistorico] = useState(false);
   const [isActiveAnuncios, setIsActiveAnuncios] = useState(false);
+  const [agendados, setAgendados] = useState([]);
+  const [pendentes, setPendentes] = useState([]);
+  const [meusAnuncios, setmeusAnuncios] = useState([]);
+  const [historico, setHistorico] = useState([]);
 
   const handleClickAgendados = () => {
     setIsActiveAgendados(true);

@@ -8,7 +8,6 @@ import {
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export function Home() {
   return (

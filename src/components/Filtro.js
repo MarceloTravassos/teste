@@ -45,7 +45,7 @@ export function Filtro(props) {
           <hr className="bg-black h-0.5" />
 
           <div className="flex justify-between items-center px-8 py-2">
-            <input type="text" placeholder="CEP" />
+            <input type="text" placeholder="Cidade" />
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
 

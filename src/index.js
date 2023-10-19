@@ -24,6 +24,9 @@ import { Doacoes } from "./pages/Doacoes";
 import { Pedidos } from "./pages/Pedidos";
 import { DoacoesRapidas } from "./pages/DoacoesRapidas";
 import { MinhasAtividades } from "./pages/MinhasAtividades";
+import { Doacao } from "./pages/Doacao";
+import { Pedido } from "./pages/Pedido";
+import { DoacaoRapida } from "./pages/DoacaoRapida";
 
 const router = createBrowserRouter([
   {
@@ -96,12 +99,24 @@ const router = createBrowserRouter([
         element: <Doacoes />,
       },
       {
+        path: "/doacao/:id",
+        element: <Doacao />,
+      },
+      {
         path: "/pedidos",
         element: <Pedidos />,
       },
       {
+        path: "/pedido/:id",
+        element: <Pedido />,
+      },
+      {
         path: "/doacoes-rapidas",
         element: <DoacoesRapidas />,
+      },
+      {
+        path: "/doacoao-rapida/:id",
+        element: <DoacaoRapida />,
       },
       {
         path: "/minhas-atividades",
