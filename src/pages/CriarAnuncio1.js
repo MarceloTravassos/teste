@@ -4,8 +4,15 @@ import { Navbar } from "../components/Navbar";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
+import { useState } from "react";
 
 export function CriarAnuncio1() {
+  const [titulo, setTitulo] = useState("");
+  const [nomeProduto, setNomeProduto] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [quantidade, setQuantidade] = useState(1);
+  const [descricao, setDescricao] = useState("");
+
   return (
     <>
       <Header title="Doações" />
@@ -16,6 +23,8 @@ export function CriarAnuncio1() {
           name="titulo"
           type="text"
           id="titulo"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
         />
 
         <FormLabel name="nomeProduto">Nome do produto</FormLabel>
@@ -24,6 +33,8 @@ export function CriarAnuncio1() {
           name="nomeProduto"
           type="text"
           id="nomeProduto"
+          value={nomeProduto}
+          onChange={(e) => setNomeProduto(e.target.value)}
         />
 
         <div className="flex gap-2">
@@ -31,9 +42,15 @@ export function CriarAnuncio1() {
             <FormLabel name="categoria">Categoria</FormLabel>
             <select
               name="categoria"
+              id="categoria"
+              required
               className="bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 w-full"
+              value={categoria}
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
             >
-              <option defaultValue="" selected disabled>
+              <option value="selecione..." disabled>
                 Selecione...
               </option>
               <option value="categoria1">Categoria 1...</option>
@@ -49,6 +66,8 @@ export function CriarAnuncio1() {
               name="quantidade"
               type="number"
               id="quantidade"
+              value={quantidade}
+              onChange={(e) => setQuantidade(e.target.value)}
             />
           </div>
         </div>
@@ -59,6 +78,10 @@ export function CriarAnuncio1() {
           cols="40"
           placeholder="Digite aqui a descrição do produto..."
           className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md"
+          name="descricao"
+          id="descricao"
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
         ></textarea>
 
         <label className="text-menu-gray font-medium">Adicionar item</label>

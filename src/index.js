@@ -27,6 +27,7 @@ import { MinhasAtividades } from "./pages/MinhasAtividades";
 import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
 import { DoacaoRapida } from "./pages/DoacaoRapida";
+import { CriarAnuncio1 } from "./pages/CriarAnuncio1";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/doacao/:id",
         element: <Doacao />,
+      },
+      {
+        path: "/criar-doacao",
+        element: <CriarAnuncio1 />,
       },
       {
         path: "/pedidos",

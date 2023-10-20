@@ -15,6 +15,18 @@ export const getPedidos = async () => {
   }
 };
 
+export const getPedido = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/pedido/${id}`,
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getDoacoes = async () => {
   try {
     const response = await axios.get("http://localhost:8080/doacao", config);
@@ -31,6 +43,14 @@ export const getDoacao = async (id) => {
       config
     );
     return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postDoacao = async (request) => {
+  try {
+    await axios.post("http://localhost:8080/doacao", request, config);
   } catch (error) {
     console.log(error);
   }

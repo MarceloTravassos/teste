@@ -27,11 +27,6 @@ export function Header(props) {
               <div className="absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
                 <ul className="text-xs font-medium text-menu-gray">
                   <li className="px-3 py-2">
-                    <Link to="/visualizar-perfil">Visualizar perfil</Link>
-                  </li>
-                  <hr className="mx-3" />
-
-                  <li className="px-3 py-2">
                     <Link to="/alterar-dados">Alterar dados</Link>
                   </li>
                   <hr className="mx-3" />

@@ -6,6 +6,7 @@ import { Filtro } from "../components/Filtro";
 import { useEffect, useState } from "react";
 import { getDoacoesRapidas } from "../api";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 export function DoacoesRapidas() {
   const [doacoesRapidas, setDoacoesRapidas] = useState([]);
@@ -49,7 +50,8 @@ export function DoacoesRapidas() {
 
       <main className="flex flex-col gap-y-7 h-screen">
         {doacoesRapidas.map((doacaoRapida, index) => (
-          <div
+          <Link
+            to={`/doacoao-rapida/${doacaoRapida.id}`}
             key={index}
             className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]"
           >
@@ -70,7 +72,7 @@ export function DoacoesRapidas() {
             <p className="text-sm text-[#807777] font-medium">
               {doacaoRapida.cidade}
             </p>
-          </div>
+          </Link>
         ))}
       </main>
       <Navbar />

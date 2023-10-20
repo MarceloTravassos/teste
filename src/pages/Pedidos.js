@@ -5,6 +5,7 @@ import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "../components/Filtro";
 import { getPedidos } from "../api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -40,9 +41,10 @@ export function Pedidos() {
         </div>
       </div>
 
-      <main className="flex flex-col gap-y-7">
+      <main className="flex flex-col gap-y-7 h-screen">
         {pedidos.map((pedido, index) => (
-          <div
+          <Link
+            to={`/pedido/${pedido.id}`}
             key={index}
             className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]"
           >
@@ -63,7 +65,7 @@ export function Pedidos() {
             <p className="text-sm text-[#807777] font-medium">
               {pedido.cidade}
             </p>
-          </div>
+          </Link>
         ))}
       </main>
       <Navbar />
