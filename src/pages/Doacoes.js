@@ -42,6 +42,7 @@ export function Doacoes() {
         </div>
 
         <Link
+          state={{ tipoAnuncio: 1 }}
           to="/criar-doacao"
           className="flex w-full h-4 justify-end relative top-2 mb-4"
         >

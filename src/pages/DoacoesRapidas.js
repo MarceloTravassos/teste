@@ -40,12 +40,16 @@ export function DoacoesRapidas() {
         <div className="flex items-center">
           <Filtro tipo="Doador" />
         </div>
-        <div className="flex w-full h-4 justify-end relative top-2 mb-4">
+        <Link
+          state={{ tipoAnuncio: 3 }}
+          to="/criar-doacao-rapida"
+          className="flex w-full h-4 justify-end relative top-2 mb-4"
+        >
           <FontAwesomeIcon
             icon={faPlus}
             className="bg-success p-3 rounded-full w-7 h-7"
           />
-        </div>
+        </Link>
       </div>
 
       <main className="flex flex-col gap-y-7 h-screen">

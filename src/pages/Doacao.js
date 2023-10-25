@@ -8,7 +8,7 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDoacao } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
@@ -16,6 +16,8 @@ import { format } from "date-fns";
 
 export function Doacao() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [doacao, setDoacao] = useState();
 
   const formatDate = (date) => {
@@ -32,6 +34,11 @@ export function Doacao() {
       console.log(error);
     }
   }
+
+  const marcarCompromisso = (e) => {
+    e.preventDefault();
+    return navigate("/marcar-compromisso-doacao", { state: { doacao } });
+  };
 
   useEffect(() => {
     fetchDoacao();
@@ -121,7 +128,7 @@ export function Doacao() {
             </div>
 
             <button
-              type="submit"
+              onClick={marcarCompromisso}
               className="mt-2 bg-primary px-4 mx-auto py-2 rounded-lg font-bold text-center text-white text-lg w-fit"
             >
               Marcar compromisso

@@ -5,7 +5,7 @@ import { FormInput } from "../components/FormInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { useState } from "react";
 
-export function MarcarDoacao2() {
+export function MarcarCompromisso2() {
   return (
     <>
       <Header title="Doações" />
@@ -66,7 +66,10 @@ export function MarcarDoacao2() {
             id="cellphone"
           />
 
-          <button type="submit" className="mt-4 mb-20 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl w-fit mx-auto">
+          <button
+            type="submit"
+            className="mt-4 mb-20 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl w-fit mx-auto"
+          >
             Finalizar
           </button>
         </form>

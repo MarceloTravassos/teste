@@ -4,19 +4,64 @@ import { Navbar } from "../components/Navbar";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function CriarAnuncio1() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const options = [
+    { id: 0, descricao: "Selecione..." },
+    { id: 1, descricao: "Alimento" },
+    { id: 2, descricao: "Eletrônico" },
+    { id: 3, descricao: "Eletrodoméstico" },
+    { id: 4, descricao: "Roupa" },
+    { id: 5, descricao: "Móvel" },
+    { id: 6, descricao: "Entretenimento" },
+    { id: 7, descricao: "Pet" },
+    { id: 8, descricao: "Outro" },
+  ];
+
   const [titulo, setTitulo] = useState("");
-  const [nomeProduto, setNomeProduto] = useState("");
-  const [categoria, setCategoria] = useState("");
+  const [nome, setNome] = useState("");
+  const [categoriaItemModel, setCategoriaItemModel] = useState({
+    id: options[0].id,
+    descricao: options[0].descricao,
+  });
   const [quantidade, setQuantidade] = useState(1);
   const [descricao, setDescricao] = useState("");
+  const [listaItens, setListaItens] = useState([]);
+
+  const handleCategoriaChange = (e) => {
+    const categoriaId = parseInt(e.target.value);
+    const categoriaSelecionada = options.find(
+      (option) => option.id === categoriaId
+    );
+    setCategoriaItemModel({
+      id: categoriaSelecionada.id,
+      descricao: categoriaSelecionada.descricao,
+    });
+  };
+
+  const adicionarProduto = (e) => {
+    e.preventDefault();
+    const produto = { nome, categoriaItemModel, quantidade, descricao };
+    setListaItens([...listaItens, produto]);
+  };
+
+  const continuarCriacao = (e) => {
+    e.preventDefault();
+    return navigate("/criar-doacao-2", { state: { titulo, listaItens } });
+  };
+
+  useEffect(() => {}, [categoriaItemModel]);
 
   return (
     <>
       <Header title="Doações" />
-      <form action="" className="flex flex-col mx-9 my-3">
+
+      <form className="flex flex-col mx-9 my-3 h-main pb-16">
         <FormLabel name="titulo">Título do anúncio</FormLabel>
         <FormInput
           placeholder="Digite aqui..."
@@ -33,8 +78,8 @@ export function CriarAnuncio1() {
           name="nomeProduto"
           type="text"
           id="nomeProduto"
-          value={nomeProduto}
-          onChange={(e) => setNomeProduto(e.target.value)}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
 
         <div className="flex gap-2">
@@ -44,17 +89,15 @@ export function CriarAnuncio1() {
               name="categoria"
               id="categoria"
               required
-              className="bg-primary px-2 py-5 text-black rounded-md h-8 mb-2 bg-opacity-20 w-full"
-              value={categoria}
-              onChange={(e) => {
-                console.log(e.target.value);
-              }}
+              className="bg-primary px-2 text-black rounded-md h-10 mb-2 bg-opacity-20 w-full"
+              value={categoriaItemModel.value}
+              onChange={handleCategoriaChange}
             >
-              <option value="selecione..." disabled>
-                Selecione...
-              </option>
-              <option value="categoria1">Categoria 1...</option>
-              <option value="categoria2">Categoria 2...</option>
+              {options.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.descricao}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -84,21 +127,48 @@ export function CriarAnuncio1() {
           onChange={(e) => setDescricao(e.target.value)}
         ></textarea>
 
+        {listaItens.map((item, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-between border border-menu-gray py-2 px-3 rounded-2xl
+          text-menu-gray text-sm mb-3 mt-1"
+          >
+            <div>
+              <p className="-mb-1">
+                <span className="font-medium leading-tight">Nome:</span>{" "}
+                {item.nome}
+              </p>
+              <p className="-mb-1">
+                <span className="font-medium leading-tight">Categoria:</span>{" "}
+                {item.categoriaItemModel.descricao}
+              </p>
+              <p className="-mb-1">
+                <span className="font-medium leading-tight">Quantidade:</span>{" "}
+                {item.quantidade} unidade(s)
+              </p>
+            </div>
+          </div>
+        ))}
+
         <label className="text-menu-gray font-medium">Adicionar item</label>
         <div className="flex gap-x-4 mb-2">
-          <button>
+          <button onClick={adicionarProduto}>
             <FontAwesomeIcon
               icon={faPlus}
               className="w-8 h-8 bg-primary bg-opacity-20 rounded-md px-4 py-2 text-menu-gray"
             />
           </button>
           <p className="text-xs text-menu-gray">
-            Caso queira que seu anúncio tenha mais de um item, clique aqui para
-            adicioná-los
+            Clique aqui para adicionar um item a lista
           </p>
         </div>
 
-        <button className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl w-fit mx-auto">
+        <button
+          disabled={listaItens.length === 0 ? "disabled" : ""}
+          onClick={continuarCriacao}
+          className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white 
+        text-xl w-fit mx-auto disabled:bg-opacity-60"
+        >
           Continuar
         </button>
       </form>

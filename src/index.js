@@ -28,6 +28,10 @@ import { Doacao } from "./pages/Doacao";
 import { Pedido } from "./pages/Pedido";
 import { DoacaoRapida } from "./pages/DoacaoRapida";
 import { CriarAnuncio1 } from "./pages/CriarAnuncio1";
+import { CriarAnuncio2 } from "./pages/CriarAnuncio2";
+import { AdicionarProduto } from "./pages/AdicionarProduto";
+import { MarcarCompromisso1 } from "./pages/MarcarCompromisso1";
+import { MarcarCompromisso2 } from "./pages/MarcarCompromisso2";
 
 const router = createBrowserRouter([
   {
@@ -108,12 +112,28 @@ const router = createBrowserRouter([
         element: <CriarAnuncio1 />,
       },
       {
+        path: "/criar-doacao-2",
+        element: <CriarAnuncio2 />,
+      },
+      {
+        path: "/adicionar-produto",
+        element: <AdicionarProduto />,
+      },
+      {
         path: "/pedidos",
         element: <Pedidos />,
       },
       {
         path: "/pedido/:id",
         element: <Pedido />,
+      },
+      {
+        path: "/criar-pedido",
+        element: <CriarAnuncio1 />,
+      },
+      {
+        path: "/criar-pedido-2",
+        element: <CriarAnuncio2 />,
       },
       {
         path: "/doacoes-rapidas",
@@ -124,8 +144,24 @@ const router = createBrowserRouter([
         element: <DoacaoRapida />,
       },
       {
+        path: "/criar-doacao-rapida",
+        element: <CriarAnuncio1 />,
+      },
+      {
+        path: "/criar-doacao-rapida-2",
+        element: <CriarAnuncio2 />,
+      },
+      {
         path: "/minhas-atividades",
         element: <MinhasAtividades />,
+      },
+      {
+        path: "/marcar-compromisso-doacao",
+        element: <MarcarCompromisso1 />,
+      },
+      {
+        path: "/marcar-compromisso-doacao-2",
+        element: <MarcarCompromisso2 />,
       },
     ],
   },

@@ -1,5 +1,5 @@
 export function FormInput(props) {
-  const { name, type, value, onChange, placeholder, className } = props;
+  const { name, type, value, onChange, placeholder, className, disabled } = props;
 
   return (
     <input
@@ -11,6 +11,7 @@ export function FormInput(props) {
       required
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 }

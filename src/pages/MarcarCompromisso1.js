@@ -10,24 +10,45 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { SubmitButton } from "../components/SubmitButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-export function MarcarDoacao1() {
+export function MarcarCompromisso1() {
   const [isActive, setIsActive] = useState(false);
+  let [quantidade, setQuantidade] = useState(0);
+
+  const location = useLocation();
 
   const show = () => {
     setIsActive(!isActive);
+  };
+
+  const teste = (e) => {
+    e.preventDefault();
+    console.log(location.state.doacao);
+  };
+
+  const somaQuantidade = (e) => {
+    e.preventDefault();
+    if (quantidade < location.state.doacao.itemList[0].quantidade)
+      setQuantidade(quantidade + 1);
+  };
+
+  const subtraiQuantidade = (e) => {
+    e.preventDefault();
+    if (quantidade > 0) setQuantidade(quantidade - 1);
   };
 
   return (
     <>
       <Header title="Doações" />
       <main>
-        <form action="" className="flex flex-col mx-9 my-3">
+        <button onClick={teste}>Teste</button>
+
+        <form action="" className="flex flex-col mx-9 my-3 pb-20">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-xl font-semibold text-menu-gray">
-              Doação de arroz da marca Camil
+              {location.state.doacao.titulo}
             </h1>
 
             <div className="relative">
@@ -59,39 +80,44 @@ export function MarcarDoacao1() {
 
           <div className="flex mb-5 text-menu-gray">
             <FontAwesomeIcon className="w-6 h-6 mr-3" icon={faUser} />
-            Marcelo Sarinho
+            {location.state.doacao.nome}
           </div>
 
           <div className="flex gap-4">
             <div className="w-2/4">
               <FormLabel name="nomeproduto">Produto</FormLabel>
               <FormInput
-                className="w-full"
+                value={location.state.doacao.itemList[0].nome}
+                className="w-full truncate"
                 name="nomeproduto"
                 type="text"
                 id="nomeproduto"
+                disabled
               />
             </div>
 
             <div className="w-2/4">
               <FormLabel name="categoria">Categoria</FormLabel>
               <FormInput
-                className="w-full"
+                value={location.state.doacao.itemList[0].categoriaItemModel.descricao}
+                className="w-full truncate"
                 name="categoria"
                 type="text"
                 id="categoria"
+                disabled
               />
             </div>
           </div>
 
           <FormLabel name="descricao">Descrição</FormLabel>
           <textarea
+            value={location.state.doacao.itemList[0].descricao}
             id="descricao"
             name="descricao"
             rows="3"
             cols="40"
-            placeholder="Digite aqui a descrição do produto..."
-            className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md"
+            className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md truncate"
+            disabled
           ></textarea>
 
           <div className="flex gap-4 justify-between">
@@ -102,17 +128,31 @@ export function MarcarDoacao1() {
                 name="disponivel"
                 type="text"
                 id="disponivel"
+                disabled
               />
             </div>
 
             <div className="w-3/5">
               <FormLabel name="quantidade">Quantidade</FormLabel>
               <div className="w-fit flex border border-menu-gray border-opacity-70 rounded-md">
-                <button className="py-2 px-3 border-r border-menu-gray border-opacity-70">
+                <button
+                  onClick={subtraiQuantidade}
+                  className="py-2 px-3 border-r border-menu-gray border-opacity-70"
+                >
                   <FontAwesomeIcon icon={faMinus} />
                 </button>
-                <input className="w-10 text-center" />
-                <button className="py-2 px-3 border-l border-menu-gray border-opacity-70">
+                <input
+                  value={quantidade}
+                  required
+                  id="quantidade"
+                  name="quantidade"
+                  className="w-10 text-center"
+                  onChange={(e) => setQuantidade(parseInt(e.target.value))}
+                />
+                <button
+                  onClick={somaQuantidade}
+                  className="py-2 px-3 border-l border-menu-gray border-opacity-70"
+                >
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
               </div>

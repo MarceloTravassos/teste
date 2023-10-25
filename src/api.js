@@ -27,6 +27,15 @@ export const getPedido = async (id) => {
   }
 };
 
+export const postPedido = async (body) => {
+  try {
+    await axios.post("http://localhost:8080/pedido", body, config);
+    console.log("criou");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getDoacoes = async () => {
   try {
     const response = await axios.get("http://localhost:8080/doacao", config);
@@ -48,9 +57,10 @@ export const getDoacao = async (id) => {
   }
 };
 
-export const postDoacao = async (request) => {
+export const postDoacao = async (body) => {
   try {
-    await axios.post("http://localhost:8080/doacao", request, config);
+    await axios.post("http://localhost:8080/doacao", body, config);
+    console.log("criou");
   } catch (error) {
     console.log(error);
   }
@@ -75,6 +85,15 @@ export const getDoacaoRapida = async (id) => {
       config
     );
     return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postDoacaoRapida = async (body) => {
+  try {
+    await axios.post("http://localhost:8080/doacaorapida", body, config);
+    console.log("criou");
   } catch (error) {
     console.log(error);
   }
@@ -159,6 +178,17 @@ export const getMeusAnuncios = async () => {
 export const getHistorico = async () => {
   try {
     await axios.patch("http://localhost:8080/atividades/historico", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const consultaCep = async (cep) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/brasilapi/infocep/${cep}`
+    );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
