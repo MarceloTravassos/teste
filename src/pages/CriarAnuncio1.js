@@ -9,7 +9,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export function CriarAnuncio1() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const options = [
     { id: 0, descricao: "Selecione..." },
@@ -61,7 +60,10 @@ export function CriarAnuncio1() {
     <>
       <Header title="Doações" />
 
-      <form className="flex flex-col mx-9 my-3 h-main pb-16">
+      <form
+        onSubmit={continuarCriacao}
+        className="flex flex-col mx-9 my-3 h-main pb-16"
+      >
         <FormLabel name="titulo">Título do anúncio</FormLabel>
         <FormInput
           placeholder="Digite aqui..."
@@ -165,7 +167,6 @@ export function CriarAnuncio1() {
 
         <button
           disabled={listaItens.length === 0 ? "disabled" : ""}
-          onClick={continuarCriacao}
           className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white 
         text-xl w-fit mx-auto disabled:bg-opacity-60"
         >

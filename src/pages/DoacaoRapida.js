@@ -10,7 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
 import { getDoacaoRapida } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
@@ -18,11 +17,13 @@ export function DoacaoRapida() {
   const { id } = useParams();
   const [doacaoRapida, setDoacaoRapida] = useState();
 
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    const dataFormatada = format(dateObject, "dd/MM/yyyy");
-    return dataFormatada;
-  };
+  const [dataInicio, horarioInicio] =
+    doacaoRapida.dataInicioDisponibilidade.split(" ");
+  const [dataFim, horarioFim] = doacaoRapida.dataFimDisponibilidade.split(" ");
+  const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
+  const [diaFim, mesFim, anoFim] = dataFim.split("/");
+  const [horaInicio, minutoInicio] = horarioInicio.split(":");
+  const [horaFim, minutoFim] = horarioFim.split(":");
 
   async function fetchDoacaoRapida() {
     try {
@@ -97,8 +98,10 @@ export function DoacaoRapida() {
               <div className="text-xs text-menu-gray">
                 <h2 className="font-medium text-sm">Datas</h2>
                 <p>
-                  {doacaoRapida.dataInicioDisponibilidade} -{" "}
-                  {doacaoRapida.dataFimDisponibilidade}
+                  {`${diaInicio}/${mesInicio}/${anoInicio} - ${horaInicio}:${minutoInicio}`}{" "}
+                </p>
+                <p>
+                  {`${diaFim}/${mesFim}/${anoFim} - ${horaFim}:${minutoFim}`}
                 </p>
               </div>
             </div>

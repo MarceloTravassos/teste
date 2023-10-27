@@ -36,6 +36,16 @@ export const postPedido = async (body) => {
   }
 };
 
+export const propostaPedido = async (body) => {
+  try {
+    console.log(body);
+    // await axios.post("http://localhost:8080/pedido/proposta", body, config);
+    console.log("criou");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getDoacoes = async () => {
   try {
     const response = await axios.get("http://localhost:8080/doacao", config);
@@ -59,7 +69,18 @@ export const getDoacao = async (id) => {
 
 export const postDoacao = async (body) => {
   try {
-    await axios.post("http://localhost:8080/doacao", body, config);
+    console.log(body);
+    // await axios.post("http://localhost:8080/doacao", body, config);
+    console.log("criou");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const propostaDoacao = async (body) => {
+  try {
+    console.log(body);
+    // await axios.post("http://localhost:8080/doacao/proposta", body, config);
     console.log("criou");
   } catch (error) {
     console.log(error);
@@ -93,6 +114,16 @@ export const getDoacaoRapida = async (id) => {
 export const postDoacaoRapida = async (body) => {
   try {
     await axios.post("http://localhost:8080/doacaorapida", body, config);
+    console.log("criou");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const propostaDoacaoRapida = async (body) => {
+  try {
+    console.log(body);
+    // await axios.post("http://localhost:8080/doacaorapida/proposta", body, config);
     console.log("criou");
   } catch (error) {
     console.log(error);

@@ -2,35 +2,79 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { SubmitButton } from "../components/SubmitButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { propostaDoacao } from "../api";
 
 export function MarcarCompromisso2() {
+  const location = useLocation();
+
+  const [dataInicio, horarioInicio] =
+    location.state.doacao.dataInicioDisponibilidade.split(" ");
+  const [dataFim, horarioFim] =
+    location.state.doacao.dataFimDisponibilidade.split(" ");
+  const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
+  const [diaFim, mesFim, anoFim] = dataFim.split("/");
+  const [horaInicio, minutoInicio] = horarioInicio.split(":");
+  const [horaFim, minutoFim] = horarioFim.split(":");
+
+  const [dataAgendada, setDataAgendada] = useState("");
+
+  function formatDateISO(data) {
+    const tzoffset = new Date().getTimezoneOffset() * 60000;
+    const date = new Date(new Date(data).getTime() - tzoffset);
+    const localISOTime = date.toISOString();
+    return localISOTime;
+  }
+
+  async function criarProposta(e) {
+    e.preventDefault();
+    const dataAgendadaFormatada = formatDateISO(dataAgendada);
+
+    console.log(location.state.itemPropostaRequestDtoList);
+
+    const body = {
+      dataAgendada: dataAgendadaFormatada,
+      idAnuncio: location.state.doacao.id,
+      itemPropostaRequestDtoList: location.state.itemPropostaRequestDtoList,
+    };
+    await propostaDoacao(body);
+  }
+
+  useEffect(() => {
+    console.log(dataAgendada);
+  }, [dataAgendada]);
+
   return (
     <>
       <Header title="Doações" />
       <main className="h-screen">
-        <form action="" className="flex flex-col mx-9 my-3 h-fit">
+        <form
+          onSubmit={criarProposta}
+          className="flex flex-col mx-9 my-3 h-fit pb-20"
+        >
           <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
           <div className="text-menu-gray text-opacity-80 mb-2">
-            <p>12/06/2023 - 16/05/2023</p>
-            <p>18:30 - 22:00</p>
+            <p>
+              {`${diaInicio}/${mesInicio}/${anoInicio}`} -{" "}
+              {`${diaFim}/${mesFim}/${anoFim}`}
+            </p>
+            <p>
+              {`${horaInicio}:${minutoInicio}`} - {`${horaFim}:${minutoFim}`}
+            </p>
           </div>
 
-          <div className="flex justify-between">
+          <div>
             <div>
-              <h1 className="text-menu-gray font-medium mb-1">Dia:</h1>
+              <h1 className="text-menu-gray font-medium mb-1">Dia/horário</h1>
               <FormInput
-                className="w-fit"
+                onChange={(e) => setDataAgendada(e.target.value)}
+                value={dataAgendada}
+                className="w-full"
                 name="dataInicio"
-                type="date"
+                type="datetime-local"
                 id="dataInicio"
               />
-            </div>
-
-            <div>
-              <h1 className="text-menu-gray font-medium mb-1">Horário:</h1>
-              <FormInput name="horarioInicio" type="time" id="horarioInicio" />
             </div>
           </div>
 
@@ -41,13 +85,27 @@ export function MarcarCompromisso2() {
           </h1>
 
           <FormLabel name="cep">CEP</FormLabel>
-          <FormInput placeholder="00000-00" name="cep" type="text" id="cep" />
+          <FormInput
+            disabled
+            value={location.state.doacao.cep}
+            name="cep"
+            type="text"
+            id="cep"
+          />
 
           <FormLabel name="endereco">Endereço</FormLabel>
-          <FormInput name="endereco" type="text" id="endereco" />
+          <FormInput
+            disabled
+            value={location.state.doacao.logradouro}
+            name="endereco"
+            type="text"
+            id="endereco"
+          />
 
           <FormLabel name="pontoReferencia">Ponto de Referência</FormLabel>
           <FormInput
+            disabled
+            value={location.state.doacao.pontoReferencia}
             className="w-full"
             name="pontoReferencia"
             type="text"
@@ -60,7 +118,8 @@ export function MarcarCompromisso2() {
 
           <FormLabel name="cellphone">Telefone</FormLabel>
           <FormInput
-            placeholder="(99) 9 9999 9999"
+            disabled
+            value={location.state.doacao.telefone}
             name="cellphone"
             type="text"
             id="cellphone"

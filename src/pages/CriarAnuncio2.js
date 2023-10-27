@@ -23,8 +23,10 @@ export function CriarAnuncio2() {
   const [consulta, setConsulta] = useState("");
 
   function formatDateISO(data) {
-    const date = new Date(data);
-    return date.toISOString();
+    const tzoffset = new Date().getTimezoneOffset() * 60000;
+    const date = new Date(new Date(data).getTime() - tzoffset);
+    const localISOTime = date.toISOString();
+    return localISOTime;
   }
 
   async function cadastrarAnuncio(e) {
@@ -107,26 +109,6 @@ export function CriarAnuncio2() {
           type="datetime-local"
           id="dataFim"
         />
-
-        {/* <h1 className="text-menu-gray font-medium my-1">
-          Horários disponíveis
-        </h1>
-        <div className="flex justify-between">
-          <FormInput
-            className="w-28 text-center"
-            placeholder="00:00"
-            name="dataFim"
-            type="text"
-            id="dataFim"
-          />
-          <FormInput
-            className="w-28 text-center"
-            placeholder="00:00"
-            name="dataFim"
-            type="text"
-            id="dataFim"
-          />
-        </div> */}
 
         <hr className="my-4" />
 

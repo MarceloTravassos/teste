@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDoacao } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
-import { format } from "date-fns";
 
 export function Doacao() {
   const { id } = useParams();
@@ -20,11 +19,13 @@ export function Doacao() {
 
   const [doacao, setDoacao] = useState();
 
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    const dataFormatada = format(dateObject, "dd/MM/yyyy");
-    return dataFormatada;
-  };
+  const [dataInicio, horarioInicio] =
+    doacao.dataInicioDisponibilidade.split(" ");
+  const [dataFim, horarioFim] = doacao.dataFimDisponibilidade.split(" ");
+  const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
+  const [diaFim, mesFim, anoFim] = dataFim.split("/");
+  const [horaInicio, minutoInicio] = horarioInicio.split(":");
+  const [horaFim, minutoFim] = horarioFim.split(":");
 
   async function fetchDoacao() {
     try {
@@ -104,8 +105,10 @@ export function Doacao() {
               <div className="text-xs text-menu-gray">
                 <h2 className="font-medium text-sm">Datas</h2>
                 <p>
-                  {doacao.dataInicioDisponibilidade} -{" "}
-                  {doacao.dataFimDisponibilidade}
+                  {`${diaInicio}/${mesInicio}/${anoInicio} - ${horaInicio}:${minutoInicio}`}{" "}
+                </p>
+                <p>
+                  {`${diaFim}/${mesFim}/${anoFim} - ${horaFim}:${minutoFim}`}
                 </p>
               </div>
             </div>
