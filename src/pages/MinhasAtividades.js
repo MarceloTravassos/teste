@@ -1,10 +1,16 @@
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Agendados } from "./Agendados";
 import { MeusAnuncios } from "./MeusAnuncios";
-import { Historico } from "./Historico";
+import { Historicos } from "./Historicos";
 import { Pendentes } from "./Pendentes";
+import {
+  getAgendados,
+  getHistoricos,
+  getMeusAnuncios,
+  getPendentes,
+} from "../api";
 
 export function MinhasAtividades() {
   const [isActiveAgendados, setIsActiveAgendados] = useState(true);
@@ -13,8 +19,8 @@ export function MinhasAtividades() {
   const [isActiveAnuncios, setIsActiveAnuncios] = useState(false);
   const [agendados, setAgendados] = useState([]);
   const [pendentes, setPendentes] = useState([]);
-  const [meusAnuncios, setmeusAnuncios] = useState([]);
-  const [historico, setHistorico] = useState([]);
+  const [meusAnuncios, setMeusAnuncios] = useState([]);
+  const [historicos, setHistoricos] = useState([]);
 
   const handleClickAgendados = () => {
     setIsActiveAgendados(true);
@@ -43,6 +49,49 @@ export function MinhasAtividades() {
     setIsActiveHistorico(false);
     setIsActivePendentes(false);
   };
+
+  async function fetchAgendados() {
+    try {
+      const resultAgendados = await getAgendados();
+      setAgendados(resultAgendados);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fetchMeusAnuncios() {
+    try {
+      const resultMeusAnuncios = await getMeusAnuncios();
+      setMeusAnuncios(resultMeusAnuncios);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fetchPendentes() {
+    try {
+      const resultPendentes = await getPendentes();
+      setPendentes(resultPendentes);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fetchHistoricos() {
+    try {
+      const resultHistoricos = await getHistoricos();
+      setHistoricos(resultHistoricos);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAgendados();
+    fetchMeusAnuncios();
+    fetchPendentes();
+    fetchHistoricos();
+  }, []);
 
   return (
     <>
@@ -87,10 +136,10 @@ export function MinhasAtividades() {
           </div>
         </header>
 
-        {isActiveAgendados && <Agendados />}
-        {isActivePendentes && <Pendentes />}
-        {isActiveAnuncios && <MeusAnuncios />}
-        {isActiveHistorico && <Historico />}
+        {isActiveAgendados && <Agendados agendados={agendados} />}
+        {isActivePendentes && <Pendentes pendentes={pendentes} />}
+        {isActiveAnuncios && <MeusAnuncios meusAnuncios={meusAnuncios} />}
+        {isActiveHistorico && <Historicos historicos={historicos} />}
       </main>
       <Navbar />
     </>

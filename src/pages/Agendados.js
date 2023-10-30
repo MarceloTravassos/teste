@@ -1,71 +1,72 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBagShopping,
+  faClock,
   faHandHoldingHeart,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-export function Agendados() {
+const icons = {
+  1: faHandHoldingHeart,
+  2: faBagShopping,
+  3: faClock,
+};
+
+export function Agendados(props) {
+  const { agendados } = props;
+
+  const teste = () => {
+    console.log(agendados);
+  };
+
   return (
     <>
-      <main className="flex flex-col gap-y-7 h-screen">
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md
-        px-4 py-6 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon
-              icon={faHandHoldingHeart}
-              className="w-6 h-6 mr-3"
-            />
+      <main className="flex flex-col gap-y-7 pb-20">
+        <button onClick={teste} type="button">
+          tESTE
+        </button>
 
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-3">
-                Doação de arroz da marca Camil
-              </h2>
-              <div className="flex items-center mb-4">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="w-3 h-3 rounded-full p-1 bg-menu-gray text-white mr-2"
-                />
-                <p className="text-xs font-medium">Marcelo Sarinho</p>
+        {agendados.map((agendado, index) => {
+          const icone = icons[agendado.idTipoAnuncio];
+
+          return (
+            <Link
+              to={`/atividades/agendados/${agendado.id}`}
+              key={index}
+              className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md
+              px-4 py-6 mx-9 border border-[#807777]"
+            >
+              <div className="flex">
+                <FontAwesomeIcon icon={icone} className="w-6 h-6 mr-3" />
+
+                <div>
+                  <h2 className="font-bold text-sm text-menu-gray mb-3">
+                    {agendado.titulo}
+                  </h2>
+                  <div className="flex items-center mb-4">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-3 h-3 rounded-full p-1 bg-menu-gray text-white mr-2"
+                    />
+                    <p className="text-xs font-medium">{agendado.nome}</p>
+                  </div>
+                  <p className="text-xs font-medium">
+                    Encontro agendado para o dia e horário:{" "}
+                    {agendado.dataAgendada}
+                  </p>
+                  <p className="text-xs font-medium">
+                    Cidade: {agendado.cidade}
+                  </p>
+                </div>
               </div>
-              <p className="text-xs font-medium">
-                Encontro agendado para o dia 14/05/2023 às 19:30 no CEP
-                11520-030 R. Dom Pedro I, 256, Ap 24
+
+              <p className="text-center text-xs text-success font-semibold mt-5">
+                Agendado
               </p>
-            </div>
-          </div>
-
-          <p className="text-center text-xs text-success font-semibold mt-5">
-            Agendado
-          </p>
-        </div>
-
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-6 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon icon={faBagShopping} className="w-6 h-6 mr-3" />
-
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-3">
-                Pedido de arroz e feijão
-              </h2>
-              <div className="flex items-center mb-4">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="w-3 h-3 rounded-full p-1 bg-menu-gray text-white mr-2"
-                />
-                <p className="text-xs font-medium">Vivian Rayzer</p>
-              </div>
-              <p className="text-xs font-medium">
-                Encontro agendado para o dia 16/05/2023 às 21:00 no CEP
-                11520-030 R. Dom Pedro I, 256, Ap 24
-              </p>
-            </div>
-          </div>
-
-          <p className="text-center text-xs text-success font-semibold mt-5">
-            Agendado
-          </p>
-        </div>
+            </Link>
+          );
+        })}
       </main>
     </>
   );

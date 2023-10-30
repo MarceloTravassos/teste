@@ -2,17 +2,17 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { propostaDoacao } from "../api";
+import { propostaPedido } from "../api";
 
-export function MarcarCompromisso2() {
+export function MarcarCompromisso2Pedido() {
   const location = useLocation();
 
   const [dataInicio, horarioInicio] =
-    location.state.doacao.dataInicioDisponibilidade.split(" ");
+    location.state.pedido.dataInicioDisponibilidade.split(" ");
   const [dataFim, horarioFim] =
-    location.state.doacao.dataFimDisponibilidade.split(" ");
+    location.state.pedido.dataFimDisponibilidade.split(" ");
   const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
   const [diaFim, mesFim, anoFim] = dataFim.split("/");
   const [horaInicio, minutoInicio] = horarioInicio.split(":");
@@ -35,15 +35,11 @@ export function MarcarCompromisso2() {
 
     const body = {
       dataAgendada: dataAgendadaFormatada,
-      idAnuncio: location.state.doacao.id,
+      idAnuncio: location.state.pedido.id,
       itemPropostaRequestDtoList: location.state.itemPropostaRequestDtoList,
     };
-    await propostaDoacao(body);
+    await propostaPedido(body);
   }
-
-  useEffect(() => {
-    console.log(dataAgendada);
-  }, [dataAgendada]);
 
   return (
     <>
@@ -87,7 +83,7 @@ export function MarcarCompromisso2() {
           <FormLabel name="cep">CEP</FormLabel>
           <FormInput
             disabled
-            value={location.state.doacao.cep}
+            value={location.state.pedido.cep}
             name="cep"
             type="text"
             id="cep"
@@ -96,7 +92,7 @@ export function MarcarCompromisso2() {
           <FormLabel name="endereco">Endereço</FormLabel>
           <FormInput
             disabled
-            value={location.state.doacao.logradouro}
+            value={location.state.pedido.logradouro}
             name="endereco"
             type="text"
             id="endereco"
@@ -105,7 +101,7 @@ export function MarcarCompromisso2() {
           <FormLabel name="pontoReferencia">Ponto de Referência</FormLabel>
           <FormInput
             disabled
-            value={location.state.doacao.pontoReferencia}
+            value={location.state.pedido.pontoReferencia}
             className="w-full"
             name="pontoReferencia"
             type="text"
@@ -119,7 +115,7 @@ export function MarcarCompromisso2() {
           <FormLabel name="cellphone">Telefone</FormLabel>
           <FormInput
             disabled
-            value={location.state.doacao.telefone}
+            value={location.state.pedido.telefone}
             name="cellphone"
             type="text"
             id="cellphone"

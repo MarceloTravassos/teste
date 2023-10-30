@@ -50,7 +50,7 @@ export function Doacoes() {
         </Link>
       </div>
 
-      <main className="flex flex-col gap-y-7 h-screen">
+      <main className="flex flex-col gap-y-7 pb-32">
         {doacoes.map((doacao, index) => (
           <Link
             to={`/doacao/${doacao.id}`}

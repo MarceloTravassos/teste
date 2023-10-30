@@ -13,7 +13,7 @@ import { FormInput } from "../components/FormInput";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export function MarcarCompromisso1() {
+export function MarcarCompromisso1Doacao() {
   const location = useLocation();
   const navigate = useNavigate();
   const quantidadesIniciais = location.state.doacao.itemList.map(() => 0);

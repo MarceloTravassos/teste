@@ -30,8 +30,16 @@ import { DoacaoRapida } from "./pages/DoacaoRapida";
 import { CriarAnuncio1 } from "./pages/CriarAnuncio1";
 import { CriarAnuncio2 } from "./pages/CriarAnuncio2";
 import { AdicionarProduto } from "./pages/AdicionarProduto";
-import { MarcarCompromisso1 } from "./pages/MarcarCompromisso1";
-import { MarcarCompromisso2 } from "./pages/MarcarCompromisso2";
+import { MarcarCompromisso1Doacao } from "./pages/MarcarCompromisso1Doacao";
+import { MarcarCompromisso2Doacao } from "./pages/MarcarCompromisso2Doacao";
+import { MarcarCompromisso1DoacaoRapida } from "./pages/MarcarCompromisso1DoacaoRapida";
+import { MarcarCompromisso2DoacaoRapida } from "./pages/MarcarCompromisso2DoacaoRapida";
+import { MarcarCompromisso1Pedido } from "./pages/MarcarCompromisso1Pedido";
+import { MarcarCompromisso2Pedido } from "./pages/MarcarCompromisso2Pedido";
+import { Agendado } from "./pages/Agendado";
+import { Pendente } from "./pages/Pendente";
+import { MeuAnuncio } from "./pages/MeuAnuncio";
+import { Historico } from "./pages/Historico";
 
 const router = createBrowserRouter([
   {
@@ -157,11 +165,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/marcar-compromisso-doacao",
-        element: <MarcarCompromisso1 />,
+        element: <MarcarCompromisso1Doacao />,
       },
       {
         path: "/marcar-compromisso-doacao-2",
-        element: <MarcarCompromisso2 />,
+        element: <MarcarCompromisso2Doacao />,
+      },
+      {
+        path: "/marcar-compromisso-doacaorapida",
+        element: <MarcarCompromisso1DoacaoRapida />,
+      },
+      {
+        path: "/marcar-compromisso-doacaorapida-2",
+        element: <MarcarCompromisso2DoacaoRapida />,
+      },
+      {
+        path: "/marcar-compromisso-pedido",
+        element: <MarcarCompromisso1Pedido />,
+      },
+      {
+        path: "/marcar-compromisso-pedido-2",
+        element: <MarcarCompromisso2Pedido />,
+      },
+      {
+        path: "/atividades/agendados/:id",
+        element: <Agendado />,
+      },
+      {
+        path: "/atividades/pendentes/:id",
+        element: <Pendente />,
+      },
+      {
+        path: "/atividades/anuncio/:id",
+        element: <MeuAnuncio />,
+      },
+      {
+        path: "/atividades/historico/:id",
+        element: <Historico />,
       },
     ],
   },

@@ -1,48 +1,45 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import {
-  faBagShopping,
-  faHandHoldingHeart,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export function Pendentes() {
+export function Pendentes(props) {
+  const { pendentes } = props;
+
+  const teste = () => {
+    console.log(pendentes);
+  };
+
   return (
     <>
-      <main className="flex flex-col gap-y-5">
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-3 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon icon={faUser} className="w-6 h-6 mr-3" />
+      <main className="flex flex-col gap-y-5 pb-20">
+        <button onClick={teste} type="button">
+          tESTE
+        </button>
 
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-1">
-                Marcelo Sarinho
-              </h2>
-              <div className="text-xs font-medium">
-                <p>Doação de arroz da marca Camil</p>
-                <p>14/05/2023</p>
+        {pendentes.map((pendente, index) => (
+          <Link
+            key={index}
+            to={`/atividades/pendentes/${pendente.id}`}
+            className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center
+            drop-shadow-md px-4 py-3 mx-9 border border-[#807777]"
+          >
+            <div className="flex">
+              <FontAwesomeIcon icon={faUser} className="w-6 h-6 mr-3" />
+
+              <div>
+                <h2 className="font-bold text-sm text-menu-gray mb-1">
+                  {pendente.nome}
+                </h2>
+                <div className="text-xs font-medium">
+                  <p>{pendente.titulo}</p>
+                  <p>{pendente.dataAgendada}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-3 mx-9 border border-[#807777]">
-          <div className="flex">
-            <FontAwesomeIcon icon={faUser} className="w-6 h-6 mr-3" />
-
-            <div>
-              <h2 className="font-bold text-sm text-menu-gray mb-1">
-                Vivian Rayzer
-              </h2>
-              <div className="text-xs font-medium">
-                <p>Pedido de arroz e feijão</p>
-                <p>24/05/2023</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          </Link>
+        ))}
       </main>
       <Navbar />
     </>

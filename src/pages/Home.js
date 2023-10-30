@@ -14,7 +14,7 @@ export function Home() {
     <>
       <Header title="Menu" />
 
-      <main className="h-screen">
+      <main className="pb-20">
         <h1 className="font-bold text-xl text-menu-gray text-center mt-11 mb-12">
           O que você deseja fazer?
         </h1>

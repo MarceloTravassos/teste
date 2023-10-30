@@ -190,9 +190,31 @@ export const getAgendados = async () => {
   }
 };
 
+export const getAgendado = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/agendados/${id}`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getPendentes = async () => {
   try {
     await axios.patch("http://localhost:8080/atividades/pendentes", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPendente = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/pendentes/${id}`,
+      config
+    );
   } catch (error) {
     console.log(error);
   }
@@ -206,9 +228,31 @@ export const getMeusAnuncios = async () => {
   }
 };
 
-export const getHistorico = async () => {
+export const getMeuAnuncio = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/anuncios/${id}`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getHistoricos = async () => {
   try {
     await axios.patch("http://localhost:8080/atividades/historico", config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getHistorico = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/historico/${id}`,
+      config
+    );
   } catch (error) {
     console.log(error);
   }

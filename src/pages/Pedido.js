@@ -8,21 +8,16 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
 import { getPedido } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
 export function Pedido() {
   const { id } = useParams();
-  const [pedido, setPedido] = useState();
+  const navigate = useNavigate();
 
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    const dataFormatada = format(dateObject, "dd/MM/yyyy");
-    return dataFormatada;
-  };
+  const [pedido, setPedido] = useState();
 
   async function fetchPedido() {
     try {
@@ -33,6 +28,11 @@ export function Pedido() {
     }
   }
 
+  const marcarCompromisso = (e) => {
+    e.preventDefault();
+    return navigate("/marcar-compromisso-pedido", { state: { pedido } });
+  };
+
   useEffect(() => {
     fetchPedido();
   }, []);
@@ -42,7 +42,7 @@ export function Pedido() {
   return (
     <>
       <Header title="Pedido" />
-      <main className="px-10 py-3 mb-16">
+      <main className="px-10 pt-3 mb-16 pb-20">
         {pedido ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
             <h1 className="font-semibold text-menu-gray leading-tight">
@@ -96,10 +96,8 @@ export function Pedido() {
               />
               <div className="text-xs text-menu-gray">
                 <h2 className="font-medium text-sm">Datas</h2>
-                <p>
-                  {pedido.dataInicioDisponibilidade} -{" "}
-                  {pedido.dataFimDisponibilidade}
-                </p>
+                <p>{pedido.dataInicioDisponibilidade}</p>
+                <p>{pedido.dataFimDisponibilidade}</p>
               </div>
             </div>
 
@@ -121,7 +119,7 @@ export function Pedido() {
             </div>
 
             <button
-              type="submit"
+              onClick={marcarCompromisso}
               className="mt-2 bg-primary px-4 mx-auto py-2 rounded-lg font-bold text-center text-white text-lg w-fit"
             >
               Marcar compromisso

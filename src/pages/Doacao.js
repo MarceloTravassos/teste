@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import {
+  faBox,
   faCalendar,
-  faHandHoldingHeart,
   faLocationDot,
   faPhone,
   faUser,
@@ -18,14 +18,6 @@ export function Doacao() {
   const navigate = useNavigate();
 
   const [doacao, setDoacao] = useState();
-
-  const [dataInicio, horarioInicio] =
-    doacao.dataInicioDisponibilidade.split(" ");
-  const [dataFim, horarioFim] = doacao.dataFimDisponibilidade.split(" ");
-  const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
-  const [diaFim, mesFim, anoFim] = dataFim.split("/");
-  const [horaInicio, minutoInicio] = horarioInicio.split(":");
-  const [horaFim, minutoFim] = horarioFim.split(":");
 
   async function fetchDoacao() {
     try {
@@ -50,7 +42,8 @@ export function Doacao() {
   return (
     <>
       <Header title="Doação" />
-      <main className="px-10 py-3 mb-16">
+
+      <main className="px-10 pt-3 mb-16 pb-20">
         {doacao ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
             <h1 className="font-semibold text-menu-gray leading-tight">
@@ -60,12 +53,12 @@ export function Doacao() {
             <div className="flex gap-x-4">
               <FontAwesomeIcon
                 className="w-7 h-7 text-menu-gray"
-                icon={faHandHoldingHeart}
+                icon={faBox}
               />
               <div className="text-xs text-menu-gray flex flex-col gap-y-4">
                 <h2 className="font-medium text-sm -mb-3">Produto(s)</h2>
-                {doacao.itemList.map((produto) => (
-                  <div key={produto.id}>
+                {doacao.itemList.map((produto, index) => (
+                  <div key={index}>
                     <p>
                       <strong>Nome:</strong> {produto.nome}
                     </p>
@@ -104,12 +97,8 @@ export function Doacao() {
               />
               <div className="text-xs text-menu-gray">
                 <h2 className="font-medium text-sm">Datas</h2>
-                <p>
-                  {`${diaInicio}/${mesInicio}/${anoInicio} - ${horaInicio}:${minutoInicio}`}{" "}
-                </p>
-                <p>
-                  {`${diaFim}/${mesFim}/${anoFim} - ${horaFim}:${minutoFim}`}
-                </p>
+                <p>{doacao.dataInicioDisponibilidade}</p>
+                <p>{doacao.dataFimDisponibilidade}</p>
               </div>
             </div>
 

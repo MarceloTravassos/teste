@@ -6,9 +6,16 @@ import { Filtro } from "../components/Filtro";
 import { getPedidos } from "../api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 export function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
+
+  const formatDate = (date) => {
+    const dateObject = new Date(date);
+    const dataFormatada = format(dateObject, "dd/MM/yyyy");
+    return dataFormatada;
+  };
 
   async function fetchPedidos() {
     try {
@@ -60,8 +67,8 @@ export function Pedidos() {
               {pedido.titulo}
             </p>
             <p className="text-sm text-[#807777] font-medium">
-              {pedido.dataInicioDisponibilidade} -{" "}
-              {pedido.dataFimDisponibilidade}
+              {formatDate(pedido.dataInicioDisponibilidade)} -{" "}
+              {formatDate(pedido.dataFimDisponibilidade)}
             </p>
             <p className="text-sm text-[#807777] font-medium">
               {pedido.cidade}

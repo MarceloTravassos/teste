@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
+  faBox,
   faCalendar,
-  faHandHoldingHeart,
   faLocationDot,
   faPhone,
   faTimes,
@@ -11,7 +11,7 @@ import {
 import { Header } from "../components/Header";
 import { useState } from "react";
 
-export function VisualizarAgendado() {
+export function Agendado() {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -55,7 +55,7 @@ export function VisualizarAgendado() {
                 <div className="flex px-6">
                   <FontAwesomeIcon
                     className="w-6 h-6 text-menu-gray mr-3"
-                    icon={faHandHoldingHeart}
+                    icon={faBox}
                   />
                   <div className="text-sm">
                     <h1 className="text-base font-medium">Produto(s)</h1>

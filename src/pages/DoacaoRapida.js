@@ -2,28 +2,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import {
+  faBox,
   faCalendar,
-  faHandHoldingHeart,
   faLocationDot,
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDoacaoRapida } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
 export function DoacaoRapida() {
   const { id } = useParams();
-  const [doacaoRapida, setDoacaoRapida] = useState();
+  const navigate = useNavigate();
 
-  const [dataInicio, horarioInicio] =
-    doacaoRapida.dataInicioDisponibilidade.split(" ");
-  const [dataFim, horarioFim] = doacaoRapida.dataFimDisponibilidade.split(" ");
-  const [diaInicio, mesInicio, anoInicio] = dataInicio.split("/");
-  const [diaFim, mesFim, anoFim] = dataFim.split("/");
-  const [horaInicio, minutoInicio] = horarioInicio.split(":");
-  const [horaFim, minutoFim] = horarioFim.split(":");
+  const [doacaoRapida, setDoacaoRapida] = useState();
 
   async function fetchDoacaoRapida() {
     try {
@@ -34,6 +28,13 @@ export function DoacaoRapida() {
     }
   }
 
+  const marcarCompromisso = (e) => {
+    e.preventDefault();
+    return navigate("/marcar-compromisso-doacaorapida", {
+      state: { doacaoRapida },
+    });
+  };
+
   useEffect(() => {
     fetchDoacaoRapida();
   }, []);
@@ -43,7 +44,7 @@ export function DoacaoRapida() {
   return (
     <>
       <Header title="Doação Rápida" />
-      <main className="px-10 py-3 mb-16">
+      <main className="px-10 pt-3 mb-16 pb-20">
         {doacaoRapida ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
             <h1 className="font-semibold text-menu-gray leading-tight">
@@ -53,7 +54,7 @@ export function DoacaoRapida() {
             <div className="flex gap-x-4">
               <FontAwesomeIcon
                 className="w-7 h-7 text-menu-gray"
-                icon={faHandHoldingHeart}
+                icon={faBox}
               />
               <div className="text-xs text-menu-gray flex flex-col gap-y-4">
                 <h2 className="font-medium text-sm -mb-3">Produto(s)</h2>
@@ -97,12 +98,8 @@ export function DoacaoRapida() {
               />
               <div className="text-xs text-menu-gray">
                 <h2 className="font-medium text-sm">Datas</h2>
-                <p>
-                  {`${diaInicio}/${mesInicio}/${anoInicio} - ${horaInicio}:${minutoInicio}`}{" "}
-                </p>
-                <p>
-                  {`${diaFim}/${mesFim}/${anoFim} - ${horaFim}:${minutoFim}`}
-                </p>
+                <p>{doacaoRapida.dataInicioDisponibilidade}</p>
+                <p>{doacaoRapida.dataFimDisponibilidade}</p>
               </div>
             </div>
 
@@ -124,7 +121,7 @@ export function DoacaoRapida() {
             </div>
 
             <button
-              type="submit"
+              onClick={marcarCompromisso}
               className="mt-2 bg-primary px-4 mx-auto py-2 rounded-lg font-bold text-center text-white text-lg w-fit"
             >
               Marcar compromisso

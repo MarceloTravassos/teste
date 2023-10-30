@@ -1,20 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
+  faBox,
   faChevronCircleLeft,
   faEdit,
   faEllipsisV,
-  faHandHoldingHeart,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getMeuAnuncio } from "../api";
+import { useParams } from "react-router-dom";
 
-export function VisualizarAnuncio() {
+export function MeuAnuncio() {
+  const { id } = useParams();
+
   const [isActiveProduto, setIsActiveProduto] = useState(false);
   const [isActiveAnuncio, setIsActiveAnuncio] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [meuAnuncio, setMeuAnuncio] = useState();
 
   const showProdutoDropdown = () => {
     setIsActiveProduto(!isActiveProduto);
@@ -24,16 +29,31 @@ export function VisualizarAnuncio() {
     setIsActiveAnuncio(!isActiveAnuncio);
   };
 
+  async function fetchMeuAnuncio(id) {
+    try {
+      const result = await getMeuAnuncio(id);
+      setMeuAnuncio(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchMeuAnuncio();
+  }, []);
+
+  useEffect(() => {}, [meuAnuncio]);
+
   return (
     <>
-      <Header title="Editar anúncio" />
+      <Header title="Meus anúncios" />
 
-      <main className="flex flex-col gap-y-5">
+      <main className="flex flex-col gap-y-5 pb-20">
         {showConfirmDelete && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
             <div
               className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px] border-light-gray
-          px-6 py-5 rounded-lg shadow-md justify-center"
+              px-6 py-5 rounded-lg shadow-md justify-center"
             >
               <FontAwesomeIcon
                 onClick={() => setShowConfirmDelete(false)}
@@ -95,10 +115,7 @@ export function VisualizarAnuncio() {
           </div>
 
           <div className="flex items-center text-menu-gray my-4">
-            <FontAwesomeIcon
-              className="w-7 h-7 mr-3"
-              icon={faHandHoldingHeart}
-            />
+            <FontAwesomeIcon className="w-7 h-7 mr-3" icon={faBox} />
             <h2 className="font-medium">Produto(s)</h2>
           </div>
 
@@ -167,22 +184,6 @@ export function VisualizarAnuncio() {
 
               <FontAwesomeIcon className="w-7 h-7" icon={faEllipsisV} />
             </div>
-          </div>
-
-          <label className="text-menu-gray font-medium mb-1">
-            Adicionar item
-          </label>
-          <div className="flex gap-x-4 mb-4">
-            <button>
-              <FontAwesomeIcon
-                icon={faPlus}
-                className="w-8 h-8 bg-primary bg-opacity-20 rounded-md px-4 py-2 text-menu-gray"
-              />
-            </button>
-            <p className="text-xs text-menu-gray">
-              Caso queira que seu anúncio tenha mais de um item, clique aqui
-              para adicioná-los
-            </p>
           </div>
 
           <button className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit">
