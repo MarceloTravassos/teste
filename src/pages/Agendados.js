@@ -27,7 +27,7 @@ export function Agendados(props) {
           tESTE
         </button>
 
-        {agendados.map((agendado, index) => {
+        {/* {agendados.map((agendado, index) => {
           const icone = icons[agendado.idTipoAnuncio];
 
           return (
@@ -66,7 +66,7 @@ export function Agendados(props) {
               </p>
             </Link>
           );
-        })}
+        })} */}
       </main>
     </>
   );

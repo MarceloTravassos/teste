@@ -18,7 +18,7 @@ export function Pendentes(props) {
           tESTE
         </button>
 
-        {pendentes.map((pendente, index) => (
+        {/* {pendentes.map((pendente, index) => (
           <Link
             key={index}
             to={`/atividades/pendentes/${pendente.id}`}
@@ -39,7 +39,7 @@ export function Pendentes(props) {
               </div>
             </div>
           </Link>
-        ))}
+        ))} */}
       </main>
       <Navbar />
     </>

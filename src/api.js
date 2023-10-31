@@ -184,7 +184,11 @@ export const editUser = async (nome, telefone) => {
 
 export const getAgendados = async () => {
   try {
-    await axios.get("http://localhost:8080/atividades/agendados", config);
+    const response = await axios.get(
+      "http://localhost:8080/atividades/agendados",
+      config
+    );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -192,10 +196,11 @@ export const getAgendados = async () => {
 
 export const getAgendado = async (id) => {
   try {
-    await axios.patch(
+    const response = await axios.get(
       `http://localhost:8080/atividades/agendados/${id}`,
       config
     );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -203,7 +208,11 @@ export const getAgendado = async (id) => {
 
 export const getPendentes = async () => {
   try {
-    await axios.patch("http://localhost:8080/atividades/pendentes", config);
+    const response = await axios.get(
+      "http://localhost:8080/atividades/pendentes",
+      config
+    );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -211,10 +220,11 @@ export const getPendentes = async () => {
 
 export const getPendente = async (id) => {
   try {
-    await axios.patch(
+    const response = await axios.get(
       `http://localhost:8080/atividades/pendentes/${id}`,
       config
     );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -222,7 +232,11 @@ export const getPendente = async (id) => {
 
 export const getMeusAnuncios = async () => {
   try {
-    await axios.patch("http://localhost:8080/atividades/anuncios", config);
+    const response = await axios.get(
+      "http://localhost:8080/atividades/anuncios",
+      config
+    );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -230,10 +244,11 @@ export const getMeusAnuncios = async () => {
 
 export const getMeuAnuncio = async (id) => {
   try {
-    await axios.patch(
+    const response = await axios.get(
       `http://localhost:8080/atividades/anuncios/${id}`,
       config
     );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -241,7 +256,11 @@ export const getMeuAnuncio = async (id) => {
 
 export const getHistoricos = async () => {
   try {
-    await axios.patch("http://localhost:8080/atividades/historico", config);
+    const response = await axios.get(
+      "http://localhost:8080/atividades/historico",
+      config
+    );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }
@@ -249,10 +268,11 @@ export const getHistoricos = async () => {
 
 export const getHistorico = async (id) => {
   try {
-    await axios.patch(
+    const response = await axios.get(
       `http://localhost:8080/atividades/historico/${id}`,
       config
     );
+    return await response.data;
   } catch (error) {
     console.log(error);
   }

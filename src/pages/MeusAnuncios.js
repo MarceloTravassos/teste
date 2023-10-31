@@ -20,7 +20,9 @@ export function MeusAnuncios(props) {
   return (
     <>
       <main className="flex flex-col gap-y-5 pb-20">
-        {meusAnuncios.map((meuAnuncio, index) => {
+        <button type="button" onClick={() => console.log(meusAnuncios)}>Teste</button>
+
+        {/* {meusAnuncios.map((meuAnuncio, index) => {
           const icon = icons[meuAnuncio.idTipoAnuncio];
 
           return (
@@ -55,7 +57,7 @@ export function MeusAnuncios(props) {
               </div>
             </div>
           );
-        })}
+        })} */}
       </main>
       <Navbar />
     </>
