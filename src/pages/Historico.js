@@ -153,7 +153,7 @@ export function Historico() {
                     <p className="leading-tight">R. Dom Pedro I, 256, Ap 24</p>
                     {/* <p className="leading-tight">
                       {historico.logradouro}, {historico.numero},{" "}
-                      {historico.complemento ?? ""}
+                      {historico.complemento === '' ? "sem complemento" : historico.complemento}
                     </p> */}
                   </div>
                 </div>

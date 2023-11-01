@@ -42,7 +42,7 @@ export function Historicos(props) {
                 <FontAwesomeIcon icon={icon} className="w-6 h-6 mr-3" />
 
                 <div>
-                  <h2 className="font-bold text-sm text-menu-gray mb-2">
+                  <h2 className="font-bold text-sm text-menu-gray">
                     {historico.titulo}
                   </h2>
                   <div>

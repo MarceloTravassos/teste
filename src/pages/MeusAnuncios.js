@@ -7,6 +7,7 @@ import {
   faHandHoldingHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 const icons = {
   1: faHandHoldingHeart,
@@ -17,12 +18,16 @@ const icons = {
 export function MeusAnuncios(props) {
   const { meusAnuncios } = props;
 
+  const formatDate = (date) => {
+    const dateObject = new Date(date);
+    const dataFormatada = format(dateObject, "dd/MM/yyyy");
+    return dataFormatada;
+  };
+
   return (
     <>
       <main className="flex flex-col gap-y-5 pb-20">
-        <button type="button" onClick={() => console.log(meusAnuncios)}>Teste</button>
-
-        {/* {meusAnuncios.map((meuAnuncio, index) => {
+        {meusAnuncios.map((meuAnuncio, index) => {
           const icon = icons[meuAnuncio.idTipoAnuncio];
 
           return (
@@ -39,7 +44,8 @@ export function MeusAnuncios(props) {
                   </h2>
                   <div>
                     <p className="text-xs font-medium truncate">
-                      {meuAnuncio.dataInicioDisponibilidade}
+                      {formatDate(meuAnuncio.dataInicioDisponibilidade)} -{" "}
+                      {formatDate(meuAnuncio.dataFimDisponibilidade)}
                     </p>
                     <p className="text-xs font-medium truncate">
                       {meuAnuncio.nome}
@@ -57,7 +63,7 @@ export function MeusAnuncios(props) {
               </div>
             </div>
           );
-        })} */}
+        })}
       </main>
       <Navbar />
     </>

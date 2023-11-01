@@ -7,18 +7,10 @@ import { Link } from "react-router-dom";
 export function Pendentes(props) {
   const { pendentes } = props;
 
-  const teste = () => {
-    console.log(pendentes);
-  };
-
   return (
     <>
       <main className="flex flex-col gap-y-5 pb-20">
-        <button onClick={teste} type="button">
-          tESTE
-        </button>
-
-        {/* {pendentes.map((pendente, index) => (
+        {pendentes.map((pendente, index) => (
           <Link
             key={index}
             to={`/atividades/pendentes/${pendente.id}`}
@@ -39,7 +31,7 @@ export function Pendentes(props) {
               </div>
             </div>
           </Link>
-        ))} */}
+        ))}
       </main>
       <Navbar />
     </>

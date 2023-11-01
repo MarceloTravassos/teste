@@ -97,11 +97,7 @@ export function MinhasAtividades() {
     <>
       <Header title="Minhas Atividades" />
 
-      <main className="flex flex-col gap-y-7 h-screen">
-        <button type="button" onClick={() => console.log(meusAnuncios)}>
-          oiiii
-        </button>
-
+      <main className="flex flex-col gap-y-7 pb-20">
         <header className="flex text-menu-gray pt-[3px] px-1 text-xs rounded-b-md bg-[#E6E4E4] font-semibold">
           <div
             className={`w-full text-center py-2 rounded-t-md ${

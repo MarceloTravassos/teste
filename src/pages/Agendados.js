@@ -16,18 +16,10 @@ const icons = {
 export function Agendados(props) {
   const { agendados } = props;
 
-  const teste = () => {
-    console.log(agendados);
-  };
-
   return (
     <>
       <main className="flex flex-col gap-y-7 pb-20">
-        <button onClick={teste} type="button">
-          tESTE
-        </button>
-
-        {/* {agendados.map((agendado, index) => {
+        {agendados.map((agendado, index) => {
           const icone = icons[agendado.idTipoAnuncio];
 
           return (
@@ -66,7 +58,7 @@ export function Agendados(props) {
               </p>
             </Link>
           );
-        })} */}
+        })}
       </main>
     </>
   );

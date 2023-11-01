@@ -9,16 +9,38 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAgendado } from "../api";
+import { useParams } from "react-router-dom";
+import { LoadingPrimary } from "../components/LoadingPrimary";
 
 export function Agendado() {
+  const { id } = useParams();
+
   const [showPopup, setShowPopup] = useState(false);
+  const [agendado, setAgendado] = useState();
+
+  async function fetchAgendado() {
+    try {
+      const result = await getAgendado(id);
+      setAgendado(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAgendado();
+  }, []);
 
   return (
     <>
       <Header title="Dados da doação" />
+      <button type="button" onClick={() => console.log(agendado)}>
+        Teste
+      </button>
 
-      <main className="flex flex-col gap-y-5 mt-4 h-screen">
+      <main className="flex flex-col gap-y-5 mt-4 pb-20">
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md justify-center">
@@ -44,80 +66,105 @@ export function Agendado() {
           </div>
         )}
 
-        <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 pt-4 pb-6 mx-9 border border-[#807777]">
-          <div className="flex">
-            <div>
-              <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">
-                Doação de arroz da marca Camil{" "}
-                <span className="text-success text-xs ml-1">Agendado</span>
-              </h2>
-              <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
-                <div className="flex px-6">
-                  <FontAwesomeIcon
-                    className="w-6 h-6 text-menu-gray mr-3"
-                    icon={faBox}
-                  />
-                  <div className="text-sm">
-                    <h1 className="text-base font-medium">Produto(s)</h1>
-                    <p className="leading-tight">
-                      <span className="font-medium">Nome:</span> Arroz Camil
-                    </p>
-                    <p className="leading-tight">
-                      <span className="font-medium">Categoria:</span> Alimento
-                    </p>
-                    <p className="leading-tight">
-                      <span className="font-medium">Quantidade:</span> 3
-                      unidades
+        {agendado ? (
+          <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 pt-4 pb-6 mx-9 border border-[#807777]">
+            <div className="flex">
+              <div>
+                <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">
+                  {agendado.titulo}
+                  <span className="text-success text-xs ml-1">Agendado</span>
+                </h2>
+                <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      className="w-6 h-6 text-menu-gray mr-3"
+                      icon={faBox}
+                    />
+                    <div className="text-sm flex flex-col gap-y-4">
+                      <h1 className="text-base font-medium -mb-3">Produto(s)</h1>
+                      {agendado.itemList.map((item, index) => (
+                        <div key={index}>
+                          <p className="leading-tight">
+                            <span className="font-medium">Nome:</span>{" "}
+                            {item.nome}
+                          </p>
+                          <p className="leading-tight">
+                            <span className="font-medium">Categoria:</span>{" "}
+                            {item.categoriaItemModel.descricao}
+                          </p>
+                          <p className="leading-tight">
+                            <span className="font-medium">Quantidade:</span> {item.quantidade} unidades
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                    />
+                    <p className="font-medium">
+                      {agendado.nomeUsuarioProposta}
                     </p>
                   </div>
-                </div>
 
-                <div className="flex px-6">
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
-                  />
-                  <p className="font-medium">Marcelo Sarinho</p>
-                </div>
-
-                <div className="flex px-6">
-                  <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-3" />
-                  <div className="text-sm">
-                    <h1 className="text-base font-medium">Contato</h1>
-                    <p className="leading-tight">(13) 9 8822 - 6578</p>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-3" />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">Contato</h1>
+                      <p className="leading-tight">
+                        {agendado.telefoneUsuarioProposta}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex px-6">
-                  <FontAwesomeIcon icon={faCalendar} className="w-6 h-6 mr-3" />
-                  <div className="text-sm">
-                    <h1 className="text-base font-medium">Data e horário</h1>
-                    <p className="leading-tight">12/06/2023 - 22:00</p>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faCalendar}
+                      className="w-6 h-6 mr-3"
+                    />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">Data e horário</h1>
+                      <p className="leading-tight">{agendado.dataAgendada}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex px-6">
-                  <FontAwesomeIcon
-                    icon={faLocationDot}
-                    className="w-6 h-6 mr-3"
-                  />
-                  <div className="text-sm">
-                    <h1 className="text-base font-medium">Local de encontro</h1>
-                    <p className="leading-tight">11520-030</p>
-                    <p className="leading-tight">R. Dom Pedro I, 256, Ap 24</p>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className="w-6 h-6 mr-3"
+                    />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">
+                        Local de encontro
+                      </h1>
+                      <p className="leading-tight">{agendado.cep}</p>
+                      <p className="leading-tight">
+                        {agendado.logradouro}, {agendado.numero},{" "}
+                        {agendado.complemento === ""
+                          ? "sem complemento"
+                          : agendado.complemento}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <button
-            onClick={() => setShowPopup(true)}
-            className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
-          >
-            Cancelar compromisso
-          </button>
-        </div>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
+            >
+              Cancelar compromisso
+            </button>
+          </div>
+        ) : (
+          <div className="text-center mt-4">
+            <LoadingPrimary />
+          </div>
+        )}
       </main>
 
       <Navbar />
