@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "../components/Navbar";
 import {
   faBagShopping,
-  faCircleInfo,
   faClock,
   faHandHoldingHeart,
+  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
@@ -58,7 +58,7 @@ export function MeusAnuncios(props) {
                   className="flex justify-center items-center w-1/5 h-16 absolute 
                   top-0 right-0 bg-primary text-white"
                 >
-                  <FontAwesomeIcon className="w-6 h-6" icon={faCircleInfo} />
+                  <FontAwesomeIcon className="w-5 h-5" icon={faPenToSquare} />
                 </Link>
               </div>
             </div>

@@ -254,6 +254,28 @@ export const getMeuAnuncio = async (id) => {
   }
 };
 
+export const deleteAnuncio = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/anuncios/${id}/cancelar`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteAnuncioItem = async (idItem) => {
+  try {
+    await axios.delete(
+      `http://localhost:8080/atividades/anuncios/${idItem}`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getHistoricos = async () => {
   try {
     const response = await axios.get(

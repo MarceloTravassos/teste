@@ -35,11 +35,7 @@ export function Agendado() {
 
   return (
     <>
-      <Header title="Dados da doação" />
-      <button type="button" onClick={() => console.log(agendado)}>
-        Teste
-      </button>
-
+      <Header title="Agendados" />
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -72,7 +68,7 @@ export function Agendado() {
               <div>
                 <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">
                   {agendado.titulo}
-                  <span className="text-success text-xs ml-1">Agendado</span>
+                  <span className="text-success text-xs ml-2">Agendado</span>
                 </h2>
                 <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
                   <div className="flex px-6">
@@ -81,7 +77,9 @@ export function Agendado() {
                       icon={faBox}
                     />
                     <div className="text-sm flex flex-col gap-y-4">
-                      <h1 className="text-base font-medium -mb-3">Produto(s)</h1>
+                      <h1 className="text-base font-medium -mb-3">
+                        Produto(s)
+                      </h1>
                       {agendado.itemList.map((item, index) => (
                         <div key={index}>
                           <p className="leading-tight">
@@ -93,7 +91,8 @@ export function Agendado() {
                             {item.categoriaItemModel.descricao}
                           </p>
                           <p className="leading-tight">
-                            <span className="font-medium">Quantidade:</span> {item.quantidade} unidades
+                            <span className="font-medium">Quantidade:</span>{" "}
+                            {item.quantidade} unidades
                           </p>
                         </div>
                       ))}
