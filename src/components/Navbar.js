@@ -12,7 +12,8 @@ export function Navbar() {
 
   async function handleSignOut() {
     await signOut();
-    return navigate("/");
+    navigate("/");
+    window.location.reload();
   }
 
   return (

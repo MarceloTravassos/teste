@@ -49,7 +49,7 @@ export function Pedidos() {
         </Link>
       </div>
 
-      <main className="flex flex-col gap-y-7 h-screen">
+      <main className="flex flex-col gap-y-7 pb-20">
         {pedidos.map((pedido, index) => (
           <Link
             to={`/pedido/${pedido.id}`}

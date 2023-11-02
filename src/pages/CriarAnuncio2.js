@@ -2,12 +2,20 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { consultaCep, postDoacao } from "../api";
+import { consultaCep, postDoacao, postDoacaoRapida, postPedido } from "../api";
+import { Message } from "../components/Message";
+
+const titles = {
+  1: "Doação",
+  2: "Pedido",
+  3: "Doação Rápida",
+};
 
 export function CriarAnuncio2() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [dataInicioDisponibilidade, setDataInicioDisponibilidade] =
     useState("");
@@ -21,6 +29,7 @@ export function CriarAnuncio2() {
   const [cidade, setCidade] = useState("");
   const [bairro, setBairro] = useState("");
   const [consulta, setConsulta] = useState("");
+  const [popup, setPopup] = useState(false);
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -48,7 +57,39 @@ export function CriarAnuncio2() {
       complemento,
       pontoReferencia,
     };
-    await postDoacao(body);
+
+    switch (location.state.tipoAnuncio) {
+      case 1:
+        try {
+          await postDoacao(body);
+          setPopup(true);
+        } catch (error) {
+          console.log(error);
+        }
+        break;
+
+      case 2:
+        try {
+          await postPedido(body);
+          setPopup(true);
+        } catch (error) {
+          console.log(error);
+        }
+        break;
+
+      case 3:
+        try {
+          await postDoacaoRapida(body);
+          setPopup(true);
+        } catch (error) {
+          console.log(error);
+        }
+        break;
+
+      default:
+        console.log("Nenhum tipo de anúncio selecionado!");
+        break;
+    }
   }
 
   useEffect(() => {
@@ -77,13 +118,16 @@ export function CriarAnuncio2() {
     };
   }, [cep]);
 
-  useEffect(() => {
-    console.log(dataInicioDisponibilidade);
-  }, [dataInicioDisponibilidade]);
-
   return (
     <>
-      <Header title="Doações" />
+      <Header title={titles[location.state.tipoAnuncio]} />
+
+      {popup && (
+        <Message
+          message="Anúncio criado com sucesso!"
+          onClick={() => navigate("/home")}
+        />
+      )}
 
       <form className="flex flex-col mx-9 my-3">
         <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>

@@ -7,8 +7,17 @@ import { FormInput } from "../components/FormInput";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const titles = {
+  1: "Doação",
+  2: "Pedido",
+  3: "Doação Rápida",
+};
+
 export function CriarAnuncio1() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const tipoAnuncio = location.state.tipoAnuncio;
 
   const options = [
     { id: 0, descricao: "Selecione..." },
@@ -51,14 +60,16 @@ export function CriarAnuncio1() {
 
   const continuarCriacao = (e) => {
     e.preventDefault();
-    return navigate("/criar-doacao-2", { state: { titulo, listaItens } });
+    return navigate("/criar-doacao-2", {
+      state: { titulo, listaItens, tipoAnuncio },
+    });
   };
 
   useEffect(() => {}, [categoriaItemModel]);
 
   return (
     <>
-      <Header title="Doações" />
+      <Header title={titles[location.state.tipoAnuncio]} />
 
       <form
         onSubmit={continuarCriacao}

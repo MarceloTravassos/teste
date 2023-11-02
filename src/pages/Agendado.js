@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
 import { useEffect, useState } from "react";
-import { getAgendado } from "../api";
+import { getAgendado, naoOcorreuEncontro, ocorreuEncontro } from "../api";
 import { useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
@@ -29,6 +29,22 @@ export function Agendado() {
     }
   }
 
+  async function ocorreu() {
+    try {
+      await ocorreuEncontro(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function naoOcorreu() {
+    try {
+      await naoOcorreuEncontro(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     fetchAgendado();
   }, []);
@@ -37,6 +53,8 @@ export function Agendado() {
     <>
       <Header title="Agendados" />
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
+        <button onClick={() => console.log(agendado)}>Teste</button>
+
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md justify-center">
@@ -152,12 +170,32 @@ export function Agendado() {
               </div>
             </div>
 
-            <button
-              onClick={() => setShowPopup(true)}
-              className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
-            >
-              Cancelar compromisso
-            </button>
+            {agendado.podeCancelarProposta === 1 && (
+              <button
+                onClick={() => setShowPopup(true)}
+                className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
+              >
+                Cancelar compromisso
+              </button>
+            )}
+
+            {agendado.podeConfirmarEncontro === 1 && (
+              <div className="flex flex-wrap gap-y-3 justify-between">
+                <button
+                  onClick={ocorreu}
+                  className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
+                >
+                  Ocorreu
+                </button>
+
+                <button
+                  onClick={naoOcorreu}
+                  className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto rounded-lg hover:bg-primary-hover transition"
+                >
+                  Não ocorreu
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center mt-4">

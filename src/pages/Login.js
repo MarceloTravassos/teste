@@ -6,24 +6,38 @@ import { Loading } from "../components/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../api";
 import logo from "../assets/logo.jpeg";
+import { Error } from "../components/Error";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-    await signIn(email, senha);
-    setLoading(false);
-    return navigate("/home");
+    try {
+      e.preventDefault();
+      setLoading(true);
+      await signIn(email, senha);
+      setLoading(false);
+      navigate("/home");
+      window.location.reload();
+    } catch (error) {
+      setLoading(false);
+      setErrorPopup(true);
+      setError(error.response.data.detail);
+    }
   }
 
   return (
-    <main className="bg-primary flex flex-col px-12 items-center min-h-screen">
+    <main className="bg-primary flex flex-col px-12 items-center min-h-screen pb-20">
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
+
       <img
         src={logo}
         alt="Logo Doar Mais"
@@ -32,7 +46,7 @@ export function Login() {
       <form
         onSubmit={handleSubmit}
         className="flex flex-col rounded-xl p-5 bg-white text-primary
-      text-base font-medium md:w-80 lg:w-96"
+        text-base font-medium md:w-80 lg:w-96"
       >
         <h1 className="font-bold text-2xl text-center mb-5">Fazer login</h1>
         <FormLabel name="email">Email:</FormLabel>

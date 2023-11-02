@@ -69,9 +69,7 @@ export const getDoacao = async (id) => {
 
 export const postDoacao = async (body) => {
   try {
-    console.log(body);
-    // await axios.post("http://localhost:8080/doacao", body, config);
-    console.log("criou");
+    await axios.post("http://localhost:8080/doacao", body, config);
   } catch (error) {
     console.log(error);
   }
@@ -139,7 +137,7 @@ export const signIn = async (email, senha) => {
       })
       .then((response) => localStorage.setItem("token", response.data.token));
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -201,6 +199,39 @@ export const getAgendado = async (id) => {
       config
     );
     return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const cancelarEncontro = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/agendados/${id}/cancelar`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const ocorreuEncontro = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/agendados/${id}/ocorrenciaencontro`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const naoOcorreuEncontro = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/agendados/${id}/naoocorrenciaencontro`,
+      config
+    );
   } catch (error) {
     console.log(error);
   }
@@ -307,6 +338,6 @@ export const consultaCep = async (cep) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
