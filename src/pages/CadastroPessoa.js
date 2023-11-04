@@ -48,8 +48,8 @@ export function CadastroPessoa() {
       return navigate("/cadastro-cliente-info");
     } catch (error) {
       console.log(error);
-      setErrorPopup(true);
       setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 

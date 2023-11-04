@@ -10,12 +10,13 @@ import {
 import { Header } from "../components/Header";
 import { useEffect, useRef, useState } from "react";
 import { deleteAnuncio, deleteAnuncioItem, getMeuAnuncio } from "../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
 export function MeuAnuncio() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isActiveAnuncio, setIsActiveAnuncio] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -77,8 +78,31 @@ export function MeuAnuncio() {
   }
 
   function editarItemAnuncio(item) {
-    return navigate("/editar-item-anuncio", { state: { item } });
+    return navigate("/editar-item-anuncio", {
+      state: { item, },
+    });
   }
+
+  useEffect(() => {
+    if (location.state && location.state.updatedItem) {
+      const updatedItem = location.state.updatedItem;
+
+      // Atualizar o item na lista do estado
+      const updatedItemList = meuAnuncio.itemList.map((oldItem) => {
+        if (oldItem.id === updatedItem.id) {
+          return updatedItem;
+        }
+        return oldItem;
+      });
+
+      setMeuAnuncio({
+        ...meuAnuncio,
+        itemList: updatedItemList,
+      });
+    }
+
+    console.log(location.state);
+  }, [location.state, meuAnuncio]);
 
   useEffect(() => {
     fetchMeuAnuncio();
@@ -93,6 +117,10 @@ export function MeuAnuncio() {
       <main className="flex flex-col gap-y-5 pb-20">
         <button type="button" onClick={() => console.log(meuAnuncio)}>
           Teste
+        </button>
+
+        <button type="button" onClick={() => console.log(location.state)}>
+          location
         </button>
 
         {showConfirmDelete && (

@@ -103,7 +103,7 @@ export function CriarAnuncio1() {
               id="categoria"
               required
               className="bg-primary px-2 text-black rounded-md h-10 mb-2 bg-opacity-20 w-full"
-              value={categoriaItemModel.value}
+              value={categoriaItemModel.id}
               onChange={handleCategoriaChange}
             >
               {options.map((option) => (

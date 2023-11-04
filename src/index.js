@@ -43,6 +43,8 @@ import { Historico } from "./pages/Historico";
 import { EditarItemAnuncio } from "./pages/EditarItemAnuncio";
 import { AceitarUsuarios } from "./pages/AceitarUsuarios";
 import { Denuncias } from "./pages/Denuncias";
+import { AceitarUsuario } from "./pages/AceitarUsuario";
+import { Denuncia } from "./pages/Denuncia";
 
 const router = createBrowserRouter([
   {
@@ -215,8 +217,16 @@ const router = createBrowserRouter([
         element: <AceitarUsuarios />,
       },
       {
+        path: "/administrador/aceitar-usuarios/:id",
+        element: <AceitarUsuario />,
+      },
+      {
         path: "/administrador/denuncias",
         element: <Denuncias />,
+      },
+      {
+        path: "/administrador/denuncias/:id",
+        element: <Denuncia />,
       },
     ],
   },

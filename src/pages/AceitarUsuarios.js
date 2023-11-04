@@ -33,15 +33,19 @@ export function AceitarUsuarios() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20">
+        <button type="button" onClick={() => console.log(contas)}>
+          teste
+        </button>
+
         {contas.map((conta, index) => (
           <Link
             key={index}
-            to={`/gerenciarcontas/${conta.id}`}
-            className="bg-div-gray rounded-2xl text-center drop-shadow-md py-12 px-8 mx-auto border border-[#807777]
+            to={`/administrador/aceitar-usuarios/${conta.id}`}
+            className="bg-div-gray hover:bg-light-gray transition rounded-2xl text-center drop-shadow-md py-12 px-8 mx-auto border border-[#807777]
             w-3/4 lg:w-1/2 md:w-1/2"
           >
             <h2 className="font-bold lg:text-2xl md:text-xl text-sm text-menu-gray">
-              Nome do usuario
+              {conta.nome}
             </h2>
           </Link>
         ))}

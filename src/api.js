@@ -30,7 +30,6 @@ export const getPedido = async (id) => {
 export const postPedido = async (body) => {
   try {
     await axios.post("http://localhost:8080/pedido", body, config);
-    console.log("criou");
   } catch (error) {
     console.log(error);
   }
@@ -79,7 +78,6 @@ export const propostaDoacao = async (body) => {
   try {
     console.log(body);
     // await axios.post("http://localhost:8080/doacao/proposta", body, config);
-    console.log("criou");
   } catch (error) {
     console.log(error);
   }
@@ -112,7 +110,6 @@ export const getDoacaoRapida = async (id) => {
 export const postDoacaoRapida = async (body) => {
   try {
     await axios.post("http://localhost:8080/doacaorapida", body, config);
-    console.log("criou");
   } catch (error) {
     console.log(error);
   }
@@ -261,6 +258,28 @@ export const getPendente = async (id) => {
   }
 };
 
+export const confirmarPendente = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/pendentes/${id}/confirmar`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const recusarPendente = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/pendentes/${id}/recusar`,
+      config
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getMeusAnuncios = async () => {
   try {
     const response = await axios.get(
@@ -346,7 +365,7 @@ export const registerUsuario = async (body) => {
   try {
     console.log(body);
 
-    // await axios.get(
+    // await axios.post(
     //   "http://localhost:8080/auth/registrarusuario",
     //   config,
     //   body
@@ -360,7 +379,7 @@ export const registerONG = async (body) => {
   try {
     console.log(body);
 
-    // await axios.get(
+    // await axios.post(
     //   "http://localhost:8080/auth/registrarusuario",
     //   config,
     //   body
@@ -372,7 +391,80 @@ export const registerONG = async (body) => {
 
 export const getContas = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/gerenciarcontas", config);
+    const response = await axios.get(
+      "http://localhost:8080/gerenciarcontas",
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getConta = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/gerenciarcontas/${id}`,
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const downloadDocumento = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/gerenciarcontas/${id}/download`,
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const recusarConta = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/gerenciarcontas/${id}/recusarconta`,
+      config
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const aceitarConta = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/gerenciarcontas/${id}/aceitarconta`,
+      config
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getDenuncias = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/gerenciardenuncias",
+      config
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDenuncia = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/gerenciardenuncias/anuncios/${id}`,
+      config
+    );
     return await response.data;
   } catch (error) {
     console.log(error);

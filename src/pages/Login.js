@@ -23,12 +23,15 @@ export function Login() {
       setLoading(true);
       await signIn(email, senha);
       setLoading(false);
-      navigate("/home");
+      if (email === "renan@email.com")
+        navigate("/administrador/aceitar-usuarios");
+      else navigate("/home");
+
       window.location.reload();
     } catch (error) {
       setLoading(false);
-      setErrorPopup(true);
       setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 

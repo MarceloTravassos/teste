@@ -42,8 +42,8 @@ export function CadastroCliente() {
           break;
       }
     }
-    setErrorPopup(true);
     setError("As senhas são diferentes!");
+    setErrorPopup(true);
   }
 
   return (

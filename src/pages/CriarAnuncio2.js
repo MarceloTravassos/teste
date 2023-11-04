@@ -18,8 +18,8 @@ export function CriarAnuncio2() {
   const navigate = useNavigate();
 
   const [dataInicioDisponibilidade, setDataInicioDisponibilidade] =
-    useState("");
-  const [dataFimDisponibilidade, setDataFimDisponibilidade] = useState("");
+    useState(new Date());
+  const [dataFimDisponibilidade, setDataFimDisponibilidade] = useState(new Date());
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
   const [numero, setNumero] = useState("");
@@ -38,10 +38,29 @@ export function CriarAnuncio2() {
     return localISOTime;
   }
 
+  function formatarDataComHorario(data) {
+    const dia = String(data.getDate()).padStart(2, "0");
+    const mes = String(data.getMonth() + 1).padStart(2, "0"); // O mês começa do zero
+    const ano = data.getFullYear();
+    const hora = String(data.getHours()).padStart(2, "0");
+    const minuto = String(data.getMinutes()).padStart(2, "0");
+
+    return `${dia}/${mes}/${ano} ${hora}:${minuto}`;
+  }
+
   async function cadastrarAnuncio(e) {
     e.preventDefault();
-    const dataInicioFormatada = formatDateISO(dataInicioDisponibilidade);
-    const dataFimFormatada = formatDateISO(dataFimDisponibilidade);
+    let dataInicioFormatada = formatDateISO(dataInicioDisponibilidade);
+    let dataFimFormatada = formatDateISO(dataFimDisponibilidade);
+
+    if (location.state.tipoAnuncio === 3) {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      dataInicioFormatada = today.toISOString();
+      dataFimFormatada = tomorrow.toISOString();
+    }
 
     const body = {
       titulo: location.state.titulo,
@@ -131,28 +150,50 @@ export function CriarAnuncio2() {
 
       <form className="flex flex-col mx-9 my-3">
         <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
-        <p className="text-xs text-menu-gray text-opacity-80 mb-2">
-          Adicione o período em dias e horas que você terá disponibilidade para
-          entregar os produtos do seu anúncio
-        </p>
+        {location.state.tipoAnuncio === 3 ? (
+          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
+            Por se tratar de uma doação rápida, os dias disponíveis serão hoje e
+            amanhã.
+          </p>
+        ) : (
+          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
+            Adicione o período em dias e horas que você terá disponibilidade
+            para entregar os produtos do seu anúncio
+          </p>
+        )}
 
         <h1 className="text-menu-gray font-medium mb-1">
           Dias e horários disponíveis
         </h1>
-        <FormInput
-          onChange={(e) => setDataInicioDisponibilidade(e.target.value)}
-          value={dataInicioDisponibilidade}
-          name="dataInicio"
-          type="datetime-local"
-          id="dataInicio"
-        />
-        <FormInput
-          onChange={(e) => setDataFimDisponibilidade(e.target.value)}
-          value={dataFimDisponibilidade}
-          name="dataFim"
-          type="datetime-local"
-          id="dataFim"
-        />
+        {location.state.tipoAnuncio === 3 ? (
+          <>
+            <p className="bg-primary bg-opacity-20 py-2 px-1 rounded-md mb-2">
+              {formatarDataComHorario(new Date())}
+            </p>
+            <p className="bg-primary bg-opacity-20 py-2 px-1 rounded-md">
+              {formatarDataComHorario(
+                new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+              )}
+            </p>
+          </>
+        ) : (
+          <>
+            <FormInput
+              onChange={(e) => setDataInicioDisponibilidade(e.target.value)}
+              value={dataInicioDisponibilidade}
+              name="dataInicio"
+              type="datetime-local"
+              id="dataInicio"
+            />
+            <FormInput
+              onChange={(e) => setDataFimDisponibilidade(e.target.value)}
+              value={dataFimDisponibilidade}
+              name="dataFim"
+              type="datetime-local"
+              id="dataFim"
+            />
+          </>
+        )}
 
         <hr className="my-4" />
 
@@ -166,7 +207,6 @@ export function CriarAnuncio2() {
         <FormInput
           onChange={(e) => setCep(e.target.value)}
           value={cep}
-          placeholder="0000000"
           name="cep"
           type="text"
           id="cep"
