@@ -10,11 +10,12 @@ import {
 import { Header } from "../components/Header";
 import { useEffect, useRef, useState } from "react";
 import { deleteAnuncio, deleteAnuncioItem, getMeuAnuncio } from "../api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
 export function MeuAnuncio() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [isActiveAnuncio, setIsActiveAnuncio] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -73,6 +74,10 @@ export function MeuAnuncio() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function editarItemAnuncio(item) {
+    return navigate("/editar-item-anuncio", { state: { item } });
   }
 
   useEffect(() => {
@@ -213,7 +218,10 @@ export function MeuAnuncio() {
                           -right-8 top-[34px] bg-white z-50"
                         >
                           <ul className="text-xs font-medium text-menu-gray">
-                            <div className="flex items-center justify-between px-3 py-1">
+                            <div
+                              onClick={() => editarItemAnuncio(item)}
+                              className="flex items-center justify-between px-3 py-1"
+                            >
                               <li className="py-1">Editar</li>
                               <FontAwesomeIcon icon={faEdit} />
                             </div>

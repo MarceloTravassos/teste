@@ -3,7 +3,7 @@ import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { Header } from "../components/Header";
 
-export function EditarAnuncio2() {
+export function MeuAnuncio2() {
   const [showConfirmEdit, setShowConfirmEdit] = useState(false);
 
   return (

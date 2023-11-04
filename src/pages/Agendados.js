@@ -52,10 +52,6 @@ export function Agendados(props) {
                   </p>
                 </div>
               </div>
-
-              <p className="text-center text-xs text-success font-semibold mt-5">
-                Agendado
-              </p>
             </Link>
           );
         })}

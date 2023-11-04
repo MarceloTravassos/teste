@@ -1,106 +1,143 @@
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { SubmitButton } from "../components/SubmitButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ComprovanteInput } from "../components/ComprovanteInput";
 import logo from "../assets/logo.jpeg";
+import { consultaCep, registerUsuario } from "../api";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function CadastroPessoa() {
-  const [cpf, setCPF] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [documento, setDocumento] = useState("");
   const [cep, setCEP] = useState("");
-  const [endereco, setEndereco] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [comprovante, setComprovante] = useState("");
+  const [consulta, setConsulta] = useState("");
+  const [logradouro, setLogradouro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [uf, setUf] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleCPFChange(e) {
-    setCPF(e.target.value);
-  }
-
-  function handleCEPChange(e) {
-    setCEP(e.target.value);
-  }
-
-  function handleEnderecoChange(e) {
-    setEndereco(e.target.value);
-  }
-
-  function handleNumeroChange(e) {
-    setNumero(e.target.value);
-  }
-
-  function handleComplementoChange(e) {
-    setComplemento(e.target.value);
-  }
-
-  function handleComprovanteChange(e) {
-    setComprovante(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("cpf: ", cpf);
-    console.log("cep: ", cep);
-    console.log("endereco: ", endereco);
-    console.log("numero: ", numero);
-    console.log("complemento: ", complemento);
-    console.log("comprovante residencia: ", comprovante);
+
+    const body = {
+      nome: location.state.nome,
+      telefone: location.state.telefone,
+      documento,
+      email: location.state.email,
+      senha: location.state.senha,
+      cep,
+      cidade,
+      uf,
+      bairro,
+      logradouro,
+      numero,
+      complemento,
+      comprovante,
+    };
+
+    try {
+      await registerUsuario(body);
+      return navigate("/cadastro-cliente-info");
+    } catch (error) {
+      console.log(error);
+      setErrorPopup(true);
+      setError(error.response.data.detail);
+    }
   }
+
+  useEffect(() => {
+    if (consulta) {
+      clearTimeout(consulta);
+    }
+
+    setConsulta(
+      setTimeout(async () => {
+        try {
+          const response = await consultaCep(cep);
+          setUf(response.state);
+          setCidade(response.city);
+          setLogradouro(response.street);
+          setBairro(response.neighborhood);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 1000)
+    );
+
+    return () => {
+      if (consulta) {
+        clearTimeout(consulta);
+      }
+    };
+  }, [cep]);
 
   return (
-    <main className="flex flex-col items-center bg-primary min-h-screen">
+    <main className="flex flex-col items-center bg-primary pb-20">
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
       <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white">
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
           </h1>
 
           <FormLabel name="cpf">CPF:</FormLabel>
           <FormInput
+            id="cpf"
             name="cpf"
             type="text"
-            value={cpf}
-            onChange={handleCPFChange}
+            value={documento}
+            onChange={(e) => setDocumento(e.target.value)}
           />
 
           <FormLabel name="cep">CEP:</FormLabel>
           <FormInput
+            id="cep"
             name="cep"
             type="text"
             value={cep}
-            onChange={handleCEPChange}
+            onChange={(e) => setCEP(e.target.value)}
           />
 
-          <FormLabel name="endereco">Endereço:</FormLabel>
+          <FormLabel name="logradouro">Endereço:</FormLabel>
           <FormInput
-            name="endereco"
+            id="logradouro"
+            name="logradouro"
             type="text"
-            value={endereco}
-            onChange={handleEnderecoChange}
+            value={logradouro}
+            onChange={(e) => setLogradouro(e.target.value)}
           />
 
           <div className="flex gap-6">
             <div>
               <FormLabel name="numero">Número:</FormLabel>
               <FormInput
+                id="numero"
                 className="w-full"
                 name="numero"
                 type="text"
                 value={numero}
-                onChange={handleNumeroChange}
+                onChange={(e) => setNumero(e.target.value)}
               />
             </div>
 
             <div>
               <FormLabel name="complemento">Complemento:</FormLabel>
               <FormInput
+                id="complemento"
                 className="w-32"
                 name="complemento"
                 type="text"
                 value={complemento}
-                onChange={handleComplementoChange}
+                onChange={(e) => setComplemento(e.target.value)}
               />
             </div>
           </div>
@@ -108,7 +145,7 @@ export function CadastroPessoa() {
           <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
           <ComprovanteInput
             value={comprovante}
-            onChange={handleComprovanteChange}
+            onChange={(e) => setComprovante(e.target.value)}
           />
 
           <SubmitButton type="submit">Finalizar</SubmitButton>

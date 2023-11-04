@@ -40,6 +40,9 @@ import { Agendado } from "./pages/Agendado";
 import { Pendente } from "./pages/Pendente";
 import { MeuAnuncio } from "./pages/MeuAnuncio";
 import { Historico } from "./pages/Historico";
+import { EditarItemAnuncio } from "./pages/EditarItemAnuncio";
+import { AceitarUsuarios } from "./pages/AceitarUsuarios";
+import { Denuncias } from "./pages/Denuncias";
 
 const router = createBrowserRouter([
   {
@@ -202,6 +205,18 @@ const router = createBrowserRouter([
       {
         path: "/atividades/historico/:id",
         element: <Historico />,
+      },
+      {
+        path: "/editar-item-anuncio",
+        element: <EditarItemAnuncio />,
+      },
+      {
+        path: "/administrador/aceitar-usuarios",
+        element: <AceitarUsuarios />,
+      },
+      {
+        path: "/administrador/denuncias",
+        element: <Denuncias />,
       },
     ],
   },

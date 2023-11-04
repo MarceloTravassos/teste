@@ -341,3 +341,40 @@ export const consultaCep = async (cep) => {
     throw error;
   }
 };
+
+export const registerUsuario = async (body) => {
+  try {
+    console.log(body);
+
+    // await axios.get(
+    //   "http://localhost:8080/auth/registrarusuario",
+    //   config,
+    //   body
+    // );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const registerONG = async (body) => {
+  try {
+    console.log(body);
+
+    // await axios.get(
+    //   "http://localhost:8080/auth/registrarusuario",
+    //   config,
+    //   body
+    // );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getContas = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/gerenciarcontas", config);
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

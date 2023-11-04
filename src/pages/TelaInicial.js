@@ -6,7 +6,7 @@ import logo from "../assets/logo.jpeg";
 
 export function TelaInicial() {
   return (
-    <main className="h-screen">
+    <main className="pb-20">
       <div
         className="bg-primary absolute origin-top-left h-[450px] w-full -z-10
       -skew-y-[26deg] md:-skew-y-[18deg] lg:-skew-y-12"

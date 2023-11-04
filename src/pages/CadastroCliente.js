@@ -2,25 +2,56 @@ import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { useState } from "react";
 import logo from "../assets/logo.jpeg";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Error } from "../components/Error";
 
 export function CadastroCliente() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmSenha, setConfirmSenha] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [error, setError] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("nome: ", nome);
-    console.log("email: ", email);
-    console.log("telefone: ", telefone);
-    console.log("senha: ", senha);
-    console.log("confirm senha: ", confirmSenha);
+
+    if (confirmSenha === senha) {
+      switch (location.state.tipoUsuario) {
+        case 1:
+          return navigate("/cadastro-pessoa", {
+            state: { nome, email, telefone, senha },
+          });
+
+        case 2:
+          return navigate("/cadastro-ong", {
+            state: { nome, email, telefone, senha },
+          });
+
+        case 3:
+          return navigate("/cadastro-pessoa", {
+            state: { nome, email, telefone, senha },
+          });
+
+        default:
+          console.log("Nenhum tipo de usuário informado!");
+          break;
+      }
+    }
+    setErrorPopup(true);
+    setError("As senhas são diferentes!");
   }
 
   return (
-    <main className="flex flex-col items-center bg-primary min-h-screen">
+    <main className="flex flex-col items-center bg-primary pb-20">
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
+
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
       <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white">
@@ -30,6 +61,7 @@ export function CadastroCliente() {
           </h1>
           <FormLabel name="nome">Nome:</FormLabel>
           <FormInput
+            id="nome"
             name="nome"
             type="text"
             value={nome}
@@ -38,6 +70,7 @@ export function CadastroCliente() {
 
           <FormLabel name="email">Email:</FormLabel>
           <FormInput
+            id="email"
             name="email"
             type="email"
             value={email}
@@ -46,6 +79,7 @@ export function CadastroCliente() {
 
           <FormLabel name="telefone">Telefone:</FormLabel>
           <FormInput
+            id="telefone"
             name="telefone"
             type="text"
             value={telefone}
@@ -54,6 +88,7 @@ export function CadastroCliente() {
 
           <FormLabel name="senha">Senha:</FormLabel>
           <FormInput
+            id="senha"
             name="senha"
             type="password"
             value={senha}
@@ -62,6 +97,7 @@ export function CadastroCliente() {
 
           <FormLabel name="confirmar-senha">Confirmar senha:</FormLabel>
           <FormInput
+            id="confirmar-senha"
             name="confirmar-senha"
             type="password"
             value={confirmSenha}

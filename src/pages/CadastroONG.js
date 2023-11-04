@@ -1,57 +1,89 @@
 import { ComprovanteInput } from "../components/ComprovanteInput";
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.jpeg";
+import { useLocation, useNavigate } from "react-router-dom";
+import { consultaCep, registerONG } from "../api";
 
 export function CadastroONG() {
-  const [cnpj, setCNPj] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [documento, setDocumento] = useState("");
   const [cep, setCEP] = useState("");
-  const [endereco, setEndereco] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [comprovante, setComprovante] = useState("");
+  const [consulta, setConsulta] = useState("");
+  const [logradouro, setLogradouro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [uf, setUf] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleCNPJChange(e) {
-    setCNPj(e.target.value);
-  }
-
-  function handleCEPChange(e) {
-    setCEP(e.target.value);
-  }
-
-  function handleEnderecoChange(e) {
-    setEndereco(e.target.value);
-  }
-
-  function handleNumeroChange(e) {
-    setNumero(e.target.value);
-  }
-
-  function handleComplementoChange(e) {
-    setComplemento(e.target.value);
-  }
-
-  function handleComprovanteChange(e) {
-    setComprovante(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("cnpj: ", cnpj);
-    console.log("cep: ", cep);
-    console.log("endereco: ", endereco);
-    console.log("numero: ", numero);
-    console.log("complemento: ", complemento);
-    console.log("comprovante: ", comprovante);
+
+    const body = {
+      nome: location.state.nome,
+      telefone: location.state.telefone,
+      documento,
+      email: location.state.email,
+      senha: location.state.senha,
+      cep,
+      cidade,
+      uf,
+      bairro,
+      logradouro,
+      numero,
+      complemento,
+      comprovante,
+    };
+
+    try {
+      await registerONG(body);
+      return navigate("/cadastro-cliente-info");
+    } catch (error) {
+      console.log(error);
+      setErrorPopup(true);
+      setError(error.response.data.detail);
+    }
   }
+
+  useEffect(() => {
+    if (consulta) {
+      clearTimeout(consulta);
+    }
+
+    setConsulta(
+      setTimeout(async () => {
+        try {
+          const response = await consultaCep(cep);
+          setUf(response.state);
+          setCidade(response.city);
+          setLogradouro(response.street);
+          setBairro(response.neighborhood);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 1000)
+    );
+
+    return () => {
+      if (consulta) {
+        clearTimeout(consulta);
+      }
+    };
+  }, [cep]);
 
   return (
-    <main className="flex flex-col items-center bg-primary min-h-screen">
+    <main className="flex flex-col items-center bg-primary pb-20">
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
       <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white mt-4">
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
           </h1>
@@ -60,8 +92,8 @@ export function CadastroONG() {
           <FormInput
             name="cnpj"
             type="text"
-            value={cnpj}
-            onChange={handleCNPJChange}
+            value={documento}
+            onChange={(e) => setDocumento(e.target.value)}
           />
 
           <FormLabel name="cep">CEP:</FormLabel>
@@ -69,15 +101,15 @@ export function CadastroONG() {
             name="cep"
             type="text"
             value={cep}
-            onChange={handleCEPChange}
+            onChange={(e) => setCEP(e.target.value)}
           />
 
-          <FormLabel name="endereco">Endereço:</FormLabel>
+          <FormLabel name="logradouro">Endereço:</FormLabel>
           <FormInput
-            name="endereco"
+            name="logradouro"
             type="text"
-            value={endereco}
-            onChange={handleEnderecoChange}
+            value={logradouro}
+            onChange={(e) => setLogradouro(e.target.value)}
           />
 
           <div className="flex gap-6">
@@ -88,7 +120,7 @@ export function CadastroONG() {
                 name="numero"
                 type="text"
                 value={numero}
-                onChange={handleNumeroChange}
+                onChange={(e) => setNumero(e.target.value)}
               />
             </div>
 
@@ -99,15 +131,17 @@ export function CadastroONG() {
                 name="complemento"
                 type="text"
                 value={complemento}
-                onChange={handleComplementoChange}
+                onChange={(e) => setComplemento(e.target.value)}
               />
             </div>
           </div>
 
-          <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
+          <FormLabel name="comprovante">
+            Comprovante de pessoa jurídica:
+          </FormLabel>
           <ComprovanteInput
             value={comprovante}
-            onChange={handleComprovanteChange}
+            onChange={(e) => setComprovante(e.target.value)}
           />
 
           <button

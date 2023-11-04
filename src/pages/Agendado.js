@@ -14,6 +14,17 @@ import { getAgendado, naoOcorreuEncontro, ocorreuEncontro } from "../api";
 import { useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 
+const cores = {
+  "Anúncio cancelado": "text-red-500",
+  "Proposta recusada": "text-red-500",
+  "Proposta cancelada": "text-red-500",
+  "Encontro não realizado": "text-red-500",
+  "Anúncio ativo": "text-success",
+  "Anúncio finalizado": "text-success",
+  "Proposta confirmada": "text-success",
+  "Encontro realizado": "text-success",
+};
+
 export function Agendado() {
   const { id } = useParams();
 
@@ -86,7 +97,9 @@ export function Agendado() {
               <div>
                 <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">
                   {agendado.titulo}
-                  <span className="text-success text-xs ml-2">Agendado</span>
+                  <span className={`${cores[agendado.descricao]} text-xs ml-2`}>
+                    {agendado.descricao}
+                  </span>
                 </h2>
                 <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
                   <div className="flex px-6">

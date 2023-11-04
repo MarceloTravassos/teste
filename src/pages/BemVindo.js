@@ -5,7 +5,7 @@ import logo from "../assets/logo.jpeg";
 
 export function BemVindo() {
   return (
-    <main className="bg-primary flex flex-col min-h-screen items-center px-6 text-white">
+    <main className="bg-primary flex flex-col min-h-screen items-center px-6 text-white pb-20">
       <img
         src={logo}
         alt="Logo Doar Mais"
@@ -18,6 +18,7 @@ export function BemVindo() {
       <div className="flex space-x-4 font-bold text-lg text-white">
         <Link
           to="/cadastro-cliente"
+          state={{ tipoUsuario: 1 }}
           className="flex flex-col rounded-lg items-center justify-evenly leading-tight px-4 py-6 bg-secondary"
         >
           <FontAwesomeIcon
@@ -29,6 +30,7 @@ export function BemVindo() {
 
         <Link
           to="/cadastro-cliente"
+          state={{ tipoUsuario: 2 }}
           className="flex flex-col rounded-lg items-center justify-evenly leading-tight px-4 py-6 bg-secondary"
         >
           <FontAwesomeIcon

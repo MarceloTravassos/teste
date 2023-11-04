@@ -36,7 +36,12 @@ export function MarcarCompromisso2DoacaoRapida() {
       idAnuncio: location.state.doacaoRapida.id,
       itemPropostaRequestDtoList: location.state.itemPropostaRequestDtoList,
     };
-    await propostaDoacaoRapida(body);
+
+    try {
+      await propostaDoacaoRapida(body);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

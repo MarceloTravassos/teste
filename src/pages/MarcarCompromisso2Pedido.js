@@ -38,7 +38,12 @@ export function MarcarCompromisso2Pedido() {
       idAnuncio: location.state.pedido.id,
       itemPropostaRequestDtoList: location.state.itemPropostaRequestDtoList,
     };
-    await propostaPedido(body);
+
+    try {
+      await propostaPedido(body);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
