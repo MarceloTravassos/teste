@@ -1,10 +1,11 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { updateMeuAnuncio } from "../api";
 
 export function EditarItemAnuncio() {
   const location = useLocation();
@@ -29,6 +30,17 @@ export function EditarItemAnuncio() {
   const [quantidade, setQuantidade] = useState(location.state.item.quantidade);
   const [descricao, setDescricao] = useState(location.state.item.descricao);
 
+  function formatDateISO(data) {
+    const tzoffset = new Date().getTimezoneOffset() * 60000;
+    const date = new Date(new Date(data).getTime() - tzoffset);
+    const localISOTime = date.toISOString();
+    return localISOTime;
+  }
+
+  function formatarNumero(cep) {
+    return cep.replace(/\D/g, "");
+  }
+
   const handleCategoriaChange = (e) => {
     const categoriaId = parseInt(e.target.value);
     const categoriaSelecionada = options.find(
@@ -40,17 +52,43 @@ export function EditarItemAnuncio() {
     });
   };
 
-  const continuarEdicao = (e) => {
+  const continuarEdicao = async (e) => {
     e.preventDefault();
 
     const updatedItem = {
-      nome,
-      categoriaItemModel,
-      quantidade,
-      descricao,
+      id: location.state.item.id,
+      nome: nome,
+      categoriaItemModel: categoriaItemModel,
+      quantidade: parseInt(quantidade),
+      descricao: descricao,
     };
 
-    return navigate(-1, { state: { updatedItem } });
+    const updatedItemList = location.state.meuAnuncio.itemList.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+
+    const updatedAnuncio = {
+      ...location.state.meuAnuncio,
+      cep: formatarNumero(location.state.meuAnuncio.cep),
+      telefone: formatarNumero(location.state.meuAnuncio.telefone),
+      dataInicioDisponibilidade: formatDateISO(
+        location.state.meuAnuncio.dataInicioDisponibilidade
+      ),
+      dataFimDisponibilidade: formatDateISO(
+        location.state.meuAnuncio.dataFimDisponibilidade
+      ),
+      listaItens: updatedItemList,
+    };
+
+    if ("itemList" in updatedAnuncio) delete updatedAnuncio.itemList;
+
+    try {
+      await updateMeuAnuncio(updatedAnuncio, location.state.meuAnuncio.id);
+    } catch (error) {
+      console.log(error);
+    }
+
+    return navigate(-1);
   };
 
   useEffect(() => {}, [categoriaItemModel]);
@@ -60,8 +98,15 @@ export function EditarItemAnuncio() {
       <main>
         <Header title="Meus anúncios" />
 
-        <button type="button" onClick={() => console.log(location.state.item)}>
+        <button
+          type="button"
+          onClick={() => console.log(location.state.meuAnuncio)}
+        >
           Teste
+        </button>
+
+        <button type="button" onClick={() => console.log(location.state.item)}>
+          Item
         </button>
 
         {location.state.item ? (
@@ -100,7 +145,6 @@ export function EditarItemAnuncio() {
                   onChange={(e) => setQuantidade(e.target.value)}
                   value={quantidade}
                   className="w-full"
-                  placeholder="3"
                   name="quantidade"
                   type="number"
                   id="quantidade"
@@ -114,7 +158,6 @@ export function EditarItemAnuncio() {
               value={descricao}
               rows="3"
               cols="40"
-              placeholder="Arroz da marca Camil do tipo 1 com validade para fevereiro de 2024"
               className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md"
             ></textarea>
 

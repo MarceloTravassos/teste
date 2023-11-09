@@ -1,73 +1,55 @@
-import { Header } from "../components/Header";
-import { Navbar } from "../components/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faHandHoldingHeart,
-  faBars,
-  faBagShopping,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HeaderAdmin } from "../components/HeaderAdmin";
 import { useEffect, useState } from "react";
-import {
-  aceitarConta,
-  downloadDocumento,
-  getConta,
-  recusarConta,
-} from "../api";
+import { getDenuncia, suspenderAnuncio, validarAnuncio } from "../api";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 import { Error } from "../components/Error";
 import { Message } from "../components/Message";
 
+const tipoDenuncia = {
+  1: "Melhoria",
+  2: "Bug",
+  3: "Denúncia de usuário",
+  4: "Denúncia de anúncio",
+};
+
 export function Denuncia() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [conta, setConta] = useState();
-  const [documento, setDocumento] = useState("");
+  const [denuncia, setDenuncia] = useState();
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [popup, setPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
 
-  async function fetchConta() {
+  async function fetchDenuncia() {
     try {
-      const result = await getConta(id);
-      setConta(result);
+      const result = await getDenuncia(id);
+      setDenuncia(result);
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function download() {
+  async function validar() {
     try {
-      const result = await downloadDocumento(id);
-      setDocumento(result);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function aceitar() {
-    try {
-      setMessage("A conta foi aceita!");
+      await validarAnuncio(id);
+      setMessage("A denúncia foi validada e o anúncio não foi excluído!");
       setPopup(true);
-      // await aceitarConta(id);
     } catch (error) {
       setError(error.response.data.detail);
       setErrorPopup(true);
     }
   }
 
-  async function recusar() {
+  async function excluirAnuncio() {
     try {
-      setMessage("A conta foi recusada!");
+      await suspenderAnuncio(id);
+      setMessage("O anúncio foi excluído!");
       setPopup(true);
-      // await recusarConta(id);
     } catch (error) {
       setError(error.response.data.detail);
       setErrorPopup(true);
@@ -75,7 +57,7 @@ export function Denuncia() {
   }
 
   useEffect(() => {
-    fetchConta();
+    fetchDenuncia();
   }, []);
 
   return (
@@ -83,10 +65,6 @@ export function Denuncia() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20 items-center">
-        <button type="button" onClick={() => console.log(documento)}>
-          tESTE
-        </button>
-
         {popup && (
           <Message
             message={message}
@@ -98,159 +76,80 @@ export function Denuncia() {
           <Error error={error} onClick={() => setErrorPopup(false)} />
         )}
 
-        <div className="lg:w-1/2 md:w-1/2 w-3/4">
-          <h1 className="text-primary text-center font-bold text-xl mb-2">
-            Dados da denúncia
-          </h1>
-
-          <FormLabel className="block" name="nome">
-            Nome delator:
-          </FormLabel>
-          <FormInput
-            className="w-full"
-            disabled
-            name="nome"
-            type="text"
-          />
-
-          <FormLabel className="block" name="telefone">
-            Tipo de denúncia:
-          </FormLabel>
-          <FormInput
-            className="w-full"
-            disabled
-            name="telefone"
-            type="text"
-          />
-
-          <FormLabel className="block" name="documento">
-            Data da denúncia:
-          </FormLabel>
-          <FormInput
-            className="w-full"
-            disabled
-            name="documento"
-            type="text"
-          />
-
-          <FormLabel className="block" name="cep">
-            Denunciado:
-          </FormLabel>
-          <FormInput
-            className="w-full"
-            disabled
-            name="cep"
-            type="text"
-          />
-
-          <FormLabel className="block" name="endereco">
-            Relato:
-          </FormLabel>
-          <FormInput
-            className="w-full"
-            disabled
-            name="endereco"
-            type="text"
-          />
-
-          <div className="flex flex-wrap gap-y-4 justify-center gap-x-12 text-white mt-8">
-            <button
-              onClick={aceitar}
-              className="px-10 rounded-lg font-bold py-2 bg-primary hover:bg-primary-hover transition"
-            >
-              Válido
-            </button>
-            <button
-              onClick={recusar}
-              className="px-10 rounded-lg font-bold py-2 bg-primary hover:bg-primary-hover transition"
-            >
-              Excluir anúncio
-            </button>
-          </div>
-        </div>
-
-        {/* {conta ? (
+        {denuncia ? (
           <div className="lg:w-1/2 md:w-1/2 w-3/4">
             <h1 className="text-primary text-center font-bold text-xl mb-2">
-              Cadastro de usuário
+              Dados da denúncia
             </h1>
 
-            <FormLabel className="block" name="nome">
-              Nome:
+            <FormLabel className="block" name="titulo">
+              Título:
             </FormLabel>
             <FormInput
+              value={denuncia.titulo}
               className="w-full"
               disabled
-              name="nome"
+              name="titulo"
               type="text"
-              value={conta.nome}
             />
 
-            <FormLabel className="block" name="telefone">
-              Telefone:
+            <FormLabel className="block" name="tipoDenuncia">
+              Tipo de denúncia:
             </FormLabel>
             <FormInput
+              value={`${tipoDenuncia[denuncia.idtipoDenuncia]}`}
               className="w-full"
               disabled
-              name="telefone"
+              name="tipoDenuncia"
               type="text"
-              value={conta.telefone}
             />
 
-            <FormLabel className="block" name="documento">
-              CPF/CNPJ:
+            <FormLabel className="block" name="dataDenuncia">
+              Data da denúncia:
             </FormLabel>
             <FormInput
+              value={denuncia.dataCriacao}
               className="w-full"
               disabled
-              name="documento"
+              name="dataDenuncia"
               type="text"
-              value={conta.documento}
             />
 
-            <FormLabel className="block" name="cep">
-              CEP:
+            <FormLabel className="block" name="denunciado">
+              Denunciado:
             </FormLabel>
             <FormInput
+              value={denuncia.nome}
               className="w-full"
               disabled
-              name="cep"
+              name="denunciado"
               type="text"
-              value={conta.cep}
             />
 
-            <FormLabel className="block" name="endereco">
-              Endereço:
+            <FormLabel className="block" name="relato">
+              Relato:
             </FormLabel>
-            <FormInput
-              className="w-full"
+            <textarea
+              name="relato"
+              value={denuncia.descricaoDenuncia}
               disabled
-              name="endereco"
-              type="text"
-              value={conta.cidade}
-            />
-
-            <div
-              onClick={download}
-              className="px-4 py-2 rounded flex gap-x-6 text-lg mx-auto items-center hover:cursor-pointer hover:bg-light-gray
-              transition mt-4 w-fit"
-            >
-              <h1>Documentação</h1>
-              <FontAwesomeIcon icon={faDownload} />
-            </div>
+              rows="3"
+              cols="40"
+              className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md w-full"
+            ></textarea>
 
             <div className="flex flex-wrap gap-y-4 justify-center gap-x-12 text-white mt-8">
               <button
-                onClick={aceitar}
+                onClick={validar}
                 className="px-10 rounded-lg font-bold py-2 bg-primary hover:bg-primary-hover transition"
               >
                 Válido
               </button>
               <button
-                onClick={recusar}
+                onClick={excluirAnuncio}
                 className="px-10 rounded-lg font-bold py-2 bg-primary hover:bg-primary-hover transition"
               >
-                Inválido
+                Excluir anúncio
               </button>
             </div>
           </div>
@@ -258,7 +157,7 @@ export function Denuncia() {
           <div className="text-center mt-4">
             <LoadingPrimary />
           </div>
-        )} */}
+        )}
       </main>
     </>
   );

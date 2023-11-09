@@ -45,6 +45,7 @@ import { AceitarUsuarios } from "./pages/AceitarUsuarios";
 import { Denuncias } from "./pages/Denuncias";
 import { AceitarUsuario } from "./pages/AceitarUsuario";
 import { Denuncia } from "./pages/Denuncia";
+import { MeuAnuncio2 } from "./pages/MeuAnuncio2";
 
 const router = createBrowserRouter([
   {
@@ -203,6 +204,10 @@ const router = createBrowserRouter([
       {
         path: "/atividades/anuncio/:id",
         element: <MeuAnuncio />,
+      },
+      {
+        path: "/atividades/anuncio/continuar-edicao",
+        element: <MeuAnuncio2 />,
       },
       {
         path: "/atividades/historico/:id",

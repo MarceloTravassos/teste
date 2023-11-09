@@ -16,7 +16,6 @@ import { LoadingPrimary } from "../components/LoadingPrimary";
 export function MeuAnuncio() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [isActiveAnuncio, setIsActiveAnuncio] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -79,30 +78,13 @@ export function MeuAnuncio() {
 
   function editarItemAnuncio(item) {
     return navigate("/editar-item-anuncio", {
-      state: { item, },
+      state: { meuAnuncio, item },
     });
   }
 
-  useEffect(() => {
-    if (location.state && location.state.updatedItem) {
-      const updatedItem = location.state.updatedItem;
-
-      // Atualizar o item na lista do estado
-      const updatedItemList = meuAnuncio.itemList.map((oldItem) => {
-        if (oldItem.id === updatedItem.id) {
-          return updatedItem;
-        }
-        return oldItem;
-      });
-
-      setMeuAnuncio({
-        ...meuAnuncio,
-        itemList: updatedItemList,
-      });
-    }
-
-    console.log(location.state);
-  }, [location.state, meuAnuncio]);
+  function continuarEdicao() {
+    navigate("/atividades/anuncio/continuar-edicao", { state: meuAnuncio });
+  }
 
   useEffect(() => {
     fetchMeuAnuncio();
@@ -119,15 +101,11 @@ export function MeuAnuncio() {
           Teste
         </button>
 
-        <button type="button" onClick={() => console.log(location.state)}>
-          location
-        </button>
-
         {showConfirmDelete && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
             <div
-              className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px] border-light-gray
-              px-6 py-5 rounded-lg shadow-md justify-center"
+              className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px]
+              border-light-gray px-6 py-5 rounded-lg shadow-md justify-center"
             >
               <FontAwesomeIcon
                 onClick={() => setShowConfirmDelete(false)}
@@ -150,7 +128,10 @@ export function MeuAnuncio() {
         )}
 
         {meuAnuncio ? (
-          <form className="flex flex-col mx-9 my-3">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex flex-col mx-9 my-3"
+          >
             <label className="mb-1 text-menu-gray font-medium">
               Título do anúncio
             </label>
@@ -271,7 +252,8 @@ export function MeuAnuncio() {
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={continuarEdicao}
               className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit"
             >
               Continuar

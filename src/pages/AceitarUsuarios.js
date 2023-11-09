@@ -33,10 +33,6 @@ export function AceitarUsuarios() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20">
-        <button type="button" onClick={() => console.log(contas)}>
-          teste
-        </button>
-
         {contas.map((conta, index) => (
           <Link
             key={index}

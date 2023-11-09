@@ -10,15 +10,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { confirmarPendente, getPendente, recusarPendente } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Message } from "../components/Message";
 
 export function Pendente() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [pendente, setPendente] = useState();
   const [showPopup, setShowPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchPendente() {
     try {
@@ -31,9 +35,9 @@ export function Pendente() {
 
   async function confirmar() {
     try {
-      // await confirmarPendente(id);
-      console.log("confirmou");
+      await confirmarPendente(id);
       setShowPopup(false);
+      return navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -41,9 +45,8 @@ export function Pendente() {
 
   async function recusar() {
     try {
-      // await recusarPendente(id);
-      console.log("recusou");
-      setShowPopup(false);
+      await recusarPendente(id);
+      return navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -56,11 +59,6 @@ export function Pendente() {
   return (
     <>
       <Header title="Pendente" />
-
-      <button type="button" onClick={() => console.log(pendente)}>
-        teste
-      </button>
-
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">

@@ -11,7 +11,7 @@ export const getPedidos = async () => {
     const response = await axios.get("http://localhost:8080/pedido", config);
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -23,7 +23,7 @@ export const getPedido = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -31,7 +31,7 @@ export const postPedido = async (body) => {
   try {
     await axios.post("http://localhost:8080/pedido", body, config);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -41,7 +41,7 @@ export const propostaPedido = async (body) => {
     // await axios.post("http://localhost:8080/pedido/proposta", body, config);
     console.log("criou");
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -50,7 +50,7 @@ export const getDoacoes = async () => {
     const response = await axios.get("http://localhost:8080/doacao", config);
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -62,7 +62,7 @@ export const getDoacao = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -70,7 +70,7 @@ export const postDoacao = async (body) => {
   try {
     await axios.post("http://localhost:8080/doacao", body, config);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -79,7 +79,7 @@ export const propostaDoacao = async (body) => {
     console.log(body);
     // await axios.post("http://localhost:8080/doacao/proposta", body, config);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -91,7 +91,7 @@ export const getDoacoesRapidas = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -103,7 +103,7 @@ export const getDoacaoRapida = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -111,7 +111,7 @@ export const postDoacaoRapida = async (body) => {
   try {
     await axios.post("http://localhost:8080/doacaorapida", body, config);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -121,7 +121,7 @@ export const propostaDoacaoRapida = async (body) => {
     // await axios.post("http://localhost:8080/doacaorapida/proposta", body, config);
     console.log("criou");
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -142,7 +142,7 @@ export const signOut = async () => {
   try {
     localStorage.removeItem("token");
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -158,7 +158,7 @@ export const editPassword = async (senhaAtual, novaSenha, confirmaSenha) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -173,7 +173,7 @@ export const editUser = async (nome, telefone) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -185,7 +185,7 @@ export const getAgendados = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -197,7 +197,7 @@ export const getAgendado = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -208,7 +208,7 @@ export const cancelarEncontro = async (id) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -219,7 +219,7 @@ export const ocorreuEncontro = async (id) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -230,7 +230,7 @@ export const naoOcorreuEncontro = async (id) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -242,7 +242,7 @@ export const getPendentes = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -254,7 +254,7 @@ export const getPendente = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -262,10 +262,11 @@ export const confirmarPendente = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/pendentes/${id}/confirmar`,
+      null,
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -273,10 +274,11 @@ export const recusarPendente = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/pendentes/${id}/recusar`,
+      null,
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -288,7 +290,7 @@ export const getMeusAnuncios = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -300,7 +302,19 @@ export const getMeuAnuncio = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+export const updateMeuAnuncio = async (anuncio, id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/atividades/anuncios/${id}`,
+      anuncio,
+      config
+    );
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -311,7 +325,7 @@ export const deleteAnuncio = async (id) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -322,7 +336,7 @@ export const deleteAnuncioItem = async (idItem) => {
       config
     );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -334,7 +348,7 @@ export const getHistoricos = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -346,7 +360,7 @@ export const getHistorico = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -371,7 +385,7 @@ export const registerUsuario = async (body) => {
     //   body
     // );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -385,7 +399,7 @@ export const registerONG = async (body) => {
     //   body
     // );
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -397,7 +411,7 @@ export const getContas = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -409,7 +423,7 @@ export const getConta = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -429,6 +443,7 @@ export const recusarConta = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/gerenciarcontas/${id}/recusarconta`,
+      null,
       config
     );
   } catch (error) {
@@ -440,6 +455,7 @@ export const aceitarConta = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/gerenciarcontas/${id}/aceitarconta`,
+      null,
       config
     );
   } catch (error) {
@@ -455,7 +471,7 @@ export const getDenuncias = async () => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -467,6 +483,30 @@ export const getDenuncia = async (id) => {
     );
     return await response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+export const validarAnuncio = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/gerenciardenuncias/anuncios/${id}/verificar`,
+      null,
+      config
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const suspenderAnuncio = async (id) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/gerenciardenuncias/anuncios/${id}/suspender`,
+      null,
+      config
+    );
+  } catch (error) {
+    throw error;
   }
 };

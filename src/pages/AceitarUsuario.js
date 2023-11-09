@@ -54,10 +54,11 @@ export function AceitarUsuario() {
 
   async function aceitar() {
     try {
+      await aceitarConta(id);
       setMessage("A conta foi aceita!");
       setPopup(true);
-      // await aceitarConta(id);
     } catch (error) {
+      console.log(error);
       setError(error.response.data.detail);
       setErrorPopup(true);
     }
@@ -65,9 +66,9 @@ export function AceitarUsuario() {
 
   async function recusar() {
     try {
+      await recusarConta(id);
       setMessage("A conta foi recusada!");
       setPopup(true);
-      // await recusarConta(id);
     } catch (error) {
       setError(error.response.data.detail);
       setErrorPopup(true);
@@ -83,10 +84,6 @@ export function AceitarUsuario() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20 items-center">
-        <button type="button" onClick={() => console.log(documento)}>
-          tESTE
-        </button>
-
         {popup && (
           <Message
             message={message}
