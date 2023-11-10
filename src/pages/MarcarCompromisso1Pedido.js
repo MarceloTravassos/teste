@@ -103,10 +103,10 @@ export function MarcarCompromisso1Pedido() {
 
           <div className="flex mb-5 text-menu-gray">
             <FontAwesomeIcon className="w-6 h-6 mr-3" icon={faUser} />
-            {location.state.doacao.nome}
+            {location.state.pedido.nome}
           </div>
 
-          {location.state.doacao.itemList.map((item, index) => (
+          {location.state.pedido.itemList.map((item, index) => (
             <div key={index}>
               <div className="flex gap-4">
                 <div className="w-2/4">

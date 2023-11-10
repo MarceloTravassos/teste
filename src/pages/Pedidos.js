@@ -7,9 +7,12 @@ import { getPedidos } from "../api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { Error } from "../components/Error";
 
 export function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const formatDate = (date) => {
     const dateObject = new Date(date);
@@ -22,7 +25,8 @@ export function Pedidos() {
       const result = await getPedidos();
       setPedidos(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -35,6 +39,10 @@ export function Pedidos() {
   return (
     <>
       <Header title="Pedidos" />
+
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
 
       <div className="flex flex-col items-center justify-between bg-primary text-white px-4 gap-y-7 mb-8 rounded-b-lg">
         <Link

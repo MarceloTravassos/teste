@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { consultaCep, postDoacao, postDoacaoRapida, postPedido } from "../api";
 import { Message } from "../components/Message";
+import { Error } from "../components/Error";
 
 const titles = {
   1: "Doação",
@@ -17,9 +18,12 @@ export function CriarAnuncio2() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [dataInicioDisponibilidade, setDataInicioDisponibilidade] =
-    useState(new Date());
-  const [dataFimDisponibilidade, setDataFimDisponibilidade] = useState(new Date());
+  const [dataInicioDisponibilidade, setDataInicioDisponibilidade] = useState(
+    new Date()
+  );
+  const [dataFimDisponibilidade, setDataFimDisponibilidade] = useState(
+    new Date()
+  );
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
   const [numero, setNumero] = useState("");
@@ -30,6 +34,8 @@ export function CriarAnuncio2() {
   const [bairro, setBairro] = useState("");
   const [consulta, setConsulta] = useState("");
   const [popup, setPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -83,7 +89,8 @@ export function CriarAnuncio2() {
           await postDoacao(body);
           setPopup(true);
         } catch (error) {
-          console.log(error);
+          setError(error.response.data.detail);
+          setErrorPopup(true);
         }
         break;
 
@@ -92,7 +99,8 @@ export function CriarAnuncio2() {
           await postPedido(body);
           setPopup(true);
         } catch (error) {
-          console.log(error);
+          setError(error.response.data.detail);
+          setErrorPopup(true);
         }
         break;
 
@@ -101,7 +109,8 @@ export function CriarAnuncio2() {
           await postDoacaoRapida(body);
           setPopup(true);
         } catch (error) {
-          console.log(error);
+          setError(error.response.data.detail);
+          setErrorPopup(true);
         }
         break;
 
@@ -140,6 +149,9 @@ export function CriarAnuncio2() {
   return (
     <>
       <Header title={titles[location.state.tipoAnuncio]} />
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
 
       {popup && (
         <Message

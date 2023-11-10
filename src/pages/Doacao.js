@@ -12,19 +12,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDoacao } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Error } from "../components/Error";
 
 export function Doacao() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [doacao, setDoacao] = useState();
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchDoacao() {
     try {
       const result = await getDoacao(id);
       setDoacao(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -44,6 +48,10 @@ export function Doacao() {
       <Header title="Doação" />
 
       <main className="px-10 pt-3 mb-16 pb-20">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {doacao ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
             <h1 className="font-semibold text-menu-gray leading-tight">

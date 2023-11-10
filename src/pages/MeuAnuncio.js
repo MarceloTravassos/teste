@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { deleteAnuncio, deleteAnuncioItem, getMeuAnuncio } from "../api";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Error } from "../components/Error";
 
 export function MeuAnuncio() {
   const { id } = useParams();
@@ -22,6 +23,8 @@ export function MeuAnuncio() {
   const [meuAnuncio, setMeuAnuncio] = useState();
   const [activeProduto, setActiveProduto] = useState({});
   const [isInputEnabled, setIsInputEnabled] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const inputTituloRef = useRef();
 
@@ -55,16 +58,23 @@ export function MeuAnuncio() {
       const result = await getMeuAnuncio(id);
       setMeuAnuncio(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.title);
+      setErrorPopup(true);
     }
   }
 
   async function excluirAnuncio(id) {
     try {
-      console.log(id);
-      // await deleteAnuncio(id);
+      const body = {
+        motivo: "Motivo padrão pois a tela foi retirada do escopo final.",
+      };
+      setShowConfirmDelete(false);
+      await deleteAnuncio(id, body);
+      return navigate("/home");
     } catch (error) {
       console.log(error);
+      setError(error.response.data.title);
+      setErrorPopup(true);
     }
   }
 
@@ -72,7 +82,8 @@ export function MeuAnuncio() {
     try {
       await deleteAnuncioItem(idItem);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.title);
+      setErrorPopup(true);
     }
   }
 
@@ -97,9 +108,9 @@ export function MeuAnuncio() {
       <Header title="Meus anúncios" />
 
       <main className="flex flex-col gap-y-5 pb-20">
-        <button type="button" onClick={() => console.log(meuAnuncio)}>
-          Teste
-        </button>
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
 
         {showConfirmDelete && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">

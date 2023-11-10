@@ -6,6 +6,7 @@ import { Navbar } from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 import { updateMeuAnuncio } from "../api";
+import { Error } from "../components/Error";
 
 export function EditarItemAnuncio() {
   const location = useLocation();
@@ -29,6 +30,8 @@ export function EditarItemAnuncio() {
   });
   const [quantidade, setQuantidade] = useState(location.state.item.quantidade);
   const [descricao, setDescricao] = useState(location.state.item.descricao);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -85,7 +88,8 @@ export function EditarItemAnuncio() {
     try {
       await updateMeuAnuncio(updatedAnuncio, location.state.meuAnuncio.id);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
 
     return navigate(-1);
@@ -97,6 +101,10 @@ export function EditarItemAnuncio() {
     <>
       <main>
         <Header title="Meus anúncios" />
+
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
 
         <button
           type="button"

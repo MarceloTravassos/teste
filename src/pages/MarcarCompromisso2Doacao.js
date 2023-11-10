@@ -3,11 +3,14 @@ import { Navbar } from "../components/Navbar";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { propostaDoacao } from "../api";
+import { Message } from "../components/Message";
+import { Error } from "../components/Error";
 
 export function MarcarCompromisso2Doacao() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [dataInicio, horarioInicio] =
     location.state.doacao.dataInicioDisponibilidade.split(" ");
@@ -17,8 +20,10 @@ export function MarcarCompromisso2Doacao() {
   const [diaFim, mesFim, anoFim] = dataFim.split("/");
   const [horaInicio, minutoInicio] = horarioInicio.split(":");
   const [horaFim, minutoFim] = horarioFim.split(":");
-
   const [dataAgendada, setDataAgendada] = useState("");
+  const [popup, setPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -39,8 +44,10 @@ export function MarcarCompromisso2Doacao() {
 
     try {
       await propostaDoacao(body);
+      setPopup(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -48,6 +55,17 @@ export function MarcarCompromisso2Doacao() {
     <>
       <Header title="Doações" />
       <main className="h-screen">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
+        {popup && (
+          <Message
+            message="Proposta criada com sucesso!"
+            onClick={() => navigate("/home")}
+          />
+        )}
+
         <form
           onSubmit={criarProposta}
           className="flex flex-col mx-9 my-3 h-fit pb-20"

@@ -7,9 +7,12 @@ import { getDoacoes } from "../api";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { Error } from "../components/Error";
 
 export function Doacoes() {
   const [doacoes, setDoacoes] = useState([]);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const formatDate = (date) => {
     const dateObject = new Date(date);
@@ -22,7 +25,8 @@ export function Doacoes() {
       const result = await getDoacoes();
       setDoacoes(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -35,9 +39,11 @@ export function Doacoes() {
   return (
     <>
       <Header title="Doações" />
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
 
       <div className="flex flex-col items-center justify-between bg-primary text-white px-4 gap-y-7 mb-8 rounded-b-lg">
-
         <Link
           state={{ tipoAnuncio: 1 }}
           to="/criar-doacao"

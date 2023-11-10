@@ -37,9 +37,7 @@ export const postPedido = async (body) => {
 
 export const propostaPedido = async (body) => {
   try {
-    console.log(body);
-    // await axios.post("http://localhost:8080/pedido/proposta", body, config);
-    console.log("criou");
+    await axios.post("http://localhost:8080/pedido/proposta", body, config);
   } catch (error) {
     throw error;
   }
@@ -76,8 +74,7 @@ export const postDoacao = async (body) => {
 
 export const propostaDoacao = async (body) => {
   try {
-    console.log(body);
-    // await axios.post("http://localhost:8080/doacao/proposta", body, config);
+    await axios.post("http://localhost:8080/doacao/proposta", body, config);
   } catch (error) {
     throw error;
   }
@@ -117,9 +114,11 @@ export const postDoacaoRapida = async (body) => {
 
 export const propostaDoacaoRapida = async (body) => {
   try {
-    console.log(body);
-    // await axios.post("http://localhost:8080/doacaorapida/proposta", body, config);
-    console.log("criou");
+    await axios.post(
+      "http://localhost:8080/doacaorapida/proposta",
+      body,
+      config
+    );
   } catch (error) {
     throw error;
   }
@@ -318,10 +317,11 @@ export const updateMeuAnuncio = async (anuncio, id) => {
   }
 };
 
-export const deleteAnuncio = async (id) => {
+export const deleteAnuncio = async (id, body) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/anuncios/${id}/cancelar`,
+      body,
       config
     );
   } catch (error) {

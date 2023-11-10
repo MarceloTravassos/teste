@@ -12,19 +12,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPedido } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Error } from "../components/Error";
 
 export function Pedido() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [pedido, setPedido] = useState();
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchPedido() {
     try {
       const result = await getPedido(id);
       setPedido(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -42,6 +46,11 @@ export function Pedido() {
   return (
     <>
       <Header title="Pedido" />
+
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
+
       <main className="px-10 pt-3 mb-16 pb-20">
         {pedido ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">

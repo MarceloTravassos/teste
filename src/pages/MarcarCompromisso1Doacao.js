@@ -110,13 +110,13 @@ export function MarcarCompromisso1Doacao() {
             <div key={index}>
               <div className="flex gap-4">
                 <div className="w-2/4">
-                  <FormLabel name="nomeproduto">Produto</FormLabel>
+                  <FormLabel name="nome">Produto</FormLabel>
                   <FormInput
                     value={item.nome}
                     className="w-full truncate"
-                    name="nomeproduto"
+                    name="nome"
                     type="text"
-                    id="nomeproduto"
+                    id="nome"
                     disabled
                   />
                 </div>

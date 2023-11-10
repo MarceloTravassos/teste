@@ -11,16 +11,20 @@ import { Link } from "react-router-dom";
 import { HeaderAdmin } from "../components/HeaderAdmin";
 import { useEffect, useState } from "react";
 import { getContas, getDenuncias } from "../api";
+import { Error } from "../components/Error";
 
 export function Denuncias() {
   const [denuncias, setDenuncias] = useState([]);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchDenuncias() {
     try {
       const result = await getDenuncias();
       setDenuncias(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -33,6 +37,10 @@ export function Denuncias() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {denuncias.map((denuncia, index) => (
           <Link
             key={index}

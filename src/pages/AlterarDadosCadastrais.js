@@ -4,11 +4,14 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { editUser } from "../api";
+import { Error } from "../components/Error";
 
 export function AlterarDadosCadastrais() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,12 +19,17 @@ export function AlterarDadosCadastrais() {
       await editUser(nome, telefone);
       setShowPopup(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
   return (
     <main className="h-screen">
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
+
       {showPopup && (
         <div className="fixed top-0 left-0 w-screen h-screen bg-opacity-50 flex items-center justify-center">
           <div className="flex flex-col border-[1.5px] border-light-gray leading-tight font-medium w-4/5 bg-white px-8 py-9 rounded-lg shadow-md items-center justify-center">

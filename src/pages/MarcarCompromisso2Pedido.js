@@ -3,11 +3,14 @@ import { Navbar } from "../components/Navbar";
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { propostaPedido } from "../api";
+import { Message } from "../components/Message";
+import { Error } from "../components/Error";
 
 export function MarcarCompromisso2Pedido() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [dataInicio, horarioInicio] =
     location.state.pedido.dataInicioDisponibilidade.split(" ");
@@ -17,8 +20,10 @@ export function MarcarCompromisso2Pedido() {
   const [diaFim, mesFim, anoFim] = dataFim.split("/");
   const [horaInicio, minutoInicio] = horarioInicio.split(":");
   const [horaFim, minutoFim] = horarioFim.split(":");
-
   const [dataAgendada, setDataAgendada] = useState("");
+  const [popup, setPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -31,8 +36,6 @@ export function MarcarCompromisso2Pedido() {
     e.preventDefault();
     const dataAgendadaFormatada = formatDateISO(dataAgendada);
 
-    console.log(location.state.itemPropostaRequestDtoList);
-
     const body = {
       dataAgendada: dataAgendadaFormatada,
       idAnuncio: location.state.pedido.id,
@@ -41,8 +44,10 @@ export function MarcarCompromisso2Pedido() {
 
     try {
       await propostaPedido(body);
+      setPopup(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -50,6 +55,17 @@ export function MarcarCompromisso2Pedido() {
     <>
       <Header title="Doações" />
       <main className="h-screen">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
+        {popup && (
+          <Message
+            message="Proposta criada com sucesso!"
+            onClick={() => navigate("/home")}
+          />
+        )}
+
         <form
           onSubmit={criarProposta}
           className="flex flex-col mx-9 my-3 h-fit pb-20"

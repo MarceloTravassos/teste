@@ -11,6 +11,7 @@ import {
   getMeusAnuncios,
   getPendentes,
 } from "../api";
+import { Error } from "../components/Error";
 
 export function MinhasAtividades() {
   const [isActiveAgendados, setIsActiveAgendados] = useState(true);
@@ -21,6 +22,8 @@ export function MinhasAtividades() {
   const [pendentes, setPendentes] = useState([]);
   const [meusAnuncios, setMeusAnuncios] = useState([]);
   const [historicos, setHistoricos] = useState([]);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const handleClickAgendados = () => {
     setIsActiveAgendados(true);
@@ -55,7 +58,8 @@ export function MinhasAtividades() {
       const resultAgendados = await getAgendados();
       setAgendados(resultAgendados);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -64,7 +68,8 @@ export function MinhasAtividades() {
       const resultMeusAnuncios = await getMeusAnuncios();
       setMeusAnuncios(resultMeusAnuncios);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -73,7 +78,8 @@ export function MinhasAtividades() {
       const resultPendentes = await getPendentes();
       setPendentes(resultPendentes);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -82,7 +88,8 @@ export function MinhasAtividades() {
       const resultHistoricos = await getHistoricos();
       setHistoricos(resultHistoricos);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -96,6 +103,10 @@ export function MinhasAtividades() {
   return (
     <>
       <Header title="Minhas Atividades" />
+
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
 
       <main className="flex flex-col gap-y-7 pb-20">
         <header className="flex text-menu-gray pt-[3px] px-1 text-xs rounded-b-md bg-[#E6E4E4] font-semibold">

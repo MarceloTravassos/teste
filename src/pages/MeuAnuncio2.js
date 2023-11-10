@@ -4,6 +4,7 @@ import { FormLabel } from "../components/FormLabel";
 import { Header } from "../components/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { consultaCep, updateMeuAnuncio } from "../api";
+import { Error } from "../components/Error";
 
 export function MeuAnuncio2() {
   const location = useLocation();
@@ -55,7 +56,8 @@ export function MeuAnuncio2() {
       await updateMeuAnuncio(body, location.state.id);
       setPopup(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -121,9 +123,9 @@ export function MeuAnuncio2() {
     <main>
       <Header title="Meus anúncios" />
 
-      <button type="button" onClick={() => console.log(location.state)}>
-        teste
-      </button>
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
 
       <form onSubmit={update} className="flex flex-col mx-9 my-3 mb-20">
         {popup && (

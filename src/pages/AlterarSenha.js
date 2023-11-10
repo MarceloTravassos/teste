@@ -4,12 +4,15 @@ import { FormLabel } from "../components/FormLabel";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { editPassword } from "../api";
+import { Error } from "../components/Error";
 
 export function AlterarSenha() {
   const [showPopup, setShowPopup] = useState(false);
   const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,13 +20,18 @@ export function AlterarSenha() {
       await editPassword(senhaAtual, novaSenha, confirmaSenha);
       setShowPopup(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
   return (
     <>
       <main className="h-screen">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-opacity-50 flex items-center justify-center">
             <div className="flex flex-col border-[1.5px] border-light-gray leading-tight font-medium w-4/5 bg-white px-8 py-9 rounded-lg shadow-md items-center justify-center">
@@ -46,7 +54,7 @@ export function AlterarSenha() {
           Preencha os campos abaixo
         </h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col mx-9 my-3">
+        <form onSubmit={handleSubmit} className="flex flex-col mx-9 my-3 pb-20">
           <FormLabel name="senhaAtual">Digite sua senha atual:</FormLabel>
           <FormInput
             name="senhaAtual"

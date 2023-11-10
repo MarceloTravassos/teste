@@ -30,7 +30,8 @@ export function Denuncia() {
       const result = await getDenuncia(id);
       setDenuncia(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 

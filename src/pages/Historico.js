@@ -14,12 +14,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getHistorico } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Error } from "../components/Error";
 
 export function Historico() {
   const { id } = useParams();
 
   const [isActive, setIsActive] = useState(false);
   const [historico, setHistorico] = useState();
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const cores = {
     "Anúncio cancelado": "text-red-500",
@@ -45,7 +48,8 @@ export function Historico() {
       const result = await getHistorico(id);
       setHistorico(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -60,6 +64,10 @@ export function Historico() {
       <Header title="Dados do encontro" />
 
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {historico ? (
           <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 pt-4 pb-6 mx-9 border border-[#807777]">
             <div className="flex">

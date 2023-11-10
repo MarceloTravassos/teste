@@ -12,19 +12,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDoacaoRapida } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
+import { Error } from "../components/Error";
 
 export function DoacaoRapida() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [doacaoRapida, setDoacaoRapida] = useState();
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchDoacaoRapida() {
     try {
       const result = await getDoacaoRapida(id);
       setDoacaoRapida(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -45,6 +49,10 @@ export function DoacaoRapida() {
     <>
       <Header title="Doação Rápida" />
       <main className="px-10 pt-3 mb-16 pb-20">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {doacaoRapida ? (
           <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
             <h1 className="font-semibold text-menu-gray leading-tight">

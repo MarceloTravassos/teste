@@ -1,14 +1,6 @@
-import { Header } from "../components/Header";
-import { Navbar } from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faHandHoldingHeart,
-  faBars,
-  faBagShopping,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate, useParams } from "react-router-dom";
 import { HeaderAdmin } from "../components/HeaderAdmin";
 import { useEffect, useState } from "react";
 import {
@@ -39,7 +31,8 @@ export function AceitarUsuario() {
       const result = await getConta(id);
       setConta(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -48,7 +41,8 @@ export function AceitarUsuario() {
       const result = await downloadDocumento(id);
       setDocumento(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -58,7 +52,6 @@ export function AceitarUsuario() {
       setMessage("A conta foi aceita!");
       setPopup(true);
     } catch (error) {
-      console.log(error);
       setError(error.response.data.detail);
       setErrorPopup(true);
     }

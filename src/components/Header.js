@@ -23,8 +23,8 @@ export function Header(props) {
           <FontAwesomeIcon className="w-8 h-6" onClick={show} icon={faUser} />
           {isActive && (
             <>
-              <div className="absolute text-2xl -mt-2 ml-1.5">&#9650;</div>
-              <div className="absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
+              <div className="z-50 absolute text-2xl -mt-2 ml-1.5">&#9650;</div>
+              <div className="z-50 absolute mt-2 rounded-lg w-40 right-0 top-[34px] bg-white">
                 <ul className="text-xs font-medium text-menu-gray">
                   <li className="px-3 py-2">
                     <Link to="/alterar-dados">Alterar dados</Link>

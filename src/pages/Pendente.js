@@ -14,6 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { confirmarPendente, getPendente, recusarPendente } from "../api";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 import { Message } from "../components/Message";
+import { Error } from "../components/Error";
 
 export function Pendente() {
   const { id } = useParams();
@@ -29,7 +30,8 @@ export function Pendente() {
       const result = await getPendente(id);
       setPendente(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -39,7 +41,8 @@ export function Pendente() {
       setShowPopup(false);
       return navigate("/home");
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -48,7 +51,8 @@ export function Pendente() {
       await recusarPendente(id);
       return navigate("/home");
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -59,6 +63,11 @@ export function Pendente() {
   return (
     <>
       <Header title="Pendente" />
+
+      {errorPopup && (
+        <Error error={error} onClick={() => setErrorPopup(false)} />
+      )}
+
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">

@@ -1,26 +1,21 @@
-import { Header } from "../components/Header";
-import { Navbar } from "../components/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faHandHoldingHeart,
-  faBars,
-  faBagShopping,
-} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { HeaderAdmin } from "../components/HeaderAdmin";
 import { useEffect, useState } from "react";
 import { getContas } from "../api";
+import { Error } from "../components/Error";
 
 export function AceitarUsuarios() {
   const [contas, setContas] = useState([]);
+  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
 
   async function fetchContas() {
     try {
       const result = await getContas();
       setContas(result);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail);
+      setErrorPopup(true);
     }
   }
 
@@ -33,6 +28,10 @@ export function AceitarUsuarios() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20">
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
+        )}
+
         {contas.map((conta, index) => (
           <Link
             key={index}
