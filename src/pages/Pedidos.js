@@ -25,7 +25,7 @@ export function Pedidos() {
       const result = await getPedidos();
       setPedidos(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

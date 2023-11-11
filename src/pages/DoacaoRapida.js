@@ -27,7 +27,7 @@ export function DoacaoRapida() {
       const result = await getDoacaoRapida(id);
       setDoacaoRapida(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

@@ -23,7 +23,7 @@ export function Denuncias() {
       const result = await getDenuncias();
       setDenuncias(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

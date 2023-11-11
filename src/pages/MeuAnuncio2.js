@@ -56,7 +56,7 @@ export function MeuAnuncio2() {
       await updateMeuAnuncio(body, location.state.id);
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

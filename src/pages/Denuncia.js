@@ -30,7 +30,7 @@ export function Denuncia() {
       const result = await getDenuncia(id);
       setDenuncia(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -41,7 +41,7 @@ export function Denuncia() {
       setMessage("A denúncia foi validada e o anúncio não foi excluído!");
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -52,7 +52,7 @@ export function Denuncia() {
       setMessage("O anúncio foi excluído!");
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -117,7 +117,7 @@ export function Denuncia() {
             />
 
             <FormLabel className="block" name="denunciado">
-              Denunciado:
+              Quem denunciou:
             </FormLabel>
             <FormInput
               value={denuncia.nome}

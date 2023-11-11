@@ -30,7 +30,7 @@ export function Login() {
       window.location.reload();
     } catch (error) {
       setLoading(false);
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

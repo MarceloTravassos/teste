@@ -19,7 +19,7 @@ export function AlterarDadosCadastrais() {
       await editUser(nome, telefone);
       setShowPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

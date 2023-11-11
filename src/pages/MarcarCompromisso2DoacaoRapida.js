@@ -46,7 +46,7 @@ export function MarcarCompromisso2DoacaoRapida() {
       await propostaDoacaoRapida(body);
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

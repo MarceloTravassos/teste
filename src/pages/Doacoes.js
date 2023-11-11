@@ -25,7 +25,7 @@ export function Doacoes() {
       const result = await getDoacoes();
       setDoacoes(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

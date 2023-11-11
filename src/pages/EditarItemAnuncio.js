@@ -88,7 +88,7 @@ export function EditarItemAnuncio() {
     try {
       await updateMeuAnuncio(updatedAnuncio, location.state.meuAnuncio.id);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
 

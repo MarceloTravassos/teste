@@ -81,6 +81,7 @@ export function MeuAnuncio() {
   async function excluirItem(idItem) {
     try {
       await deleteAnuncioItem(idItem);
+      window.location.reload();
     } catch (error) {
       setError(error.response.data.title);
       setErrorPopup(true);

@@ -31,7 +31,7 @@ export function AceitarUsuario() {
       const result = await getConta(id);
       setConta(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -41,7 +41,7 @@ export function AceitarUsuario() {
       const result = await downloadDocumento(id);
       setDocumento(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -52,7 +52,7 @@ export function AceitarUsuario() {
       setMessage("A conta foi aceita!");
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -63,7 +63,7 @@ export function AceitarUsuario() {
       setMessage("A conta foi recusada!");
       setPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

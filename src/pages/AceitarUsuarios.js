@@ -14,7 +14,7 @@ export function AceitarUsuarios() {
       const result = await getContas();
       setContas(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

@@ -200,10 +200,11 @@ export const getAgendado = async (id) => {
   }
 };
 
-export const cancelarEncontro = async (id) => {
+export const cancelarEncontro = async (id, body) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/agendados/${id}/cancelar`,
+      body,
       config
     );
   } catch (error) {
@@ -215,6 +216,7 @@ export const ocorreuEncontro = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/agendados/${id}/ocorrenciaencontro`,
+      null,
       config
     );
   } catch (error) {
@@ -226,6 +228,7 @@ export const naoOcorreuEncontro = async (id) => {
   try {
     await axios.patch(
       `http://localhost:8080/atividades/agendados/${id}/naoocorrenciaencontro`,
+      null,
       config
     );
   } catch (error) {
@@ -506,6 +509,37 @@ export const suspenderAnuncio = async (id) => {
       null,
       config
     );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const enviarDenunciaDoacao = async (body) => {
+  try {
+    await axios.post("http://localhost:8080/doacao/denuncia", body, config);
+    console.log("doacao");
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const enviarDenunciaPedido = async (body) => {
+  try {
+    await axios.post("http://localhost:8080/pedido/denuncia", body, config);
+    console.log("pedido");
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const enviarDenunciaDoacaoRapida = async (body) => {
+  try {
+    await axios.post(
+      "http://localhost:8080/doacaorapida/denuncia",
+      body,
+      config
+    );
+    console.log("doacoa rapida");
   } catch (error) {
     throw error;
   }

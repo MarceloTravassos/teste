@@ -47,7 +47,7 @@ export function CadastroONG() {
       await registerONG(body);
       return navigate("/cadastro-cliente-info");
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

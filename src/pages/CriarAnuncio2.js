@@ -89,7 +89,7 @@ export function CriarAnuncio2() {
           await postDoacao(body);
           setPopup(true);
         } catch (error) {
-          setError(error.response.data.detail);
+          setError(error.response.data.title);
           setErrorPopup(true);
         }
         break;
@@ -99,7 +99,7 @@ export function CriarAnuncio2() {
           await postPedido(body);
           setPopup(true);
         } catch (error) {
-          setError(error.response.data.detail);
+          setError(error.response.data.title);
           setErrorPopup(true);
         }
         break;
@@ -109,7 +109,7 @@ export function CriarAnuncio2() {
           await postDoacaoRapida(body);
           setPopup(true);
         } catch (error) {
-          setError(error.response.data.detail);
+          setError(error.response.data.title);
           setErrorPopup(true);
         }
         break;

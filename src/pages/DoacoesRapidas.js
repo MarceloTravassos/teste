@@ -25,7 +25,7 @@ export function DoacoesRapidas() {
       const result = await getDoacoesRapidas();
       setDoacoesRapidas(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

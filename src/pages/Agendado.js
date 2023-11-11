@@ -10,8 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Header } from "../components/Header";
 import { useEffect, useState } from "react";
-import { getAgendado, naoOcorreuEncontro, ocorreuEncontro } from "../api";
-import { useParams } from "react-router-dom";
+import {
+  cancelarEncontro,
+  getAgendado,
+  naoOcorreuEncontro,
+  ocorreuEncontro,
+} from "../api";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoadingPrimary } from "../components/LoadingPrimary";
 import { Error } from "../components/Error";
 
@@ -28,6 +33,7 @@ const cores = {
 
 export function Agendado() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [showPopup, setShowPopup] = useState(false);
   const [agendado, setAgendado] = useState();
@@ -39,7 +45,20 @@ export function Agendado() {
       const result = await getAgendado(id);
       setAgendado(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
+      setErrorPopup(true);
+    }
+  }
+
+  async function cancelar() {
+    try {
+      const body = {
+        motivo: "Motivo padrão pois a tela foi retirada do escopo final.",
+      };
+      await cancelarEncontro(id, body);
+      setShowPopup(true);
+    } catch (error) {
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -47,8 +66,9 @@ export function Agendado() {
   async function ocorreu() {
     try {
       await ocorreuEncontro(id);
+      return navigate("/home");
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -56,10 +76,16 @@ export function Agendado() {
   async function naoOcorreu() {
     try {
       await naoOcorreuEncontro(id);
+      return navigate("/home");
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
+  }
+
+  function redirectToHome() {
+    setShowPopup(false);
+    return navigate("/home");
   }
 
   useEffect(() => {
@@ -69,35 +95,22 @@ export function Agendado() {
   return (
     <>
       <Header title="Agendados" />
-      <button type="button" onClick={() => console.log(agendado)}>
-        teste
-      </button>
-
       <main className="flex flex-col gap-y-5 mt-4 pb-20">
         {errorPopup && (
           <Error error={error} onClick={() => setErrorPopup(false)} />
         )}
 
         {showPopup && (
-          <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="flex items-start flex-col leading-tight font-medium w-4/5 bg-white px-12 py-11 rounded-lg shadow-md justify-center">
-              <button className="mb-4" onClick={() => setShowPopup(false)}>
-                <FontAwesomeIcon
-                  className="w-6 h-6 text-menu-gray"
-                  icon={faTimes}
-                />
-              </button>
-
-              <p className="text-menu-gray font-medium leading-tight mb-6 text-justify">
-                O cancelamento de um compromisso pode acabar por resultar na
-                aplicação de algum tipo de penalidade ao usuário, Deseja mesmo
-                prosseguir?
+          <div className="fixed top-0 left-0 w-screen h-screen bg-opacity-50 flex items-center justify-center z-[9999]">
+            <div className="flex flex-col border-[1.5px] border-light-gray leading-tight font-medium w-4/5 bg-white px-5 py-6 rounded-lg shadow-md items-center justify-center">
+              <p className="text-menu-gray font-medium leading-tight mb-3 text-justify">
+                Compromisso desmarcado com sucesso!
               </p>
               <button
-                className="mt-2 w-full md:w-64 py-2 font-bold text-xl bg-primary text-white rounded-lg"
-                onClick={() => setShowPopup(false)}
+                className="mt-4 px-6 py-3 md:w-64 font-bold bg-primary text-white rounded-md"
+                onClick={redirectToHome}
               >
-                Continuar
+                Fechar
               </button>
             </div>
           </div>
@@ -142,6 +155,26 @@ export function Agendado() {
                     </div>
                   </div>
 
+                  <h1 className="px-6 font-bold">Anúncio</h1>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                    />
+                    <p className="font-medium">{agendado.nomeUsuarioAnuncio}</p>
+                  </div>
+
+                  <div className="flex px-6">
+                    <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-3" />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">Contato</h1>
+                      <p className="leading-tight">
+                        {agendado.telefoneUsuarioAnuncio}
+                      </p>
+                    </div>
+                  </div>
+
+                  <h1 className="px-6 font-bold">Proposta</h1>
                   <div className="flex px-6">
                     <FontAwesomeIcon
                       icon={faUser}
@@ -197,7 +230,7 @@ export function Agendado() {
 
             {agendado.podeCancelarProposta === 1 && (
               <button
-                onClick={() => setShowPopup(true)}
+                onClick={cancelar}
                 className="bg-primary py-2 text-white font-bold w-fit px-6 mx-auto mb-2 rounded-lg hover:bg-primary-hover transition"
               >
                 Cancelar compromisso

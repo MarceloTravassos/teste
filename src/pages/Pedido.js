@@ -27,7 +27,7 @@ export function Pedido() {
       const result = await getPedido(id);
       setPedido(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

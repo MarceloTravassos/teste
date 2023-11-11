@@ -30,7 +30,7 @@ export function Pendente() {
       const result = await getPendente(id);
       setPendente(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -41,7 +41,7 @@ export function Pendente() {
       setShowPopup(false);
       return navigate("/home");
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -51,7 +51,7 @@ export function Pendente() {
       await recusarPendente(id);
       return navigate("/home");
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -63,7 +63,6 @@ export function Pendente() {
   return (
     <>
       <Header title="Pendente" />
-
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
@@ -105,16 +104,6 @@ export function Pendente() {
                 <div className="flex flex-col gap-y-4 items-start justify-center mb-4">
                   <div className="flex px-6">
                     <FontAwesomeIcon
-                      icon={faUser}
-                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
-                    />
-                    <p className="font-medium">
-                      {pendente.nomeUsuarioProposta}
-                    </p>
-                  </div>
-
-                  <div className="flex px-6">
-                    <FontAwesomeIcon
                       className="w-6 h-6 text-menu-gray mr-3"
                       icon={faBox}
                     />
@@ -139,6 +128,36 @@ export function Pendente() {
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  <h1 className="px-6 font-bold">Anúncio</h1>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                    />
+                    <p className="font-medium">{pendente.nomeUsuarioAnuncio}</p>
+                  </div>
+
+                  <div className="flex px-6">
+                    <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-3" />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">Contato</h1>
+                      <p className="leading-tight">
+                        {pendente.telefoneUsuarioAnuncio}
+                      </p>
+                    </div>
+                  </div>
+
+                  <h1 className="px-6 font-bold">Proposta</h1>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                    />
+                    <p className="font-medium">
+                      {pendente.nomeUsuarioProposta}
+                    </p>
                   </div>
 
                   <div className="flex px-6">

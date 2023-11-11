@@ -46,6 +46,7 @@ import { Denuncias } from "./pages/Denuncias";
 import { AceitarUsuario } from "./pages/AceitarUsuario";
 import { Denuncia } from "./pages/Denuncia";
 import { MeuAnuncio2 } from "./pages/MeuAnuncio2";
+import { DenunciarAnuncio } from "./pages/DenunciarAnuncio";
 
 const router = createBrowserRouter([
   {
@@ -232,6 +233,18 @@ const router = createBrowserRouter([
       {
         path: "/administrador/denuncias/:id",
         element: <Denuncia />,
+      },
+      {
+        path: "/denunciar-doacao/:id",
+        element: <DenunciarAnuncio />,
+      },
+      {
+        path: "/denunciar-pedido/:id",
+        element: <DenunciarAnuncio />,
+      },
+      {
+        path: "/denunciar-doacao-rapida/:id",
+        element: <DenunciarAnuncio />,
       },
     ],
   },

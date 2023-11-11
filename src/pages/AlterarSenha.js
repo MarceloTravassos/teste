@@ -20,7 +20,7 @@ export function AlterarSenha() {
       await editPassword(senhaAtual, novaSenha, confirmaSenha);
       setShowPopup(true);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }

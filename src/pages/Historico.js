@@ -48,7 +48,7 @@ export function Historico() {
       const result = await getHistorico(id);
       setHistorico(result);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -131,6 +131,7 @@ export function Historico() {
                     </div>
                   </div>
 
+                  <h1 className="px-6 font-bold">Anúncio</h1>
                   <div className="flex px-6">
                     <FontAwesomeIcon
                       icon={faUser}
@@ -147,6 +148,27 @@ export function Historico() {
                       <h1 className="text-base font-medium">Contato</h1>
                       <p className="leading-tight">
                         {historico.telefoneUsuarioAnuncio}
+                      </p>
+                    </div>
+                  </div>
+
+                  <h1 className="px-6 font-bold">Proposta</h1>
+                  <div className="flex px-6">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 rounded-full p-1 bg-menu-gray text-white mr-3"
+                    />
+                    <p className="font-medium">
+                      {historico.nomeUsuarioProposta}
+                    </p>
+                  </div>
+
+                  <div className="flex px-6">
+                    <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-3" />
+                    <div className="text-sm">
+                      <h1 className="text-base font-medium">Contato</h1>
+                      <p className="leading-tight">
+                        {historico.telefoneUsuarioProposta}
                       </p>
                     </div>
                   </div>

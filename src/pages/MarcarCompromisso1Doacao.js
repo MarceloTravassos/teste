@@ -11,7 +11,7 @@ import {
 import { FormLabel } from "../components/FormLabel";
 import { FormInput } from "../components/FormInput";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function MarcarCompromisso1Doacao() {
   const location = useLocation();
@@ -87,14 +87,18 @@ export function MarcarCompromisso1Doacao() {
                     &#9650;
                   </div>
                   <div className="bg-white absolute top-11 -right-1 flex flex-col mb-2 border-[1.5px] rounded-lg px-3 py-2">
-                    <div className="flex">
+                    <Link
+                      to={`/denunciar-doacao/${location.state.doacao.id}`}
+                      state={{ tipoAnuncio: 1 }}
+                      className="flex"
+                    >
                       <h5 className="text-xs mr-3">Denúnciar</h5>
 
                       <FontAwesomeIcon
                         className="text-yellow-500"
                         icon={faExclamationTriangle}
                       />
-                    </div>
+                    </Link>
                   </div>
                 </>
               )}

@@ -58,7 +58,7 @@ export function MinhasAtividades() {
       const resultAgendados = await getAgendados();
       setAgendados(resultAgendados);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -68,7 +68,7 @@ export function MinhasAtividades() {
       const resultMeusAnuncios = await getMeusAnuncios();
       setMeusAnuncios(resultMeusAnuncios);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -78,7 +78,7 @@ export function MinhasAtividades() {
       const resultPendentes = await getPendentes();
       setPendentes(resultPendentes);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
@@ -88,7 +88,7 @@ export function MinhasAtividades() {
       const resultHistoricos = await getHistoricos();
       setHistoricos(resultHistoricos);
     } catch (error) {
-      setError(error.response.data.detail);
+      setError(error.response.data.title);
       setErrorPopup(true);
     }
   }
