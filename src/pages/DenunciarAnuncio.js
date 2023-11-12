@@ -67,7 +67,7 @@ export function DenunciarAnuncio() {
 
   const handleClick = async (motivoId, motivoDescricao) => {
     if (motivoId === 4) {
-      setPopupCancelled(true);
+      setShowPopup(true);
       return;
     }
 
