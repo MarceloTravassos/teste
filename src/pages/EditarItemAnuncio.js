@@ -105,18 +105,6 @@ export function EditarItemAnuncio() {
         {errorPopup && (
           <Error error={error} onClick={() => setErrorPopup(false)} />
         )}
-
-        <button
-          type="button"
-          onClick={() => console.log(location.state.meuAnuncio)}
-        >
-          Teste
-        </button>
-
-        <button type="button" onClick={() => console.log(location.state.item)}>
-          Item
-        </button>
-
         {location.state.item ? (
           <form className="flex flex-col mx-9 my-3 pb-20">
             <FormLabel name="nomeProduto">Nome do produto</FormLabel>

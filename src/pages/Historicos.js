@@ -21,10 +21,6 @@ export function Historicos(props) {
   return (
     <>
       <main className="flex flex-col gap-y-5 pb-20">
-        <button type="button" onClick={() => console.log(historicos)}>
-          teste
-        </button>
-
         {historicos.map((historico, index) => {
           const icon = icons[historico.idTipoAnuncio];
 
