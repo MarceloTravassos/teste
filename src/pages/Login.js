@@ -52,8 +52,11 @@ export function Login() {
         text-base font-medium md:w-80 lg:w-96"
       >
         <h1 className="font-bold text-2xl text-center mb-5">Fazer login</h1>
-        <FormLabel name="email">Email:</FormLabel>
+        <FormLabel className="text-primary" name="email">
+          Email:
+        </FormLabel>
         <FormInput
+          className="bg-opacity-30"
           name="email"
           type="email"
           value={email}
@@ -61,8 +64,11 @@ export function Login() {
           required
         />
 
-        <FormLabel name="senha">Senha:</FormLabel>
+        <FormLabel className="text-primary" name="senha">
+          Senha:
+        </FormLabel>
         <FormInput
+          className="bg-opacity-30"
           name="senha"
           type="password"
           value={senha}
@@ -87,7 +93,7 @@ export function Login() {
         <p className="font-normal text-xs text-black mt-5">
           Não possui uma conta?{" "}
           <a className="text-primary hover:underline" href="/registrar">
-            Criar agora.
+            Criar agora
           </a>
         </p>
       </form>

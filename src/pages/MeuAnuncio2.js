@@ -10,11 +10,30 @@ export function MeuAnuncio2() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const formatDateForInput = (dateString) => {
+    if (!dateString) {
+      return null;
+    }
+
+    const [datePart, timePart] = dateString.split(" ");
+    const [day, month, year] = datePart.split("/");
+    const [hour, minute, second] = timePart.split(":");
+
+    const formattedDate = new Date(year, month - 1, day, hour, minute, second);
+
+    const tzoffset = formattedDate.getTimezoneOffset() * 60000;
+    const localISOTime = new Date(formattedDate - tzoffset).toISOString();
+
+    const dataFormatada = localISOTime.slice(0, -1);
+
+    return dataFormatada;
+  };
+
   const [dataInicioDisponibilidade, setDataInicioDisponibilidade] = useState(
-    location.state.dataInicioDisponibilidade
+    formatDateForInput(location.state.dataInicioDisponibilidade)
   );
   const [dataFimDisponibilidade, setDataFimDisponibilidade] = useState(
-    location.state.dataFimDisponibilidade
+    formatDateForInput(location.state.dataFimDisponibilidade)
   );
   const [cep, setCep] = useState(location.state.cep);
   const [logradouro, setLogradouro] = useState(location.state.logradouro);
@@ -60,18 +79,6 @@ export function MeuAnuncio2() {
       setErrorPopup(true);
     }
   }
-
-  const formatDateForInput = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, "0");
-    let day = date.getDate().toString().padStart(2, "0");
-    let hours = date.getHours().toString().padStart(2, "0");
-    let minutes = date.getMinutes().toString().padStart(2, "0");
-
-    const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
-    return formattedDate;
-  };
 
   function formatDateISO(data) {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -122,7 +129,6 @@ export function MeuAnuncio2() {
   return (
     <main>
       <Header title="Meus anúncios" />
-
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
@@ -156,14 +162,14 @@ export function MeuAnuncio2() {
         <h1 className="text-menu-gray font-medium mb-1">Dias Disponíveis</h1>
         <FormInput
           onChange={(e) => setDataInicioDisponibilidade(e.target.value)}
-          value={formatDateForInput(dataInicioDisponibilidade)}
+          value={dataInicioDisponibilidade}
           name="dataInicio"
           type="datetime-local"
           id="dataInicio"
         />
         <FormInput
           onChange={(e) => setDataFimDisponibilidade(e.target.value)}
-          value={formatDateForInput(dataFimDisponibilidade)}
+          value={dataFimDisponibilidade}
           name="dataFim"
           type="datetime-local"
           id="dataFim"

@@ -34,9 +34,23 @@ export function EditarItemAnuncio() {
   const [errorPopup, setErrorPopup] = useState(false);
 
   function formatDateISO(data) {
-    const tzoffset = new Date().getTimezoneOffset() * 60000;
-    const date = new Date(new Date(data).getTime() - tzoffset);
-    const localISOTime = date.toISOString();
+    console.log("Data antes da formatação:", data);
+
+    if (!data) {
+      return null;
+    }
+
+    const [datePart, timePart] = data.split(" ");
+    const [day, month, year] = datePart.split("/");
+    const [hour, minute, second] = timePart.split(":");
+
+    const formattedDate = new Date(year, month - 1, day, hour, minute, second);
+    console.log("Data após a criação do objeto Date:", formattedDate);
+
+    const tzoffset = formattedDate.getTimezoneOffset() * 60000;
+    const localISOTime = new Date(formattedDate - tzoffset).toISOString();
+    console.log("Data formatada:", localISOTime);
+
     return localISOTime;
   }
 
