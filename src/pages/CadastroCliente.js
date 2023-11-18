@@ -47,7 +47,7 @@ export function CadastroCliente() {
   }
 
   return (
-    <main className="flex flex-col items-center bg-primary pb-20">
+    <main className="flex flex-col items-center bg-primary pb-20 min-h-screen">
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}

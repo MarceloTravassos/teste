@@ -1,22 +1,19 @@
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
-import { SubmitButton } from "../components/SubmitButton";
 import { useEffect, useState } from "react";
-import { ComprovanteInput } from "../components/ComprovanteInput";
 import logo from "../assets/logo.jpeg";
-import { consultaCep, registerUsuario } from "../api";
-import { useLocation, useNavigate } from "react-router-dom";
+import { autenticaEmail, consultaCep, registerUsuario } from "../api";
+import { useLocation } from "react-router-dom";
 import { Error } from "../components/Error";
 
 export function CadastroPessoa() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [documento, setDocumento] = useState("");
   const [cep, setCEP] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
-  const [comprovante, setComprovante] = useState("");
+  const [comprovante, setComprovante] = useState();
   const [consulta, setConsulta] = useState("");
   const [logradouro, setLogradouro] = useState("");
   const [cidade, setCidade] = useState("");
@@ -24,29 +21,48 @@ export function CadastroPessoa() {
   const [uf, setUf] = useState("");
   const [errorPopup, setErrorPopup] = useState(false);
   const [error, setError] = useState("");
+  const [mostrarMensagemInfo, setMostrarMensagemInfo] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const body = {
-      nome: location.state.nome,
-      telefone: location.state.telefone,
-      documento,
-      email: location.state.email,
-      senha: location.state.senha,
-      cep,
-      cidade,
-      uf,
-      bairro,
-      logradouro,
-      numero,
-      complemento,
-      comprovante,
-    };
+    var formData = new FormData();
+
+    formData.append("nome", location.state.nome);
+    formData.append("telefone", location.state.telefone);
+    formData.append("documento", documento);
+    formData.append("email", location.state.email);
+    formData.append("senha", location.state.senha);
+    formData.append("cep", cep);
+    formData.append("cidade", cidade);
+    formData.append("uf", uf);
+    formData.append("bairro", bairro);
+    formData.append("logradouro", logradouro);
+    formData.append("numero", parseInt(numero));
+    formData.append("complemento", complemento);
+    formData.append("comprovante", comprovante);
+
+    // const body = {
+    //   nome: location.state.nome,
+    //   telefone: location.state.telefone,
+    //   documento,
+    //   email: location.state.email,
+    //   senha: location.state.senha,
+    //   cep,
+    //   cidade,
+    //   uf,
+    //   bairro,
+    //   logradouro,
+    //   numero: parseInt(numero),
+    //   complemento,
+    //   comprovante,
+    // };
 
     try {
-      await registerUsuario(body);
-      return navigate("/cadastro-cliente-info");
+      await registerUsuario(formData);
+      setMostrarMensagemInfo(true);
+
+      await autenticaEmail();
     } catch (error) {
       setError(error.response.data.title);
       setErrorPopup(true);
@@ -80,81 +96,117 @@ export function CadastroPessoa() {
   }, [cep]);
 
   return (
-    <main className="flex flex-col items-center bg-primary pb-20">
+    <main className="flex flex-col items-center bg-primary pb-20 min-h-screen">
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
 
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
-      <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white">
-        <form onSubmit={handleSubmit} className="flex flex-col">
+      {mostrarMensagemInfo ? (
+        <div className="w-72 mb-2 px-5 py-3 rounded-xl bg-white text-center">
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
           </h1>
 
-          <FormLabel name="cpf">CPF:</FormLabel>
-          <FormInput
-            id="cpf"
-            name="cpf"
-            type="text"
-            value={documento}
-            onChange={(e) => setDocumento(e.target.value)}
-          />
+          <p className="text-justify leading-tight font-medium text-stone-500 mb-16">
+            Um e-mail de confirmação foi enviado para seu endereço de e-mail
+            para garantirmos sua autenticidade e segurança.
+          </p>
 
-          <FormLabel name="cep">CEP:</FormLabel>
-          <FormInput
-            id="cep"
-            name="cep"
-            type="text"
-            value={cep}
-            onChange={(e) => setCEP(e.target.value)}
-          />
+          <p className="text-justify leading-tight font-medium text-stone-500 mb-[152px]">
+            Por favor, cheque sua caixa de mensagens no e-mail...
+          </p>
 
-          <FormLabel name="logradouro">Endereço:</FormLabel>
-          <FormInput
-            id="logradouro"
-            name="logradouro"
-            type="text"
-            value={logradouro}
-            onChange={(e) => setLogradouro(e.target.value)}
-          />
+          <button className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-white text-xl">
+            Continuar
+          </button>
+        </div>
+      ) : (
+        <div className="w-72 mb-2 px-5 py-3 rounded-xl bg-white">
+          <form
+            encType="multipart/form-data"
+            onSubmit={handleSubmit}
+            className="flex flex-col"
+          >
+            <h1 className="font-bold text-2xl text-primary mb-2 text-center">
+              Cadastro
+            </h1>
 
-          <div className="flex gap-6">
-            <div>
-              <FormLabel name="numero">Número:</FormLabel>
-              <FormInput
-                id="numero"
-                className="w-full"
-                name="numero"
-                type="text"
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-              />
+            <FormLabel name="cpf">CPF:</FormLabel>
+            <FormInput
+              id="cpf"
+              name="cpf"
+              type="text"
+              value={documento}
+              onChange={(e) => setDocumento(e.target.value)}
+            />
+
+            <FormLabel name="cep">CEP:</FormLabel>
+            <FormInput
+              id="cep"
+              name="cep"
+              type="text"
+              value={cep}
+              onChange={(e) => setCEP(e.target.value)}
+            />
+
+            <FormLabel name="logradouro">Endereço:</FormLabel>
+            <FormInput
+              id="logradouro"
+              name="logradouro"
+              type="text"
+              value={logradouro}
+              onChange={(e) => setLogradouro(e.target.value)}
+            />
+
+            <div className="flex gap-6">
+              <div>
+                <FormLabel name="numero">Número:</FormLabel>
+                <FormInput
+                  id="numero"
+                  className="w-full"
+                  name="numero"
+                  type="text"
+                  value={numero}
+                  onChange={(e) => setNumero(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <FormLabel name="complemento">Complemento:</FormLabel>
+                <FormInput
+                  id="complemento"
+                  className="w-32"
+                  name="complemento"
+                  type="text"
+                  value={complemento}
+                  onChange={(e) => setComplemento(e.target.value)}
+                />
+              </div>
             </div>
 
-            <div>
-              <FormLabel name="complemento">Complemento:</FormLabel>
-              <FormInput
-                id="complemento"
-                className="w-32"
-                name="complemento"
-                type="text"
-                value={complemento}
-                onChange={(e) => setComplemento(e.target.value)}
-              />
-            </div>
-          </div>
+            <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
+            <input
+              className="bg-primary outline-black px-2 py-5 text-black rounded-md h-14 mb-2 bg-opacity-20
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-xs file:font-semibold
+            file:bg-violet-50 file:text-primary
+            hover:file:bg-violet-100"
+              type="file"
+              id="comprovante"
+              name="comprovante"
+              required
+              onChange={(e) => setComprovante(e.target.files[0])}
+            />
 
-          <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
-          <ComprovanteInput
-            value={comprovante}
-            onChange={(e) => setComprovante(e.target.value)}
-          />
-
-          <SubmitButton type="submit">Finalizar</SubmitButton>
-        </form>
-      </div>
+            <button className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl">
+              Finalizar
+            </button>
+          </form>
+        </div>
+      )}
     </main>
   );
 }

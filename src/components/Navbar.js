@@ -20,14 +20,6 @@ export function Navbar() {
     <>
       <nav className="fixed w-full bottom-0 left-0 bg-primary text-white h-16 py-3 px-9 flex justify-between items-center">
         <Link
-          to="/reportar"
-          className="flex flex-col items-center justify-center font-bold text-xs"
-        >
-          <FontAwesomeIcon className="w-5 h-5 mb-1" icon={faFlag} />
-          Reportar
-        </Link>
-
-        <Link
           to="/home"
           className="flex flex-col items-center justify-center font-bold text-xs"
         >

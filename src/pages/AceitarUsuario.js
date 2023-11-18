@@ -77,6 +77,10 @@ export function AceitarUsuario() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20 items-center">
+        <button type="button" onClick={() => console.log(conta)}>
+          teste
+        </button>
+
         {popup && (
           <Message
             message={message}
@@ -146,7 +150,7 @@ export function AceitarUsuario() {
               disabled
               name="endereco"
               type="text"
-              value={conta.cidade}
+              value={`${conta.logradouro}, ${conta.numero}, ${conta.complemento}`}
             />
 
             <div
@@ -155,7 +159,7 @@ export function AceitarUsuario() {
               transition mt-4 w-fit"
             >
               <h1>Documentação</h1>
-              <FontAwesomeIcon icon={faDownload} />
+              <FontAwesomeIcon className="text-menu-gray" icon={faDownload} />
             </div>
 
             <div className="flex flex-wrap gap-y-4 justify-center gap-x-12 text-white mt-8">

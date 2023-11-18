@@ -380,14 +380,13 @@ export const consultaCep = async (cep) => {
 
 export const registerUsuario = async (body) => {
   try {
-    console.log(body);
-
-    // await axios.post(
-    //   "http://localhost:8080/auth/registrarusuario",
-    //   config,
-    //   body
-    // );
+    await axios.post("http://localhost:8080/auth/registrarusuario", body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -402,6 +401,15 @@ export const registerONG = async (body) => {
     //   body
     // );
   } catch (error) {
+    throw error;
+  }
+};
+
+export const autenticaEmail = async () => {
+  try {
+    await axios.patch("http://localhost:8080/autenticacaoemail", null, config);
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -537,6 +545,15 @@ export const enviarDenunciaDoacaoRapida = async (body) => {
       body,
       config
     );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUsuario = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/usuario", config);
+    return await response.data;
   } catch (error) {
     throw error;
   }

@@ -1,9 +1,9 @@
 import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { editUser } from "../api";
+import { editUser, getUsuario } from "../api";
 import { Error } from "../components/Error";
 
 export function AlterarDadosCadastrais() {
@@ -24,8 +24,22 @@ export function AlterarDadosCadastrais() {
     }
   }
 
+  // async function fetchDados() {
+  //   try {
+  //     const result = await getUsuario();
+  //     setNome(result.nome);
+  //     setTelefone(result.telefone);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchDados();
+  // }, []);
+
   return (
-    <main className="h-screen">
+    <main className="pb-20">
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
@@ -55,7 +69,6 @@ export function AlterarDadosCadastrais() {
       <form onSubmit={handleSubmit} className="flex flex-col mx-9 my-3">
         <FormLabel name="nome">Nome:</FormLabel>
         <FormInput
-          placeholder="Marcelo Sarinho"
           name="nome"
           type="text"
           value={nome}
@@ -64,7 +77,6 @@ export function AlterarDadosCadastrais() {
 
         <FormLabel name="telefone">Telefone:</FormLabel>
         <FormInput
-          placeholder="(13) 9 9999 9999"
           name="telefone"
           type="text"
           value={telefone}

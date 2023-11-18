@@ -3,8 +3,6 @@ import logo from "../assets/logo.jpeg";
 import { useState } from "react";
 
 export function CadastroClienteInfo() {
-  const [permitirAvanco, setPermitirAvanco] = useState(false);
-
   return (
     <main className="flex flex-col items-center px-12 bg-primary pb-20">
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
