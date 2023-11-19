@@ -75,6 +75,10 @@ const router = createBrowserRouter([
         element: <CadastroClienteInfo />,
       },
       {
+        path: "/autenticacaoemail",
+        element: <CadastroClienteInfo />,
+      },
+      {
         path: "/cadastro-pessoa",
         element: <CadastroPessoa />,
       },
