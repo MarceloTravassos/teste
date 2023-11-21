@@ -5,8 +5,11 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { editPassword } from "../api";
 import { Error } from "../components/Error";
+import { useNavigate } from "react-router-dom";
 
 export function AlterarSenha() {
+  const navigate = useNavigate();
+
   const [showPopup, setShowPopup] = useState(false);
   const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
@@ -40,7 +43,7 @@ export function AlterarSenha() {
               </p>
               <button
                 className="mt-2 w-full md:w-64 py-3 font-bold text-xl bg-primary text-white rounded-md"
-                onClick={() => setShowPopup(false)}
+                onClick={() => navigate("/home")}
               >
                 Fechar
               </button>

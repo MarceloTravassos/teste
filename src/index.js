@@ -95,6 +95,10 @@ const router = createBrowserRouter([
         element: <EsqueceuSenha2 />,
       },
       {
+        path: "senha/",
+        element: <EsqueceuSenha2 />,
+      },
+      {
         path: "/redefinir-senha",
         element: <RedefinirSenha />,
       },

@@ -20,7 +20,6 @@ export function AceitarUsuario() {
   const navigate = useNavigate();
 
   const [conta, setConta] = useState();
-  const [documento, setDocumento] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [popup, setPopup] = useState(false);
@@ -38,8 +37,10 @@ export function AceitarUsuario() {
 
   async function download() {
     try {
-      const result = await downloadDocumento(id);
-      setDocumento(result);
+      const blob = await downloadDocumento(id);
+      const url = URL.createObjectURL(blob);
+
+      window.open(url, "_blank");
     } catch (error) {
       setError(error.response.data.title);
       setErrorPopup(true);
@@ -77,10 +78,6 @@ export function AceitarUsuario() {
       <HeaderAdmin />
 
       <main className="flex flex-col lg:gap-y-10 md:gap-y-5 gap-y-4 pb-20 items-center">
-        <button type="button" onClick={() => console.log(conta)}>
-          teste
-        </button>
-
         {popup && (
           <Message
             message={message}

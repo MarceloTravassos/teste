@@ -5,7 +5,6 @@ import logo from "../assets/logo.jpeg";
 import { autenticaEmail, consultaCep, registerUsuario } from "../api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error } from "../components/Error";
-import { Message } from "../components/Message";
 
 export function CadastroPessoa() {
   const location = useLocation();
@@ -23,7 +22,6 @@ export function CadastroPessoa() {
   const [uf, setUf] = useState("");
   const [errorPopup, setErrorPopup] = useState(false);
   const [error, setError] = useState("");
-  const [mostrarMensagemInfo, setMostrarMensagemInfo] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();

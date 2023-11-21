@@ -33,7 +33,6 @@ export function Header(props) {
                   <li className="px-3 py-2">
                     <Link to="/alterar-senha">Alterar senha</Link>
                   </li>
-                  <hr className="mx-3" />
                 </ul>
               </div>
             </>

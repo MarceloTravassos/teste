@@ -13,11 +13,10 @@ export function CadastroClienteInfo() {
   const [errorPopup, setErrorPopup] = useState(false);
   const [error, setError] = useState("");
   const [mostrarBotao, setMostrarBotao] = useState(false);
-  const [token, setToken] = useState("");
 
-  async function autenticar() {
+  async function autenticar(token) {
     try {
-      console.log("email autenticado!");
+      await autenticaEmail(token);
       setMostrarBotao(true);
     } catch (error) {
       setError(error.response.data.title);
@@ -30,10 +29,8 @@ export function CadastroClienteInfo() {
     const tokenURL = searchParams.get("token");
 
     if (tokenURL) {
-      setToken(tokenURL);
-      autenticar();
+      autenticar(tokenURL);
     }
-
   }, [location.search]);
 
   return (
@@ -66,6 +63,7 @@ export function CadastroClienteInfo() {
         </p>
 
         <button
+          onClick={() => setPopup(true)}
           disabled={!mostrarBotao}
           className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-white text-xl w-full disabled:bg-opacity-60"
         >

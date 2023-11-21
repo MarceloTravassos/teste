@@ -386,30 +386,30 @@ export const registerUsuario = async (body) => {
       },
     });
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
 
 export const registerONG = async (body) => {
   try {
-    console.log(body);
-
-    // await axios.post(
-    //   "http://localhost:8080/auth/registrarusuario",
-    //   config,
-    //   body
-    // );
+    await axios.post("http://localhost:8080/auth/registrarong", body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   } catch (error) {
     throw error;
   }
 };
 
-export const autenticaEmail = async () => {
+export const autenticaEmail = async (token) => {
   try {
-    await axios.patch("http://localhost:8080/autenticacaoemail", null, config);
+    await axios.patch("http://localhost:8080/autenticacaoemail", null, {
+      params: {
+        token,
+      },
+    });
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -442,8 +442,15 @@ export const downloadDocumento = async (id) => {
   try {
     const response = await axios.get(
       `http://localhost:8080/gerenciarcontas/${id}/download`,
-      config
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "image/jpeg",
+        },
+        responseType: "blob",
+      }
     );
+
     return await response.data;
   } catch (error) {
     throw error;
@@ -554,6 +561,26 @@ export const getUsuario = async () => {
   try {
     const response = await axios.get("http://localhost:8080/usuario", config);
     return await response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const sendPasswordEmail = async (body) => {
+  try {
+    await axios.post("http://localhost:8080/senha/reset", body);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editForgottenPassword = async (body, token) => {
+  try {
+    await axios.patch("http://localhost:8080/senha", body, {
+      params: {
+        token,
+      },
+    });
   } catch (error) {
     throw error;
   }

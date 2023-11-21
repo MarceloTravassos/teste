@@ -27,24 +27,24 @@ export function CadastroONG() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const body = {
-      nome: location.state.nome,
-      telefone: location.state.telefone,
-      documento,
-      email: location.state.email,
-      senha: location.state.senha,
-      cep,
-      cidade,
-      uf,
-      bairro,
-      logradouro,
-      numero,
-      complemento,
-      comprovante,
-    };
+    var formData = new FormData();
+
+    formData.append("nome", location.state.nome);
+    formData.append("telefone", location.state.telefone);
+    formData.append("documento", documento);
+    formData.append("email", location.state.email);
+    formData.append("senha", location.state.senha);
+    formData.append("cep", cep);
+    formData.append("cidade", cidade);
+    formData.append("uf", uf);
+    formData.append("bairro", bairro);
+    formData.append("logradouro", logradouro);
+    formData.append("numero", parseInt(numero));
+    formData.append("complemento", complemento);
+    formData.append("comprovante", comprovante);
 
     try {
-      await registerONG(body);
+      await registerONG(formData);
       return navigate("/cadastro-cliente-info");
     } catch (error) {
       setError(error.response.data.title);
@@ -79,7 +79,7 @@ export function CadastroONG() {
   }, [cep]);
 
   return (
-    <main className="flex flex-col items-center bg-primary pb-20">
+    <main className="flex flex-col items-center bg-primary pb-20 min-h-screen">
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
@@ -87,7 +87,11 @@ export function CadastroONG() {
       <img src={logo} alt="Logo Doar Mais" className="mb-7 mt-9 mx-auto w-32" />
 
       <div className="w-72 h-auto mb-2 px-5 py-3 rounded-xl bg-white mt-4">
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+          className="flex flex-col"
+        >
           <h1 className="font-bold text-2xl text-primary mb-2 text-center">
             Cadastro
           </h1>
@@ -143,15 +147,21 @@ export function CadastroONG() {
           <FormLabel name="comprovante">
             Comprovante de pessoa jurídica:
           </FormLabel>
-          <ComprovanteInput
-            value={comprovante}
-            onChange={(e) => setComprovante(e.target.value)}
+          <input
+            className="bg-primary outline-black px-2 py-5 text-black rounded-md h-14 mb-2 bg-opacity-20
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-xs file:font-semibold
+            file:bg-violet-50 file:text-primary
+            hover:file:bg-violet-100"
+            type="file"
+            id="comprovante"
+            name="comprovante"
+            required
+            onChange={(e) => setComprovante(e.target.files[0])}
           />
 
-          <button
-            type="submit"
-            className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl"
-          >
+          <button className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white text-xl">
             Finalizar
           </button>
         </form>
