@@ -58,18 +58,6 @@ export function DoacoesRapidas() {
       </div>
 
       <main className="flex flex-col gap-y-7 pb-32">
-        <div className="relative flex items-center mx-auto mb-4 w-2/3">
-          <input
-            type="text"
-            placeholder="Filtrar por cidade"
-            className="border border-gray-300 px-4 py-2 rounded-full w-full focus:outline-primary"
-          />
-          <FontAwesomeIcon
-            icon={faSearch}
-            className="absolute right-4 text-gray-500 cursor-pointer"
-          />
-        </div>
-
         {doacoesRapidas.map((doacaoRapida, index) => (
           <Link
             to={`/doacoao-rapida/${doacaoRapida.id}`}
