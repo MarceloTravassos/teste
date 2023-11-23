@@ -98,6 +98,7 @@ export function CadastroONG() {
 
           <FormLabel name="cnpj">CNPJ:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             name="cnpj"
             type="text"
             value={documento}
@@ -106,6 +107,7 @@ export function CadastroONG() {
 
           <FormLabel name="cep">CEP:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             name="cep"
             type="text"
             value={cep}
@@ -114,6 +116,7 @@ export function CadastroONG() {
 
           <FormLabel name="logradouro">Endereço:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             name="logradouro"
             type="text"
             value={logradouro}
@@ -124,7 +127,7 @@ export function CadastroONG() {
             <div>
               <FormLabel name="numero">Número:</FormLabel>
               <FormInput
-                className="w-full"
+                className="bg-opacity-30 w-full"
                 name="numero"
                 type="text"
                 value={numero}
@@ -135,7 +138,7 @@ export function CadastroONG() {
             <div>
               <FormLabel name="complemento">Complemento:</FormLabel>
               <FormInput
-                className="w-32"
+                className="bg-opacity-30 w-32"
                 name="complemento"
                 type="text"
                 value={complemento}
@@ -148,7 +151,7 @@ export function CadastroONG() {
             Comprovante de pessoa jurídica:
           </FormLabel>
           <input
-            className="bg-primary outline-black px-2 py-5 text-black rounded-md h-14 mb-2 bg-opacity-20
+            className="bg-primary bg-opacity-30 outline-black px-2 py-5 text-black rounded-md h-14 mb-2
               file:mr-4 file:py-2 file:px-4
               file:rounded-full file:border-0
               file:text-xs file:font-semibold
@@ -157,7 +160,6 @@ export function CadastroONG() {
             type="file"
             id="comprovante"
             name="comprovante"
-            required
             onChange={(e) => setComprovante(e.target.files[0])}
           />
 

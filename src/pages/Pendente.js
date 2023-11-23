@@ -95,7 +95,11 @@ export function Pendente() {
         )}
 
         {pendente ? (
-          <div className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 pt-4 pb-6 mx-9 border border-[#807777]">
+          <div
+            className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center
+          shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.25),0_4px_4px_0_rgba(0,0,0,0.25)]
+          px-4 pt-4 pb-6 mx-9"
+          >
             <div className="flex">
               <div>
                 <h2 className="font-semibold text-lg text-menu-gray mb-3 leading-tight">

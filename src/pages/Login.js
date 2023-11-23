@@ -80,7 +80,7 @@ export function Login() {
           to="/esquecer-senha"
           className="mt-2 mb-2 text-sm font-normal ml-[2px] hover:underline"
         >
-          Esqueceu a senha?
+          Esqueceu a sua senha?
         </Link>
 
         <SubmitButton
@@ -92,9 +92,9 @@ export function Login() {
 
         <p className="font-normal text-xs text-black mt-5">
           Não possui uma conta?{" "}
-          <a className="text-primary hover:underline" href="/registrar">
+          <Link to="/cadastro" className="text-primary hover:underline">
             Criar agora
-          </a>
+          </Link>
         </p>
       </form>
     </main>

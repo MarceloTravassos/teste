@@ -33,7 +33,9 @@ export function MeusAnuncios(props) {
           return (
             <div
               key={index}
-              className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md pl-4 mx-9 border border-[#807777]"
+              className="relative flex flex-col overflow-hidden h-16 bg-white text-menu-gray rounded-2xl justify-center
+              shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.25),0_4px_4px_0_rgba(0,0,0,0.25)]
+              pl-4 mx-9"
             >
               <div className="flex items-center">
                 <FontAwesomeIcon icon={icon} className="w-6 h-6 mr-3" />

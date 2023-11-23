@@ -8,7 +8,6 @@ export function FormInput(props) {
       type={type}
       id={name}
       name={name}
-      required
       value={value}
       onChange={onChange}
       disabled={disabled}

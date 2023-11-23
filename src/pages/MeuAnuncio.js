@@ -201,7 +201,9 @@ export function MeuAnuncio() {
               {meuAnuncio.itemList.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between border border-menu-gray py-3 px-4 rounded-2xl"
+                  className="flex items-center justify-between
+                  shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.25),0_4px_4px_0_rgba(0,0,0,0.25)]
+                  py-3 px-4 rounded-2xl"
                 >
                   <div>
                     <p>

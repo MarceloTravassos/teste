@@ -45,7 +45,8 @@ export function Denuncias() {
           <Link
             key={index}
             to={`/administrador/denuncias/${denuncia.id}`}
-            className="bg-div-gray hover:bg-light-gray transition rounded-2xl drop-shadow-md py-8 px-8 mx-auto border border-[#807777]
+            className="bg-div-gray hover:bg-light-gray transition rounded-2xl
+            shadow-[inset_1px_2px_4px_0_rgba(88,101,242,0.30),3px_3px_4px_2px_rgba(0,0,0,0.25)] py-8 px-8 mx-auto
             w-3/4 lg:w-1/2 md:w-1/2"
           >
             <h2 className="font-bold lg:text-2xl md:text-xl text-sm text-menu-gray">

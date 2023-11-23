@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
-import { Filtro } from "../components/Filtro";
+import { faPlus, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { getDoacoes } from "../api";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
@@ -39,6 +38,7 @@ export function Doacoes() {
   return (
     <>
       <Header title="Doações" />
+
       {errorPopup && (
         <Error error={error} onClick={() => setErrorPopup(false)} />
       )}
@@ -57,11 +57,25 @@ export function Doacoes() {
       </div>
 
       <main className="flex flex-col gap-y-7 pb-32">
+        <div className="relative flex items-center mx-auto mb-4 w-2/3">
+          <input
+            type="text"
+            placeholder="Filtrar por cidade"
+            className="border border-gray-300 px-4 py-2 rounded-full w-full focus:outline-primary"
+          />
+          <FontAwesomeIcon
+            icon={faSearch}
+            className="absolute right-4 text-gray-500 cursor-pointer"
+          />
+        </div>
+
         {doacoes.map((doacao, index) => (
           <Link
             to={`/doacao/${doacao.id}`}
             key={index}
-            className="flex flex-col bg-div-gray rounded-2xl justify-center items-center drop-shadow-md px-9 pt-3 pb-11 mx-9 border border-[#807777]"
+            className="flex flex-col bg-div-gray rounded-2xl justify-center items-center
+            shadow-[inset_1px_2px_4px_0_rgba(88,101,242,0.30),3px_3px_4px_2px_rgba(0,0,0,0.25)]
+            px-9 pt-3 pb-11 mx-9"
           >
             <FontAwesomeIcon
               icon={faUser}

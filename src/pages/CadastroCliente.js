@@ -61,6 +61,7 @@ export function CadastroCliente() {
           </h1>
           <FormLabel name="nome">Nome:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="nome"
             name="nome"
             type="text"
@@ -70,6 +71,7 @@ export function CadastroCliente() {
 
           <FormLabel name="email">Email:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="email"
             name="email"
             type="email"
@@ -79,6 +81,7 @@ export function CadastroCliente() {
 
           <FormLabel name="telefone">Telefone:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="telefone"
             name="telefone"
             type="text"
@@ -88,6 +91,7 @@ export function CadastroCliente() {
 
           <FormLabel name="senha">Senha:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="senha"
             name="senha"
             type="password"
@@ -97,6 +101,7 @@ export function CadastroCliente() {
 
           <FormLabel name="confirmar-senha">Confirmar senha:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="confirmar-senha"
             name="confirmar-senha"
             type="password"

@@ -54,7 +54,11 @@ export function DoacaoRapida() {
         )}
 
         {doacaoRapida ? (
-          <div className="flex flex-col gap-y-4 border-black border px-9 py-4 rounded-xl">
+          <div
+            className="flex flex-col gap-y-4
+          shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.25),0_4px_4px_0_rgba(0,0,0,0.25)]
+          px-9 py-4 rounded-xl"
+          >
             <h1 className="font-semibold text-menu-gray leading-tight">
               {doacaoRapida.titulo}
             </h1>
@@ -105,7 +109,7 @@ export function DoacaoRapida() {
                 icon={faCalendar}
               />
               <div className="text-xs text-menu-gray">
-                <h2 className="font-medium text-sm">Datas</h2>
+                <h2 className="font-medium text-sm">Datas e horários</h2>
                 <p>{doacaoRapida.dataInicioDisponibilidade}</p>
                 <p>{doacaoRapida.dataFimDisponibilidade}</p>
               </div>

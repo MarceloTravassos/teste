@@ -177,7 +177,7 @@ export function CriarAnuncio1() {
         </div>
 
         <button
-          disabled={listaItens.length === 0 ? "disabled" : ""}
+          // disabled={listaItens.length === 0 ? "disabled" : ""}
           className="mt-2 bg-primary px-16 py-2 rounded-lg font-bold text-center text-white 
         text-xl w-fit mx-auto disabled:bg-opacity-60"
         >

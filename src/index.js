@@ -19,7 +19,6 @@ import { RedefinirSenha } from "./pages/RedefinirSenha";
 import { Home } from "./pages/Home";
 import { Reportar } from "./pages/Reportar";
 import { AlterarDadosCadastrais } from "./pages/AlterarDadosCadastrais";
-import { AlterarEndereco } from "./pages/AlterarEndereco";
 import { Doacoes } from "./pages/Doacoes";
 import { Pedidos } from "./pages/Pedidos";
 import { DoacoesRapidas } from "./pages/DoacoesRapidas";
@@ -117,10 +116,6 @@ const router = createBrowserRouter([
       {
         path: "/alterar-senha",
         element: <AlterarSenha />,
-      },
-      {
-        path: "/alterar-endereco",
-        element: <AlterarEndereco />,
       },
       {
         path: "/doacoes",

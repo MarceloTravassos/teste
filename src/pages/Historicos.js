@@ -28,7 +28,9 @@ export function Historicos(props) {
             <Link
               key={index}
               to={`/atividades/historico/${historico.id}`}
-              className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center drop-shadow-md px-4 py-3 mx-9 border border-[#807777]"
+              className="flex flex-col bg-white text-menu-gray rounded-2xl justify-center
+              shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.25),0_4px_4px_0_rgba(0,0,0,0.25)]
+              px-4 py-3 mx-9"
             >
               <div className="flex">
                 <FontAwesomeIcon icon={icon} className="w-6 h-6 mr-3" />

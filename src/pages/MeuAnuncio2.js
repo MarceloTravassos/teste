@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { consultaCep, updateMeuAnuncio } from "../api";
 import { Error } from "../components/Error";
+import { Navbar } from "../components/Navbar";
 
 export function MeuAnuncio2() {
   const location = useLocation();
@@ -127,120 +128,123 @@ export function MeuAnuncio2() {
   }, [cep]);
 
   return (
-    <main>
-      <Header title="Meus anúncios" />
-      {errorPopup && (
-        <Error error={error} onClick={() => setErrorPopup(false)} />
-      )}
-
-      <form onSubmit={update} className="flex flex-col mx-9 my-3 mb-20">
-        {popup && (
-          <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
-            <div
-              className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px] border-light-gray
-              px-6 py-5 rounded-lg shadow-md justify-center"
-            >
-              <h1 className="mb-4 text-lg text-center">
-                Anúncio modificado com sucesso!
-              </h1>
-              <button
-                className="mt-4 mx-auto w-fit md:w-64 px-16 py-2 font-bold text-sm bg-primary text-white rounded-md"
-                onClick={redirectToHome}
-              >
-                Retornar
-              </button>
-            </div>
-          </div>
+    <>
+      <main className="min-h-screen pb-20">
+        <Header title="Meus anúncios" />
+        {errorPopup && (
+          <Error error={error} onClick={() => setErrorPopup(false)} />
         )}
 
-        <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
-        <p className="text-xs text-menu-gray text-opacity-80 mb-2">
-          Adicione o período em dias e horas que você terá disponibilidade para
-          entregar os produtos do seu anúncio
-        </p>
+        <form onSubmit={update} className="flex flex-col mx-9 my-3">
+          {popup && (
+            <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
+              <div
+                className="flex flex-col text-menu-gray leading-tight font-medium w-4/5 bg-white border-[2.5px] border-light-gray
+              px-6 py-5 rounded-lg shadow-md justify-center"
+              >
+                <h1 className="mb-4 text-lg text-center">
+                  Anúncio modificado com sucesso!
+                </h1>
+                <button
+                  className="mt-4 mx-auto w-fit md:w-64 px-16 py-2 font-bold text-sm bg-primary text-white rounded-md"
+                  onClick={redirectToHome}
+                >
+                  Retornar
+                </button>
+              </div>
+            </div>
+          )}
 
-        <h1 className="text-menu-gray font-medium mb-1">Dias Disponíveis</h1>
-        <FormInput
-          onChange={(e) => setDataInicioDisponibilidade(e.target.value)}
-          value={dataInicioDisponibilidade}
-          name="dataInicio"
-          type="datetime-local"
-          id="dataInicio"
-        />
-        <FormInput
-          onChange={(e) => setDataFimDisponibilidade(e.target.value)}
-          value={dataFimDisponibilidade}
-          name="dataFim"
-          type="datetime-local"
-          id="dataFim"
-        />
+          <h1 className="text-menu-gray font-medium mb-1">Disponibilidade</h1>
+          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
+            Adicione o período em dias e horas que você terá disponibilidade
+            para entregar os produtos do seu anúncio
+          </p>
 
-        <hr className="my-4" />
+          <h1 className="text-menu-gray font-medium mb-1">Dias e horários disponíveis</h1>
+          <FormInput
+            onChange={(e) => setDataInicioDisponibilidade(e.target.value)}
+            value={dataInicioDisponibilidade}
+            name="dataInicio"
+            type="datetime-local"
+            id="dataInicio"
+          />
+          <FormInput
+            onChange={(e) => setDataFimDisponibilidade(e.target.value)}
+            value={dataFimDisponibilidade}
+            name="dataFim"
+            type="datetime-local"
+            id="dataFim"
+          />
 
-        <h1 className="text-menu-gray font-medium mb-1">Local de entrega</h1>
-        <p className="text-xs text-menu-gray text-opacity-80 mb-2">
-          Adicione aqui o local que você gostaria de se encontrar com os
-          interessados para a transação dos itens do anúncio
-        </p>
+          <hr className="my-4" />
 
-        <FormLabel name="cep">CEP</FormLabel>
-        <FormInput
-          onChange={(e) => setCep(e.target.value)}
-          value={cep}
-          name="cep"
-          type="text"
-          id="cep"
-        />
+          <h1 className="text-menu-gray font-medium mb-1">Local de entrega</h1>
+          <p className="text-xs text-menu-gray text-opacity-80 mb-2">
+            Adicione aqui o local que você gostaria de se encontrar com os
+            interessados para a transação dos itens do anúncio
+          </p>
 
-        <FormLabel name="logradouro">Endereço</FormLabel>
-        <FormInput
-          onChange={(e) => setLogradouro(e.target.value)}
-          value={logradouro}
-          name="logradouro"
-          type="text"
-          id="logradouro"
-        />
+          <FormLabel name="cep">CEP</FormLabel>
+          <FormInput
+            onChange={(e) => setCep(e.target.value)}
+            value={cep}
+            name="cep"
+            type="text"
+            id="cep"
+          />
 
-        <div className="flex gap-4">
-          <div className="w-2/4">
-            <FormLabel name="numero">Número</FormLabel>
-            <FormInput
-              onChange={(e) => setNumero(e.target.value)}
-              value={numero}
-              className="w-full"
-              name="numero"
-              type="text"
-              id="numero"
-            />
+          <FormLabel name="logradouro">Endereço</FormLabel>
+          <FormInput
+            onChange={(e) => setLogradouro(e.target.value)}
+            value={logradouro}
+            name="logradouro"
+            type="text"
+            id="logradouro"
+          />
+
+          <div className="flex gap-4">
+            <div className="w-2/4">
+              <FormLabel name="numero">Número</FormLabel>
+              <FormInput
+                onChange={(e) => setNumero(e.target.value)}
+                value={numero}
+                className="w-full"
+                name="numero"
+                type="text"
+                id="numero"
+              />
+            </div>
+
+            <div className="w-2/4">
+              <FormLabel name="complemento">Complemento</FormLabel>
+              <FormInput
+                onChange={(e) => setComplemento(e.target.value)}
+                value={complemento}
+                className="w-full"
+                name="complemento"
+                type="text"
+                id="complemento"
+              />
+            </div>
           </div>
 
-          <div className="w-2/4">
-            <FormLabel name="complemento">Complemento</FormLabel>
-            <FormInput
-              onChange={(e) => setComplemento(e.target.value)}
-              value={complemento}
-              className="w-full"
-              name="complemento"
-              type="text"
-              id="complemento"
-            />
-          </div>
-        </div>
+          <FormLabel name="pontoReferencia">Ponto de Referência</FormLabel>
+          <FormInput
+            onChange={(e) => setPontoReferencia(e.target.value)}
+            value={pontoReferencia}
+            className="w-full"
+            name="pontoReferencia"
+            type="text"
+            id="pontoReferencia"
+          />
 
-        <FormLabel name="pontoReferencia">Ponto de Referência</FormLabel>
-        <FormInput
-          onChange={(e) => setPontoReferencia(e.target.value)}
-          value={pontoReferencia}
-          className="w-full"
-          name="pontoReferencia"
-          type="text"
-          id="pontoReferencia"
-        />
-
-        <button className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit my-4">
-          Finalizar
-        </button>
-      </form>
-    </main>
+          <button className="rounded-md mx-auto bg-primary text-white text-xl font-bold px-14 py-2 w-fit my-4">
+            Finalizar
+          </button>
+        </form>
+      </main>
+      <Navbar />
+    </>
   );
 }

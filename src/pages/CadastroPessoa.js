@@ -2,7 +2,7 @@ import { FormInput } from "../components/FormInput";
 import { FormLabel } from "../components/FormLabel";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.jpeg";
-import { autenticaEmail, consultaCep, registerUsuario } from "../api";
+import { consultaCep, registerUsuario } from "../api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error } from "../components/Error";
 
@@ -97,6 +97,7 @@ export function CadastroPessoa() {
 
           <FormLabel name="cpf">CPF:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="cpf"
             name="cpf"
             type="text"
@@ -106,6 +107,7 @@ export function CadastroPessoa() {
 
           <FormLabel name="cep">CEP:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="cep"
             name="cep"
             type="text"
@@ -115,6 +117,7 @@ export function CadastroPessoa() {
 
           <FormLabel name="logradouro">Endereço:</FormLabel>
           <FormInput
+            className="bg-opacity-30"
             id="logradouro"
             name="logradouro"
             type="text"
@@ -127,7 +130,7 @@ export function CadastroPessoa() {
               <FormLabel name="numero">Número:</FormLabel>
               <FormInput
                 id="numero"
-                className="w-full"
+                className="bg-opacity-30 w-full"
                 name="numero"
                 type="text"
                 value={numero}
@@ -139,7 +142,7 @@ export function CadastroPessoa() {
               <FormLabel name="complemento">Complemento:</FormLabel>
               <FormInput
                 id="complemento"
-                className="w-32"
+                className="bg-opacity-30 w-32"
                 name="complemento"
                 type="text"
                 value={complemento}
@@ -150,7 +153,7 @@ export function CadastroPessoa() {
 
           <FormLabel name="comprovante">Comprovante de residência:</FormLabel>
           <input
-            className="bg-primary outline-black px-2 py-5 text-black rounded-md h-14 mb-2 bg-opacity-20
+            className="bg-primary bg-opacity-30 outline-black px-2 py-5 text-black rounded-md h-14 mb-2
               file:mr-4 file:py-2 file:px-4
               file:rounded-full file:border-0
               file:text-xs file:font-semibold
@@ -159,7 +162,6 @@ export function CadastroPessoa() {
             type="file"
             id="comprovante"
             name="comprovante"
-            required
             onChange={(e) => setComprovante(e.target.files[0])}
           />
 

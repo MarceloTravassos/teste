@@ -175,7 +175,7 @@ export function EditarItemAnuncio() {
               onClick={continuarEdicao}
               className="rounded-md mx-auto mt-3 xl:mt-56 bg-primary text-white text-xl font-bold px-14 py-2 w-fit"
             >
-              Continuar
+              Finalizar
             </button>
           </form>
         ) : (

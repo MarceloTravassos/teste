@@ -37,7 +37,8 @@ export function AlterarSenha() {
 
         {showPopup && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-opacity-50 flex items-center justify-center">
-            <div className="flex flex-col border-[1.5px] border-light-gray leading-tight font-medium w-4/5 bg-white px-8 py-9 rounded-lg shadow-md items-center justify-center">
+            <div className="flex flex-col border-[1.5px] border-light-gray leading-tight font-medium w-4/5 bg-white
+              px-8 py-9 rounded-lg shadow-md items-center justify-center">
               <p className="text-menu-gray font-medium leading-tight mb-9 text-justify">
                 Sua senha foi alterada com sucesso!
               </p>
@@ -89,7 +90,7 @@ export function AlterarSenha() {
             type="submit"
             className="rounded-md mx-auto mt-10 xl:mt-56 bg-primary text-white text-xl font-bold px-14 py-2 w-fit"
           >
-            Continuar
+            Confirmar
           </button>
         </form>
 
