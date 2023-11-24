@@ -66,7 +66,7 @@ export function MarcarCompromisso1Pedido() {
 
   return (
     <>
-      <Header title="Doações" />
+      <Header title="Pedidos" />
       <main>
         <form onSubmit={submit} className="flex flex-col mx-9 my-3 pb-20">
           <div className="flex items-center justify-between mb-3">

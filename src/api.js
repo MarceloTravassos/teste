@@ -6,9 +6,16 @@ const config = {
   },
 };
 
-export const getPedidos = async () => {
+export const getPedidos = async (cidade) => {
   try {
-    const response = await axios.get("http://localhost:8080/pedido", config);
+    const response = await axios.get("http://localhost:8080/pedido", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      params: {
+        cidade,
+      },
+    });
     return await response.data;
   } catch (error) {
     throw error;
@@ -43,9 +50,16 @@ export const propostaPedido = async (body) => {
   }
 };
 
-export const getDoacoes = async () => {
+export const getDoacoes = async (cidade) => {
   try {
-    const response = await axios.get("http://localhost:8080/doacao", config);
+    const response = await axios.get("http://localhost:8080/doacao", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      params: {
+        cidade,
+      },
+    });
     return await response.data;
   } catch (error) {
     throw error;

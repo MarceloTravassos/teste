@@ -11,6 +11,7 @@ import { Error } from "../components/Error";
 
 export function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
+  const [cidade, setCidade] = useState("");
   const [error, setError] = useState("");
   const [errorPopup, setErrorPopup] = useState(false);
 
@@ -20,9 +21,9 @@ export function Pedidos() {
     return dataFormatada;
   };
 
-  async function fetchPedidos() {
+  async function fetchPedidos(cidade = null) {
     try {
-      const result = await getPedidos();
+      const result = await getPedidos(cidade);
       setPedidos(result);
     } catch (error) {
       setError(error.response.data.title);
@@ -58,16 +59,22 @@ export function Pedidos() {
       </div>
 
       <main className="flex flex-col gap-y-7 pb-32">
-        <div className="relative flex items-center mx-auto mb-4 w-2/3">
+      <div
+          className="relative flex items-center justify-between mx-auto gap-x-2 mb-4 w-2/3 border
+        border-gray-300 rounded-full px-4 py-2"
+        >
           <input
+            onChange={(e) => setCidade(e.target.value)}
             type="text"
             placeholder="Filtrar por cidade"
-            className="border border-gray-300 px-4 py-2 rounded-full w-full focus:outline-primary"
+            className="w-full focus:outline-none border-none"
           />
-          <FontAwesomeIcon
-            icon={faSearch}
-            className="absolute right-4 text-gray-500 cursor-pointer"
-          />
+          <button type="button" onClick={() => fetchPedidos(cidade)}>
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="text-gray-500 cursor-pointer px-2"
+            />
+          </button>
         </div>
 
         {pedidos.map((pedido, index) => (

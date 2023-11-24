@@ -53,7 +53,7 @@ export function MarcarCompromisso2Pedido() {
 
   return (
     <>
-      <Header title="Doações" />
+      <Header title="Pedidos" />
       <main className="h-screen">
         {errorPopup && (
           <Error error={error} onClick={() => setErrorPopup(false)} />

@@ -53,7 +53,7 @@ export function MarcarCompromisso2DoacaoRapida() {
 
   return (
     <>
-      <Header title="Doações" />
+      <Header title="Doações Rápidas" />
       <main className="h-screen">
         {errorPopup && (
           <Error error={error} onClick={() => setErrorPopup(false)} />
