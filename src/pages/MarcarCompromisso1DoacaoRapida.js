@@ -146,7 +146,7 @@ export function MarcarCompromisso1DoacaoRapida() {
                 name="descricao"
                 rows="3"
                 cols="34"
-                className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md truncate w-full"
+                className="bg-primary bg-opacity-20 p-2 mb-2 rounded-md w-full"
                 disabled
               ></textarea>
 
