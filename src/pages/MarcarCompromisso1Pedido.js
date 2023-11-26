@@ -51,10 +51,12 @@ export function MarcarCompromisso1Pedido() {
   const submit = (e) => {
     e.preventDefault();
     location.state.pedido.itemList.map((item, index) => {
-      itemPropostaRequestDtoList.push({
-        idItem: item.id,
-        quantidade: quantidades[index],
-      });
+      if (quantidades[index] > 0) {
+        itemPropostaRequestDtoList.push({
+          idItem: item.id,
+          quantidade: quantidades[index],
+        });
+      }
     });
 
     const pedido = location.state.pedido;

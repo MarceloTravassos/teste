@@ -52,10 +52,12 @@ export function MarcarCompromisso1DoacaoRapida() {
   const submit = (e) => {
     e.preventDefault();
     location.state.doacaoRapida.itemList.map((item, index) => {
-      itemPropostaRequestDtoList.push({
-        idItem: item.id,
-        quantidade: quantidades[index],
-      });
+      if (quantidades[index] > 0) {
+        itemPropostaRequestDtoList.push({
+          idItem: item.id,
+          quantidade: quantidades[index],
+        });
+      }
     });
 
     const doacaoRapida = location.state.doacaoRapida;

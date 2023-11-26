@@ -51,10 +51,12 @@ export function MarcarCompromisso1Doacao() {
   const submit = (e) => {
     e.preventDefault();
     location.state.doacao.itemList.map((item, index) => {
-      itemPropostaRequestDtoList.push({
-        idItem: item.id,
-        quantidade: quantidades[index],
-      });
+      if (quantidades[index] > 0) {
+        itemPropostaRequestDtoList.push({
+          idItem: item.id,
+          quantidade: quantidades[index],
+        });
+      }
     });
 
     const doacao = location.state.doacao;
